@@ -1,0 +1,1133 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - heading "FIFA World Cup 2026 Predictions — AI-Powered Match Analysis" [level=1] [ref=e4]
+      - paragraph [ref=e5]: OddsFlow provides AI-powered predictions for every FIFA World Cup 2026 match. The tournament takes place across the United States, Mexico, and Canada — the first World Cup with 48 teams and 104 matches. Our machine learning models analyze historical squad performance, qualifying form, head-to-head records, and real-time odds from 10+ sources updated every 10-20 seconds to generate win/draw/loss probabilities, Asian Handicap recommendations, and Over/Under total goals forecasts.
+      - heading "World Cup 2026 Coverage" [level=2] [ref=e6]
+      - list [ref=e7]:
+        - listitem [ref=e8]: 1X2 match result probabilities for every group stage, round of 32, quarter-final, semi-final, and final match
+        - listitem [ref=e9]: Asian Handicap analysis with fair odds and edge detection against market lines
+        - listitem [ref=e10]: Over/Under total goals predictions with implied probability breakdowns
+        - listitem [ref=e11]: Real-time odds comparison from Bet365, Pinnacle, and other major odds providers
+        - listitem [ref=e12]: Team strength ratings based on FIFA rankings, ELO scores, and qualifying campaign data
+        - listitem [ref=e13]: Group stage standings, knockout bracket, and tournament progression tracker
+      - heading "How to Use World Cup Predictions" [level=2] [ref=e14]
+      - list [ref=e15]:
+        - listitem [ref=e16]: Browse upcoming World Cup matches by date or group
+        - listitem [ref=e17]: Click any match to view detailed AI analysis including 1X2 probabilities and market recommendations
+        - listitem [ref=e18]: Compare our AI fair odds against market prices to identify potential value opportunities
+        - listitem [ref=e19]: Track prediction accuracy with our transparent, timestamped verification system
+      - heading "Key Prediction Terms" [level=2] [ref=e20]
+      - generic [ref=e21]:
+        - term [ref=e22]: 1X2 (Match Result)
+        - definition [ref=e23]: 1 = Home Win, X = Draw, 2 = Away Win. The most common football prediction market worldwide.
+        - term [ref=e24]: Asian Handicap
+        - definition [ref=e25]: "Goal-based handicap eliminating the draw. Example: -1.5 means the team must win by 2 or more goals."
+        - term [ref=e26]: Over/Under
+        - definition [ref=e27]: Bet on total goals above or below a line. Over 2.5 means 3 or more goals in the match.
+      - paragraph [ref=e28]: OddsFlow is an analytics platform providing probability analysis and market data for informational and entertainment purposes only. Use responsibly.
+    - generic [ref=e29]:
+      - navigation [ref=e34]:
+        - generic [ref=e36]:
+          - link "OddsFlow Logo OddsFlow" [ref=e37] [cursor=pointer]:
+            - /url: /worldcup
+            - img "OddsFlow Logo" [ref=e38]
+            - generic [ref=e39]: OddsFlow
+          - generic [ref=e40]:
+            - link "Home" [ref=e41] [cursor=pointer]:
+              - /url: /worldcup
+            - link "Predictions" [ref=e42] [cursor=pointer]:
+              - /url: /worldcup/predictions
+            - link "Countries" [ref=e43] [cursor=pointer]:
+              - /url: /worldcup/countries
+            - link "Groups" [ref=e44] [cursor=pointer]:
+              - /url: /worldcup/groups
+            - link "AI Performance" [ref=e45] [cursor=pointer]:
+              - /url: /worldcup/performance
+            - link "Proof" [ref=e46] [cursor=pointer]:
+              - /url: /worldcup/proof
+            - link "Pricing" [ref=e47] [cursor=pointer]:
+              - /url: /worldcup/pricing
+          - generic [ref=e48]:
+            - button "EN flag EN" [ref=e50] [cursor=pointer]:
+              - img "EN flag" [ref=e51]
+              - generic [ref=e52]: EN
+              - img [ref=e53]
+            - link "Log In" [ref=e55] [cursor=pointer]:
+              - /url: /login
+            - link "Get Started" [ref=e56] [cursor=pointer]:
+              - /url: /get-started
+            - link "OddsFlow Homepage" [ref=e57] [cursor=pointer]:
+              - /url: /
+              - img "OddsFlow" [ref=e59]
+              - generic [ref=e60]: Homepage
+      - generic [ref=e62]:
+        - generic [ref=e70]:
+          - img "FIFA World Cup 2026" [ref=e76]
+          - heading "World Cup 2026 AI Predictions & Probabilities | OddsFlow" [level=1] [ref=e80]:
+            - text: World Cup 2026
+            - text: AI Predictions & Probabilities | OddsFlow
+          - generic [ref=e81]:
+            - generic [ref=e82]: 🇺🇸
+            - generic [ref=e83]: 🇨🇦
+            - generic [ref=e84]: 🇲🇽
+            - generic [ref=e85]: USA • Canada • Mexico
+          - paragraph [ref=e86]: AI probability models, simulations, and odds value analysis for every match.
+          - generic [ref=e87]:
+            - link "View Predictions" [ref=e88] [cursor=pointer]:
+              - /url: /worldcup/predictions
+            - button "View Win Proof" [ref=e89] [cursor=pointer]
+            - link "Free Sign Up" [ref=e90] [cursor=pointer]:
+              - /url: /get-started?redirect=/onboarding
+        - generic [ref=e94]:
+          - generic [ref=e96]:
+            - generic [ref=e97]: Mexico
+            - generic [ref=e99]: vs
+            - generic [ref=e101]: South Africa
+          - generic [ref=e103]:
+            - generic [ref=e104]: South Korea
+            - generic [ref=e106]: vs
+            - generic [ref=e108]: Czech
+          - generic [ref=e110]:
+            - generic [ref=e111]: Canada
+            - generic [ref=e113]: vs
+            - generic [ref=e115]: Bosnia
+          - generic [ref=e117]:
+            - generic [ref=e118]: USA
+            - generic [ref=e120]: vs
+            - generic [ref=e122]: Paraguay
+          - generic [ref=e124]:
+            - generic [ref=e125]: Qatar
+            - generic [ref=e127]: vs
+            - generic [ref=e129]: Switzerland
+          - generic [ref=e131]:
+            - generic [ref=e132]: Brazil
+            - generic [ref=e134]: vs
+            - generic [ref=e136]: Morocco
+          - generic [ref=e138]:
+            - generic [ref=e139]: Haiti
+            - generic [ref=e141]: vs
+            - generic [ref=e143]: Scotland
+          - generic [ref=e145]:
+            - generic [ref=e146]: Australia
+            - generic [ref=e148]: vs
+            - generic [ref=e150]: Türkiye
+          - generic [ref=e152]:
+            - generic [ref=e153]: Germany
+            - generic [ref=e155]: vs
+            - generic [ref=e157]: Curaçao
+          - generic [ref=e159]:
+            - generic [ref=e160]: Netherlands
+            - generic [ref=e162]: vs
+            - generic [ref=e164]: Japan
+          - generic [ref=e166]:
+            - generic [ref=e167]: Ivory Coast
+            - generic [ref=e169]: vs
+            - generic [ref=e171]: Ecuador
+          - generic [ref=e173]:
+            - generic [ref=e174]: Sweden
+            - generic [ref=e176]: vs
+            - generic [ref=e178]: Tunisia
+          - generic [ref=e180]:
+            - generic [ref=e181]: Spain
+            - generic [ref=e183]: vs
+            - generic [ref=e185]: Cape
+          - generic [ref=e187]:
+            - generic [ref=e188]: Belgium
+            - generic [ref=e190]: vs
+            - generic [ref=e192]: Egypt
+          - generic [ref=e194]:
+            - generic [ref=e195]: Saudi Arabia
+            - generic [ref=e197]: vs
+            - generic [ref=e199]: Uruguay
+          - generic [ref=e201]:
+            - generic [ref=e202]: Mexico
+            - generic [ref=e204]: vs
+            - generic [ref=e206]: South Africa
+          - generic [ref=e208]:
+            - generic [ref=e209]: South Korea
+            - generic [ref=e211]: vs
+            - generic [ref=e213]: Czech
+          - generic [ref=e215]:
+            - generic [ref=e216]: Canada
+            - generic [ref=e218]: vs
+            - generic [ref=e220]: Bosnia
+          - generic [ref=e222]:
+            - generic [ref=e223]: USA
+            - generic [ref=e225]: vs
+            - generic [ref=e227]: Paraguay
+          - generic [ref=e229]:
+            - generic [ref=e230]: Qatar
+            - generic [ref=e232]: vs
+            - generic [ref=e234]: Switzerland
+          - generic [ref=e236]:
+            - generic [ref=e237]: Brazil
+            - generic [ref=e239]: vs
+            - generic [ref=e241]: Morocco
+          - generic [ref=e243]:
+            - generic [ref=e244]: Haiti
+            - generic [ref=e246]: vs
+            - generic [ref=e248]: Scotland
+          - generic [ref=e250]:
+            - generic [ref=e251]: Australia
+            - generic [ref=e253]: vs
+            - generic [ref=e255]: Türkiye
+          - generic [ref=e257]:
+            - generic [ref=e258]: Germany
+            - generic [ref=e260]: vs
+            - generic [ref=e262]: Curaçao
+          - generic [ref=e264]:
+            - generic [ref=e265]: Netherlands
+            - generic [ref=e267]: vs
+            - generic [ref=e269]: Japan
+          - generic [ref=e271]:
+            - generic [ref=e272]: Ivory Coast
+            - generic [ref=e274]: vs
+            - generic [ref=e276]: Ecuador
+          - generic [ref=e278]:
+            - generic [ref=e279]: Sweden
+            - generic [ref=e281]: vs
+            - generic [ref=e283]: Tunisia
+          - generic [ref=e285]:
+            - generic [ref=e286]: Spain
+            - generic [ref=e288]: vs
+            - generic [ref=e290]: Cape
+          - generic [ref=e292]:
+            - generic [ref=e293]: Belgium
+            - generic [ref=e295]: vs
+            - generic [ref=e297]: Egypt
+          - generic [ref=e299]:
+            - generic [ref=e300]: Saudi Arabia
+            - generic [ref=e302]: vs
+            - generic [ref=e304]: Uruguay
+      - generic [ref=e307]:
+        - generic [ref=e308]:
+          - 'heading "42 Nations, 4 Models: Probabilities for Every Match" [level=2] [ref=e309]':
+            - text: "42 Nations, 4 Models:"
+            - generic [ref=e310]: Probabilities for Every Match
+          - paragraph [ref=e311]: World Cup 2026 AI predictions
+          - paragraph [ref=e312]: Explore our World Cup 2026 coverage map — currently tracking 42 participating nations and all 16 host cities across the USA, Canada, and Mexico. Every country page includes AI probability models, match simulations, and odds value analysis designed to be readable, comparable, and decision-ready.
+        - generic [ref=e313]:
+          - img "FIFA World Cup 2026" [ref=e315]
+          - generic [ref=e316]:
+            - generic [ref=e317]:
+              - generic [ref=e318]:
+                - heading "Host Nations" [level=3] [ref=e319]
+                - paragraph [ref=e320]: FIFA World Cup 2026
+              - generic [ref=e321]:
+                - generic [ref=e322]:
+                  - generic [ref=e323]: 🇺🇸
+                  - generic [ref=e324]:
+                    - paragraph [ref=e325]: United States
+                    - paragraph [ref=e326]: 11 Host Cities
+                - generic [ref=e327]:
+                  - generic [ref=e328]: 🇨🇦
+                  - generic [ref=e329]:
+                    - paragraph [ref=e330]: Canada
+                    - paragraph [ref=e331]: 2 Host Cities
+                - generic [ref=e332]:
+                  - generic [ref=e333]: 🇲🇽
+                  - generic [ref=e334]:
+                    - paragraph [ref=e335]: Mexico
+                    - paragraph [ref=e336]: 3 Host Cities
+              - generic [ref=e337]:
+                - generic [ref=e338]:
+                  - paragraph [ref=e339]: "16"
+                  - paragraph [ref=e340]: Host Cities
+                - generic [ref=e341]:
+                  - generic [ref=e344]: Host Nations
+                  - generic [ref=e347]: Participating Nations
+            - generic [ref=e348]:
+              - generic [ref=e349]:
+                - heading "Participating Nations" [level=3] [ref=e350]
+                - paragraph [ref=e351]: 42 Countries
+              - generic [ref=e353]:
+                - generic [ref=e354]:
+                  - generic [ref=e355]: 🇩🇿
+                  - generic [ref=e356]: Algeria
+                - generic [ref=e357]:
+                  - generic [ref=e358]: 🇦🇷
+                  - generic [ref=e359]: Argentina
+                - generic [ref=e360]:
+                  - generic [ref=e361]: 🇦🇺
+                  - generic [ref=e362]: Australia
+                - generic [ref=e363]:
+                  - generic [ref=e364]: 🇦🇹
+                  - generic [ref=e365]: Austria
+                - generic [ref=e366]:
+                  - generic [ref=e367]: 🇧🇪
+                  - generic [ref=e368]: Belgium
+                - generic [ref=e369]:
+                  - generic [ref=e370]: 🇧🇷
+                  - generic [ref=e371]: Brazil
+                - generic [ref=e372]:
+                  - generic [ref=e373]: 🇨🇻
+                  - generic [ref=e374]: Cabo Verde
+                - generic [ref=e375]:
+                  - generic [ref=e376]: 🇨🇦
+                  - generic [ref=e377]: Canada
+                - generic [ref=e378]:
+                  - generic [ref=e379]: 🇨🇴
+                  - generic [ref=e380]: Colombia
+                - generic [ref=e381]:
+                  - generic [ref=e382]: 🇨🇮
+                  - generic [ref=e383]: Côte d'Ivoire
+                - generic [ref=e384]:
+                  - generic [ref=e385]: 🇭🇷
+                  - generic [ref=e386]: Croatia
+                - generic [ref=e387]:
+                  - generic [ref=e388]: 🇨🇼
+                  - generic [ref=e389]: Curaçao
+                - generic [ref=e390]:
+                  - generic [ref=e391]: 🇪🇨
+                  - generic [ref=e392]: Ecuador
+                - generic [ref=e393]:
+                  - generic [ref=e394]: 🇪🇬
+                  - generic [ref=e395]: Egypt
+                - generic [ref=e396]:
+                  - generic [ref=e397]: 🏴󠁧󠁢󠁥󠁮󠁧󠁿
+                  - generic [ref=e398]: England
+                - generic [ref=e399]:
+                  - generic [ref=e400]: 🇫🇷
+                  - generic [ref=e401]: France
+                - generic [ref=e402]:
+                  - generic [ref=e403]: 🇩🇪
+                  - generic [ref=e404]: Germany
+                - generic [ref=e405]:
+                  - generic [ref=e406]: 🇬🇭
+                  - generic [ref=e407]: Ghana
+                - generic [ref=e408]:
+                  - generic [ref=e409]: 🇭🇹
+                  - generic [ref=e410]: Haiti
+                - generic [ref=e411]:
+                  - generic [ref=e412]: 🇮🇷
+                  - generic [ref=e413]: Iran
+                - generic [ref=e414]:
+                  - generic [ref=e415]: 🇯🇵
+                  - generic [ref=e416]: Japan
+                - generic [ref=e417]:
+                  - generic [ref=e418]: 🇯🇴
+                  - generic [ref=e419]: Jordan
+                - generic [ref=e420]:
+                  - generic [ref=e421]: 🇰🇷
+                  - generic [ref=e422]: Korea Republic
+                - generic [ref=e423]:
+                  - generic [ref=e424]: 🇲🇽
+                  - generic [ref=e425]: Mexico
+                - generic [ref=e426]:
+                  - generic [ref=e427]: 🇲🇦
+                  - generic [ref=e428]: Morocco
+                - generic [ref=e429]:
+                  - generic [ref=e430]: 🇳🇱
+                  - generic [ref=e431]: Netherlands
+                - generic [ref=e432]:
+                  - generic [ref=e433]: 🇳🇿
+                  - generic [ref=e434]: New Zealand
+                - generic [ref=e435]:
+                  - generic [ref=e436]: 🇳🇴
+                  - generic [ref=e437]: Norway
+                - generic [ref=e438]:
+                  - generic [ref=e439]: 🇵🇦
+                  - generic [ref=e440]: Panama
+                - generic [ref=e441]:
+                  - generic [ref=e442]: 🇵🇾
+                  - generic [ref=e443]: Paraguay
+                - generic [ref=e444]:
+                  - generic [ref=e445]: 🇵🇹
+                  - generic [ref=e446]: Portugal
+                - generic [ref=e447]:
+                  - generic [ref=e448]: 🇶🇦
+                  - generic [ref=e449]: Qatar
+                - generic [ref=e450]:
+                  - generic [ref=e451]: 🇸🇦
+                  - generic [ref=e452]: Saudi Arabia
+                - generic [ref=e453]:
+                  - generic [ref=e454]: 🏴󠁧󠁢󠁳󠁣󠁴󠁿
+                  - generic [ref=e455]: Scotland
+                - generic [ref=e456]:
+                  - generic [ref=e457]: 🇸🇳
+                  - generic [ref=e458]: Senegal
+                - generic [ref=e459]:
+                  - generic [ref=e460]: 🇿🇦
+                  - generic [ref=e461]: South Africa
+                - generic [ref=e462]:
+                  - generic [ref=e463]: 🇪🇸
+                  - generic [ref=e464]: Spain
+                - generic [ref=e465]:
+                  - generic [ref=e466]: 🇨🇭
+                  - generic [ref=e467]: Switzerland
+                - generic [ref=e468]:
+                  - generic [ref=e469]: 🇹🇳
+                  - generic [ref=e470]: Tunisia
+                - generic [ref=e471]:
+                  - generic [ref=e472]: 🇺🇸
+                  - generic [ref=e473]: USA
+                - generic [ref=e474]:
+                  - generic [ref=e475]: 🇺🇾
+                  - generic [ref=e476]: Uruguay
+                - generic [ref=e477]:
+                  - generic [ref=e478]: 🇺🇿
+                  - generic [ref=e479]: Uzbekistan
+                - generic [ref=e480]:
+                  - generic [ref=e481]: 🇩🇿
+                  - generic [ref=e482]: Algeria
+                - generic [ref=e483]:
+                  - generic [ref=e484]: 🇦🇷
+                  - generic [ref=e485]: Argentina
+                - generic [ref=e486]:
+                  - generic [ref=e487]: 🇦🇺
+                  - generic [ref=e488]: Australia
+                - generic [ref=e489]:
+                  - generic [ref=e490]: 🇦🇹
+                  - generic [ref=e491]: Austria
+                - generic [ref=e492]:
+                  - generic [ref=e493]: 🇧🇪
+                  - generic [ref=e494]: Belgium
+                - generic [ref=e495]:
+                  - generic [ref=e496]: 🇧🇷
+                  - generic [ref=e497]: Brazil
+                - generic [ref=e498]:
+                  - generic [ref=e499]: 🇨🇻
+                  - generic [ref=e500]: Cabo Verde
+                - generic [ref=e501]:
+                  - generic [ref=e502]: 🇨🇦
+                  - generic [ref=e503]: Canada
+                - generic [ref=e504]:
+                  - generic [ref=e505]: 🇨🇴
+                  - generic [ref=e506]: Colombia
+                - generic [ref=e507]:
+                  - generic [ref=e508]: 🇨🇮
+                  - generic [ref=e509]: Côte d'Ivoire
+                - generic [ref=e510]:
+                  - generic [ref=e511]: 🇭🇷
+                  - generic [ref=e512]: Croatia
+                - generic [ref=e513]:
+                  - generic [ref=e514]: 🇨🇼
+                  - generic [ref=e515]: Curaçao
+                - generic [ref=e516]:
+                  - generic [ref=e517]: 🇪🇨
+                  - generic [ref=e518]: Ecuador
+                - generic [ref=e519]:
+                  - generic [ref=e520]: 🇪🇬
+                  - generic [ref=e521]: Egypt
+                - generic [ref=e522]:
+                  - generic [ref=e523]: 🏴󠁧󠁢󠁥󠁮󠁧󠁿
+                  - generic [ref=e524]: England
+                - generic [ref=e525]:
+                  - generic [ref=e526]: 🇫🇷
+                  - generic [ref=e527]: France
+                - generic [ref=e528]:
+                  - generic [ref=e529]: 🇩🇪
+                  - generic [ref=e530]: Germany
+                - generic [ref=e531]:
+                  - generic [ref=e532]: 🇬🇭
+                  - generic [ref=e533]: Ghana
+                - generic [ref=e534]:
+                  - generic [ref=e535]: 🇭🇹
+                  - generic [ref=e536]: Haiti
+                - generic [ref=e537]:
+                  - generic [ref=e538]: 🇮🇷
+                  - generic [ref=e539]: Iran
+                - generic [ref=e540]:
+                  - generic [ref=e541]: 🇯🇵
+                  - generic [ref=e542]: Japan
+                - generic [ref=e543]:
+                  - generic [ref=e544]: 🇯🇴
+                  - generic [ref=e545]: Jordan
+                - generic [ref=e546]:
+                  - generic [ref=e547]: 🇰🇷
+                  - generic [ref=e548]: Korea Republic
+                - generic [ref=e549]:
+                  - generic [ref=e550]: 🇲🇽
+                  - generic [ref=e551]: Mexico
+                - generic [ref=e552]:
+                  - generic [ref=e553]: 🇲🇦
+                  - generic [ref=e554]: Morocco
+                - generic [ref=e555]:
+                  - generic [ref=e556]: 🇳🇱
+                  - generic [ref=e557]: Netherlands
+                - generic [ref=e558]:
+                  - generic [ref=e559]: 🇳🇿
+                  - generic [ref=e560]: New Zealand
+                - generic [ref=e561]:
+                  - generic [ref=e562]: 🇳🇴
+                  - generic [ref=e563]: Norway
+                - generic [ref=e564]:
+                  - generic [ref=e565]: 🇵🇦
+                  - generic [ref=e566]: Panama
+                - generic [ref=e567]:
+                  - generic [ref=e568]: 🇵🇾
+                  - generic [ref=e569]: Paraguay
+                - generic [ref=e570]:
+                  - generic [ref=e571]: 🇵🇹
+                  - generic [ref=e572]: Portugal
+                - generic [ref=e573]:
+                  - generic [ref=e574]: 🇶🇦
+                  - generic [ref=e575]: Qatar
+                - generic [ref=e576]:
+                  - generic [ref=e577]: 🇸🇦
+                  - generic [ref=e578]: Saudi Arabia
+                - generic [ref=e579]:
+                  - generic [ref=e580]: 🏴󠁧󠁢󠁳󠁣󠁴󠁿
+                  - generic [ref=e581]: Scotland
+                - generic [ref=e582]:
+                  - generic [ref=e583]: 🇸🇳
+                  - generic [ref=e584]: Senegal
+                - generic [ref=e585]:
+                  - generic [ref=e586]: 🇿🇦
+                  - generic [ref=e587]: South Africa
+                - generic [ref=e588]:
+                  - generic [ref=e589]: 🇪🇸
+                  - generic [ref=e590]: Spain
+                - generic [ref=e591]:
+                  - generic [ref=e592]: 🇨🇭
+                  - generic [ref=e593]: Switzerland
+                - generic [ref=e594]:
+                  - generic [ref=e595]: 🇹🇳
+                  - generic [ref=e596]: Tunisia
+                - generic [ref=e597]:
+                  - generic [ref=e598]: 🇺🇸
+                  - generic [ref=e599]: USA
+                - generic [ref=e600]:
+                  - generic [ref=e601]: 🇺🇾
+                  - generic [ref=e602]: Uruguay
+                - generic [ref=e603]:
+                  - generic [ref=e604]: 🇺🇿
+                  - generic [ref=e605]: Uzbekistan
+              - button "View All 42 Countries" [ref=e606] [cursor=pointer]:
+                - text: View All 42 Countries
+                - img [ref=e607]
+      - generic [ref=e610]:
+        - generic [ref=e621]:
+          - generic [ref=e622]:
+            - generic [ref=e624]: AI Predictions
+            - generic [ref=e625]: ✦
+          - heading "World Cup Matches" [level=2] [ref=e626]
+          - paragraph [ref=e627]: AI-analyzed matches with probability predictions
+        - generic [ref=e628]:
+          - generic [ref=e629]:
+            - generic [ref=e630]: Date / Time
+            - generic [ref=e631]: Fixture
+            - generic [ref=e632]: 1x2 Prediction
+          - generic [ref=e633]:
+            - link "11 Jun • 19:00 Mexico vs South Africa Analyzing..." [ref=e634] [cursor=pointer]:
+              - /url: /worldcup/predictions/2026-06-11/mexico-vs-south-africa-1489369
+              - generic [ref=e636]:
+                - generic [ref=e638]:
+                  - generic [ref=e639]: 11 Jun
+                  - generic [ref=e640]: •
+                  - generic [ref=e641]: 19:00
+                - generic [ref=e643]:
+                  - generic [ref=e645]: Mexico
+                  - generic [ref=e649]: vs
+                  - generic [ref=e654]: South Africa
+                - generic [ref=e656]:
+                  - generic [ref=e657]: Analyzing...
+                  - img [ref=e659]
+            - link "12 Jun • 02:00 South Korea vs Czech Republic Analyzing..." [ref=e661] [cursor=pointer]:
+              - /url: /worldcup/predictions/2026-06-12/south-korea-vs-czech-republic-1538999
+              - generic [ref=e663]:
+                - generic [ref=e665]:
+                  - generic [ref=e666]: 12 Jun
+                  - generic [ref=e667]: •
+                  - generic [ref=e668]: 02:00
+                - generic [ref=e670]:
+                  - generic [ref=e672]: South Korea
+                  - generic [ref=e676]: vs
+                  - generic [ref=e681]: Czech Republic
+                - generic [ref=e683]:
+                  - generic [ref=e684]: Analyzing...
+                  - img [ref=e686]
+            - link "12 Jun • 19:00 Canada vs Bosnia & Herzegovina Analyzing..." [ref=e688] [cursor=pointer]:
+              - /url: /worldcup/predictions/2026-06-12/canada-vs-bosnia-herzegovina-1539000
+              - generic [ref=e690]:
+                - generic [ref=e692]:
+                  - generic [ref=e693]: 12 Jun
+                  - generic [ref=e694]: •
+                  - generic [ref=e695]: 19:00
+                - generic [ref=e697]:
+                  - generic [ref=e699]: Canada
+                  - generic [ref=e703]: vs
+                  - generic [ref=e708]: Bosnia & Herzegovina
+                - generic [ref=e710]:
+                  - generic [ref=e711]: Analyzing...
+                  - img [ref=e713]
+            - link "13 Jun • 01:00 USA vs Paraguay 50% 50% 30%" [ref=e715] [cursor=pointer]:
+              - /url: /worldcup/predictions/2026-06-13/usa-vs-paraguay-1489370
+              - generic [ref=e717]:
+                - generic [ref=e719]:
+                  - generic [ref=e720]: 13 Jun
+                  - generic [ref=e721]: •
+                  - generic [ref=e722]: 01:00
+                - generic [ref=e724]:
+                  - generic [ref=e726]: USA
+                  - generic [ref=e730]: vs
+                  - generic [ref=e735]: Paraguay
+                - generic [ref=e737]:
+                  - generic [ref=e738]: 50%
+                  - generic [ref=e739]: 50%
+                  - generic [ref=e740]: 30%
+                  - img [ref=e742]
+            - link "13 Jun • 19:00 Qatar vs Switzerland 50% 50% 30%" [ref=e744] [cursor=pointer]:
+              - /url: /worldcup/predictions/2026-06-13/qatar-vs-switzerland-1489373
+              - generic [ref=e746]:
+                - generic [ref=e748]:
+                  - generic [ref=e749]: 13 Jun
+                  - generic [ref=e750]: •
+                  - generic [ref=e751]: 19:00
+                - generic [ref=e753]:
+                  - generic [ref=e755]: Qatar
+                  - generic [ref=e759]: vs
+                  - generic [ref=e764]: Switzerland
+                - generic [ref=e766]:
+                  - generic [ref=e767]: 50%
+                  - generic [ref=e768]: 50%
+                  - generic [ref=e769]: 30%
+                  - img [ref=e771]
+            - link "13 Jun • 22:00 Brazil vs Morocco 45% 50% 50%" [ref=e773] [cursor=pointer]:
+              - /url: /worldcup/predictions/2026-06-13/brazil-vs-morocco-1489371
+              - generic [ref=e775]:
+                - generic [ref=e777]:
+                  - generic [ref=e778]: 13 Jun
+                  - generic [ref=e779]: •
+                  - generic [ref=e780]: 22:00
+                - generic [ref=e782]:
+                  - generic [ref=e784]: Brazil
+                  - generic [ref=e788]: vs
+                  - generic [ref=e793]: Morocco
+                - generic [ref=e795]:
+                  - generic [ref=e796]: 45%
+                  - generic [ref=e797]: 50%
+                  - generic [ref=e798]: 50%
+                  - img [ref=e800]
+            - link "14 Jun • 01:00 Haiti vs Scotland 33% 33% 33%" [ref=e802] [cursor=pointer]:
+              - /url: /worldcup/predictions/2026-06-14/haiti-vs-scotland-1489372
+              - generic [ref=e804]:
+                - generic [ref=e806]:
+                  - generic [ref=e807]: 14 Jun
+                  - generic [ref=e808]: •
+                  - generic [ref=e809]: 01:00
+                - generic [ref=e811]:
+                  - generic [ref=e813]: Haiti
+                  - generic [ref=e817]: vs
+                  - generic [ref=e822]: Scotland
+                - generic [ref=e824]:
+                  - generic [ref=e825]: 33%
+                  - generic [ref=e826]: 33%
+                  - generic [ref=e827]: 33%
+                  - img [ref=e829]
+            - link "14 Jun • 04:00 Australia vs Türkiye Analyzing..." [ref=e831] [cursor=pointer]:
+              - /url: /worldcup/predictions/2026-06-14/australia-vs-t-rkiye-1539001
+              - generic [ref=e833]:
+                - generic [ref=e835]:
+                  - generic [ref=e836]: 14 Jun
+                  - generic [ref=e837]: •
+                  - generic [ref=e838]: 04:00
+                - generic [ref=e840]:
+                  - generic [ref=e842]: Australia
+                  - generic [ref=e846]: vs
+                  - generic [ref=e851]: Türkiye
+                - generic [ref=e853]:
+                  - generic [ref=e854]: Analyzing...
+                  - img [ref=e856]
+            - link "14 Jun • 17:00 Germany vs Curaçao 33% 33% 33%" [ref=e858] [cursor=pointer]:
+              - /url: /worldcup/predictions/2026-06-14/germany-vs-cura-ao-1489374
+              - generic [ref=e860]:
+                - generic [ref=e862]:
+                  - generic [ref=e863]: 14 Jun
+                  - generic [ref=e864]: •
+                  - generic [ref=e865]: 17:00
+                - generic [ref=e867]:
+                  - generic [ref=e869]: Germany
+                  - generic [ref=e873]: vs
+                  - generic [ref=e878]: Curaçao
+                - generic [ref=e880]:
+                  - generic [ref=e881]: 33%
+                  - generic [ref=e882]: 33%
+                  - generic [ref=e883]: 33%
+                  - img [ref=e885]
+            - link "14 Jun • 20:00 Netherlands vs Japan 50% 50% 30%" [ref=e887] [cursor=pointer]:
+              - /url: /worldcup/predictions/2026-06-14/netherlands-vs-japan-1489376
+              - generic [ref=e889]:
+                - generic [ref=e891]:
+                  - generic [ref=e892]: 14 Jun
+                  - generic [ref=e893]: •
+                  - generic [ref=e894]: 20:00
+                - generic [ref=e896]:
+                  - generic [ref=e898]: Netherlands
+                  - generic [ref=e902]: vs
+                  - generic [ref=e907]: Japan
+                - generic [ref=e909]:
+                  - generic [ref=e910]: 50%
+                  - generic [ref=e911]: 50%
+                  - generic [ref=e912]: 30%
+                  - img [ref=e914]
+        - link "View All Predictions" [ref=e917] [cursor=pointer]:
+          - /url: /worldcup/predictions
+          - text: View All Predictions
+          - img [ref=e918]
+      - generic [ref=e920]:
+        - generic [ref=e921]:
+          - link "🇧🇷 🇩🇪 🇫🇷 🇦🇷 Explore Countries 48 qualified nations — team profiles, squads, confederations & head-to-head analysis 48 nations" [ref=e922] [cursor=pointer]:
+            - /url: /worldcup/countries
+            - generic [ref=e923]:
+              - generic [ref=e924]:
+                - img [ref=e926]
+                - generic [ref=e928]:
+                  - generic [ref=e929]: 🇧🇷
+                  - generic [ref=e930]: 🇩🇪
+                  - generic [ref=e931]: 🇫🇷
+                  - generic [ref=e932]: 🇦🇷
+              - heading "Explore Countries" [level=3] [ref=e933]
+              - paragraph [ref=e934]: 48 qualified nations — team profiles, squads, confederations & head-to-head analysis
+              - generic [ref=e935]:
+                - generic [ref=e936]: 48 nations
+                - img [ref=e937]
+          - link "A B C D Explore Groups 12 groups with standings, match schedules & qualification scenarios A–L" [ref=e939] [cursor=pointer]:
+            - /url: /worldcup/groups
+            - generic [ref=e940]:
+              - generic [ref=e941]:
+                - img [ref=e943]
+                - generic [ref=e945]:
+                  - generic [ref=e946]: A
+                  - generic [ref=e947]: B
+                  - generic [ref=e948]: C
+                  - generic [ref=e949]: D
+              - heading "Explore Groups" [level=3] [ref=e950]
+              - paragraph [ref=e951]: 12 groups with standings, match schedules & qualification scenarios
+              - generic [ref=e952]:
+                - generic [ref=e953]: A–L
+                - img [ref=e954]
+        - link "Get World Cup Pass Unlock AI predictions for all 104 matches Pricing" [ref=e957] [cursor=pointer]:
+          - /url: /worldcup/pricing
+          - generic [ref=e959]:
+            - generic [ref=e964]:
+              - generic [ref=e965]: Get World Cup Pass
+              - generic [ref=e966]: Unlock AI predictions for all 104 matches
+            - generic [ref=e969]: Pricing
+      - generic [ref=e972]:
+        - generic [ref=e973]:
+          - generic [ref=e974]: Why OddsFlow
+          - heading "The Most Advanced World Cup Prediction Engine" [level=2] [ref=e975]:
+            - text: The Most Advanced
+            - text: World Cup Prediction Engine
+          - paragraph [ref=e976]: Our AI analyzes millions of historical matches, real-time data, and market trends to deliver World Cup predictions with unmatched accuracy.
+          - generic [ref=e977]:
+            - generic [ref=e978]:
+              - img [ref=e980]
+              - generic [ref=e982]:
+                - heading "AI-Powered Performance" [level=3] [ref=e983]
+                - paragraph [ref=e984]: Machine learning models analyze thousands of data points for precise World Cup predictions.
+            - generic [ref=e985]:
+              - img [ref=e987]
+              - generic [ref=e989]:
+                - heading "Real-time Tracking" [level=3] [ref=e990]
+                - paragraph [ref=e991]: Monitor odds movements across markets with instant live updates.
+            - generic [ref=e992]:
+              - img [ref=e994]
+              - generic [ref=e996]:
+                - heading "Deep Statistics" [level=3] [ref=e997]
+                - paragraph [ref=e998]: Access team stats, head-to-head records, and historical performance data.
+            - generic [ref=e999]:
+              - img [ref=e1001]
+              - generic [ref=e1003]:
+                - heading "Smart Alerts" [level=3] [ref=e1004]
+                - paragraph [ref=e1005]: Get notified when value opportunities arise or odds shift significantly.
+        - generic [ref=e1009]:
+          - generic [ref=e1010]:
+            - generic [ref=e1011]: AI Prediction Dashboard
+            - generic [ref=e1012]: LIVE
+          - generic [ref=e1014]:
+            - generic [ref=e1015]:
+              - generic [ref=e1016]:
+                - img "FIFA World Cup" [ref=e1018]
+                - generic [ref=e1019]: FIFA World Cup
+              - generic [ref=e1020]: Starting in 2h
+            - generic [ref=e1021]:
+              - generic [ref=e1022]:
+                - img "Mexico" [ref=e1025]
+                - generic [ref=e1026]: Mexico
+                - generic [ref=e1027]: "0"
+              - generic [ref=e1028]: VS
+              - generic [ref=e1029]:
+                - img "South Africa" [ref=e1032]
+                - generic [ref=e1033]: South Africa
+                - generic [ref=e1034]: "0"
+            - generic [ref=e1036]:
+              - generic [ref=e1037]: AI Confidence
+              - generic [ref=e1038]: 67%
+          - generic [ref=e1041]:
+            - generic [ref=e1042]:
+              - generic [ref=e1043]: 58%
+              - generic [ref=e1044]: Home Win
+            - generic [ref=e1045]:
+              - generic [ref=e1046]: 42%
+              - generic [ref=e1047]: Away Win
+      - generic [ref=e1049]:
+        - generic [ref=e1050]:
+          - generic [ref=e1051]: Why Choose Us
+          - heading "Why Choose OddsFlow" [level=2] [ref=e1052]
+          - paragraph [ref=e1053]: Experience the difference with our AI-powered World Cup platform
+        - generic [ref=e1054]:
+          - generic [ref=e1055] [cursor=pointer]:
+            - img [ref=e1059]
+            - heading "99.9% Uptime" [level=3] [ref=e1061]
+            - paragraph [ref=e1062]: Our platform runs 24/7 with enterprise-grade reliability
+          - generic [ref=e1063] [cursor=pointer]:
+            - img [ref=e1067]
+            - heading "Real-time Data" [level=3] [ref=e1069]
+            - paragraph [ref=e1070]: Get instant updates from 50+ odds providers worldwide
+          - generic [ref=e1071] [cursor=pointer]:
+            - img [ref=e1075]
+            - heading "AI Accuracy" [level=3] [ref=e1077]
+            - paragraph [ref=e1078]: Our models achieve 56%+ verified win rate
+          - generic [ref=e1079] [cursor=pointer]:
+            - img [ref=e1083]
+            - heading "Secure & Private" [level=3] [ref=e1085]
+            - paragraph [ref=e1086]: Bank-level encryption protects your data
+          - generic [ref=e1087] [cursor=pointer]:
+            - img [ref=e1091]
+            - heading "24/7 Support" [level=3] [ref=e1093]
+            - paragraph [ref=e1094]: Expert support team available around the clock
+          - generic [ref=e1095] [cursor=pointer]:
+            - img [ref=e1099]
+            - heading "Money Back" [level=3] [ref=e1101]
+            - paragraph [ref=e1102]: 30-day money back guarantee, no questions asked
+      - generic [ref=e1104]:
+        - generic [ref=e1105]:
+          - generic [ref=e1106]: Trusted By Users
+          - heading "Trusted by Thousands" [level=2] [ref=e1107]
+          - paragraph [ref=e1108]: Real results, fully transparent and independently verifiable
+        - generic [ref=e1109]:
+          - generic [ref=e1110] [cursor=pointer]:
+            - generic [ref=e1113]: FIFA
+            - generic [ref=e1114]: World Cup 2026
+          - generic [ref=e1115] [cursor=pointer]:
+            - generic [ref=e1118]: "4"
+            - generic [ref=e1119]: AI Models
+          - generic [ref=e1120] [cursor=pointer]:
+            - generic [ref=e1123]: 2418+
+            - generic [ref=e1124]: Verified Bets
+          - generic [ref=e1125] [cursor=pointer]:
+            - generic [ref=e1128]: 30%
+            - generic [ref=e1129]: Best ROI (Active Trader)
+        - generic [ref=e1131]:
+          - generic [ref=e1132] [cursor=pointer]:
+            - generic [ref=e1135]:
+              - img [ref=e1136]
+              - img [ref=e1138]
+              - img [ref=e1140]
+              - img [ref=e1142]
+              - img [ref=e1144]
+            - paragraph [ref=e1146]: "\"I've read the OddsFlow PDF, tried it across multiple matchdays, and kept a simple verified log after each game. The biggest win is clarity—why a spot exists, what to avoid, and how to stay consistent.\""
+            - generic [ref=e1147]:
+              - img "Michael Reed" [ref=e1148]
+              - generic [ref=e1149]:
+                - generic [ref=e1150]: Michael Reed
+                - generic [ref=e1151]: Airline Operations Coordinator
+          - generic [ref=e1152] [cursor=pointer]:
+            - generic [ref=e1155]:
+              - img [ref=e1156]
+              - img [ref=e1158]
+              - img [ref=e1160]
+              - img [ref=e1162]
+              - img [ref=e1164]
+            - paragraph [ref=e1166]: "\"I tested OddsFlow across several matchdays and checked the signals against the final results in my own log. I don't follow every alert, but the ones I took were clearly explained—entry timing, risk notes, and when to pass.\""
+            - generic [ref=e1167]:
+              - img "Amina Okoye" [ref=e1168]
+              - generic [ref=e1169]:
+                - generic [ref=e1170]: Amina Okoye
+                - generic [ref=e1171]: Retail Banking Officer
+          - generic [ref=e1172] [cursor=pointer]:
+            - generic [ref=e1175]:
+              - img [ref=e1176]
+              - img [ref=e1178]
+              - img [ref=e1180]
+              - img [ref=e1182]
+              - img [ref=e1184]
+            - paragraph [ref=e1186]: "\"At first I just came in to browse, but I ended up using the signals as a second opinion during matches. I like that OddsFlow doesn't overwhelm me—quick context, clear direction.\""
+            - generic [ref=e1187]:
+              - img "Kenji Sato" [ref=e1188]
+              - generic [ref=e1189]:
+                - generic [ref=e1190]: Kenji Sato
+                - generic [ref=e1191]: Physical Education Teacher
+          - generic [ref=e1192] [cursor=pointer]:
+            - generic [ref=e1195]:
+              - img [ref=e1196]
+              - img [ref=e1198]
+              - img [ref=e1200]
+              - img [ref=e1202]
+              - img [ref=e1204]
+            - paragraph [ref=e1206]: "\"The news-style match analysis is what hooked me. I used OddsFlow notes to build my pre-match script and then cross-checked key moments after the game.\""
+            - generic [ref=e1207]:
+              - img "Sofía Martínez" [ref=e1208]
+              - generic [ref=e1209]:
+                - generic [ref=e1210]: Sofía Martínez
+                - generic [ref=e1211]: Freelance Sports Videographer
+          - generic [ref=e1212] [cursor=pointer]:
+            - generic [ref=e1215]:
+              - img [ref=e1216]
+              - img [ref=e1218]
+              - img [ref=e1220]
+              - img [ref=e1222]
+              - img [ref=e1224]
+            - paragraph [ref=e1226]: "\"I tried a few different OddsFlow models to see what fits my style. The differences are easy to understand—some are more selective, some are more active.\""
+            - generic [ref=e1227]:
+              - img "Omar Hassan" [ref=e1228]
+              - generic [ref=e1229]:
+                - generic [ref=e1230]: Omar Hassan
+                - generic [ref=e1231]: Logistics Manager
+          - generic [ref=e1232] [cursor=pointer]:
+            - generic [ref=e1235]:
+              - img [ref=e1236]
+              - img [ref=e1238]
+              - img [ref=e1240]
+              - img [ref=e1242]
+              - img [ref=e1244]
+            - paragraph [ref=e1246]: "\"I've read the OddsFlow PDF, tried it across multiple matchdays, and kept a simple verified log after each game. The biggest win is clarity—why a spot exists, what to avoid, and how to stay consistent.\""
+            - generic [ref=e1247]:
+              - img "Michael Reed" [ref=e1248]
+              - generic [ref=e1249]:
+                - generic [ref=e1250]: Michael Reed
+                - generic [ref=e1251]: Airline Operations Coordinator
+          - generic [ref=e1252] [cursor=pointer]:
+            - generic [ref=e1255]:
+              - img [ref=e1256]
+              - img [ref=e1258]
+              - img [ref=e1260]
+              - img [ref=e1262]
+              - img [ref=e1264]
+            - paragraph [ref=e1266]: "\"I tested OddsFlow across several matchdays and checked the signals against the final results in my own log. I don't follow every alert, but the ones I took were clearly explained—entry timing, risk notes, and when to pass.\""
+            - generic [ref=e1267]:
+              - img "Amina Okoye" [ref=e1268]
+              - generic [ref=e1269]:
+                - generic [ref=e1270]: Amina Okoye
+                - generic [ref=e1271]: Retail Banking Officer
+          - generic [ref=e1272] [cursor=pointer]:
+            - generic [ref=e1275]:
+              - img [ref=e1276]
+              - img [ref=e1278]
+              - img [ref=e1280]
+              - img [ref=e1282]
+              - img [ref=e1284]
+            - paragraph [ref=e1286]: "\"At first I just came in to browse, but I ended up using the signals as a second opinion during matches. I like that OddsFlow doesn't overwhelm me—quick context, clear direction.\""
+            - generic [ref=e1287]:
+              - img "Kenji Sato" [ref=e1288]
+              - generic [ref=e1289]:
+                - generic [ref=e1290]: Kenji Sato
+                - generic [ref=e1291]: Physical Education Teacher
+          - generic [ref=e1292] [cursor=pointer]:
+            - generic [ref=e1295]:
+              - img [ref=e1296]
+              - img [ref=e1298]
+              - img [ref=e1300]
+              - img [ref=e1302]
+              - img [ref=e1304]
+            - paragraph [ref=e1306]: "\"The news-style match analysis is what hooked me. I used OddsFlow notes to build my pre-match script and then cross-checked key moments after the game.\""
+            - generic [ref=e1307]:
+              - img "Sofía Martínez" [ref=e1308]
+              - generic [ref=e1309]:
+                - generic [ref=e1310]: Sofía Martínez
+                - generic [ref=e1311]: Freelance Sports Videographer
+          - generic [ref=e1312] [cursor=pointer]:
+            - generic [ref=e1315]:
+              - img [ref=e1316]
+              - img [ref=e1318]
+              - img [ref=e1320]
+              - img [ref=e1322]
+              - img [ref=e1324]
+            - paragraph [ref=e1326]: "\"I tried a few different OddsFlow models to see what fits my style. The differences are easy to understand—some are more selective, some are more active.\""
+            - generic [ref=e1327]:
+              - img "Omar Hassan" [ref=e1328]
+              - generic [ref=e1329]:
+                - generic [ref=e1330]: Omar Hassan
+                - generic [ref=e1331]: Logistics Manager
+      - generic [ref=e1333]:
+        - generic [ref=e1334]:
+          - generic [ref=e1335]: FAQ
+          - heading "Frequently Asked Questions" [level=2] [ref=e1336]
+          - paragraph [ref=e1337]: Everything You Need to Know About World Cup Predictions
+        - generic [ref=e1338]:
+          - generic [ref=e1339]:
+            - button "Is OddsFlow a sportsbook?" [ref=e1340] [cursor=pointer]:
+              - generic [ref=e1341]: Is OddsFlow a sportsbook?
+              - img [ref=e1342]
+            - generic [ref=e1344]: Absolutely not. OddsFlow is purely a data analytics company. We do NOT guarantee outcomes, we do NOT open markets, and we do NOT handle any funds. We provide AI-powered predictions and odds analysis for informational purposes only.
+          - generic [ref=e1345]:
+            - button "Does using your data guarantee profit?" [ref=e1346] [cursor=pointer]:
+              - generic [ref=e1347]: Does using your data guarantee profit?
+              - img [ref=e1348]
+            - generic [ref=e1350]: No. Anyone promising you "guaranteed wins" is lying to you. Think of OddsFlow as your tactical advisor—we provide the data backing and the analytical angle to improve your decision-making.
+          - generic [ref=e1351]:
+            - button "How does OddsFlow interpret Asian Handicap markets?" [ref=e1352] [cursor=pointer]:
+              - generic [ref=e1353]: How does OddsFlow interpret Asian Handicap markets?
+              - img [ref=e1354]
+            - generic [ref=e1356]: We don't just look at what the lines are; we look at how they move. We track capital flow and market adjustments to help you understand where the market sentiment lies.
+          - generic [ref=e1357]:
+            - button "How does the goal trend analysis work?" [ref=e1358] [cursor=pointer]:
+              - generic [ref=e1359]: How does the goal trend analysis work?
+              - img [ref=e1360]
+            - generic [ref=e1362]: Beyond just looking at average goals per game, we analyze "match tempo" and time-segment habits. For example, does a team tend to chase goals in the last 15 minutes?
+          - generic [ref=e1363]:
+            - button "Which leagues do you cover?" [ref=e1364] [cursor=pointer]:
+              - generic [ref=e1365]: Which leagues do you cover?
+              - img [ref=e1366]
+            - generic [ref=e1368]: We cover all the major leagues (the "Big Five"), of course. But we also cover selected secondary and lower-tier leagues. Why? Because we know that the "edge" and value often hide in the smaller leagues where odds providers are more likely to make mistakes.
+          - generic [ref=e1369]:
+            - button "How is OddsFlow different from other score sites?" [ref=e1370] [cursor=pointer]:
+              - generic [ref=e1371]: How is OddsFlow different from other score sites?
+              - img [ref=e1372]
+            - generic [ref=e1374]: Most websites just tell you what happened (scores, cards). OddsFlow focuses on why it happened and what the market is thinking. We specialize in odds movement analysis and market behavior. We are a tool for serious analysis, not just a news feed.
+          - generic [ref=e1375]:
+            - button "What specific analysis do you provide?" [ref=e1376] [cursor=pointer]:
+              - generic [ref=e1377]: What specific analysis do you provide?
+              - img [ref=e1378]
+            - generic [ref=e1380]: "Our core features include: Market Movement Monitoring (real-time tracking of significant odds shifts), Probability Models (outcome estimations based on big data), Match Tempo Indicators (who is controlling the game vs. who is under pressure), and Historical Odds Analysis (how similar handicaps have performed in the past)."
+          - generic [ref=e1381]:
+            - button "Can AI actually analyze football matches?" [ref=e1382] [cursor=pointer]:
+              - generic [ref=e1383]: Can AI actually analyze football matches?
+              - img [ref=e1384]
+            - generic [ref=e1386]: "AI isn't a crystal ball—it can't predict the future. However, it can process massive amounts of data far faster than any human. OddsFlow uses algorithms to analyze historical stats, market movements, and match variables to spot patterns that the naked eye misses. Simply put: We don't guess the score; we reveal the true state of the market and the teams."
+          - generic [ref=e1387]:
+            - button "Is it suitable for beginners?" [ref=e1388] [cursor=pointer]:
+              - generic [ref=e1389]: Is it suitable for beginners?
+              - img [ref=e1390]
+            - generic [ref=e1392]: Definitely. While the logic behind our models is complex, the dashboard you see is designed to be simple and intuitive. We simplify the data so that even if you are new to football analysis, you can spot the trends and market direction immediately.
+          - generic [ref=e1393]:
+            - button "Important Disclaimer" [ref=e1394] [cursor=pointer]:
+              - generic [ref=e1395]: Important Disclaimer
+              - img [ref=e1396]
+            - generic [ref=e1398]: "While we have full confidence in our models, we have to be clear: All content provided by OddsFlow is for reference and research only. The football market is volatile. Please use the data rationally and use responsibly."
+      - generic [ref=e1399]:
+        - contentinfo [ref=e1400]:
+          - generic [ref=e1401]:
+            - generic [ref=e1402]:
+              - generic [ref=e1403]:
+                - link "OddsFlow Logo OddsFlow" [ref=e1404] [cursor=pointer]:
+                  - /url: /worldcup
+                  - img "OddsFlow Logo" [ref=e1405]
+                  - generic [ref=e1406]: OddsFlow
+                - paragraph [ref=e1407]: AI-powered football odds analysis for smarter predictions. Make data-driven decisions with real-time insights.
+                - generic [ref=e1408]:
+                  - link [ref=e1409] [cursor=pointer]:
+                    - /url: https://youtube.com
+                    - img [ref=e1410]
+                  - link [ref=e1412] [cursor=pointer]:
+                    - /url: https://twitter.com
+                    - img [ref=e1413]
+                  - link [ref=e1415] [cursor=pointer]:
+                    - /url: https://facebook.com
+                    - img [ref=e1416]
+                  - link [ref=e1418] [cursor=pointer]:
+                    - /url: https://tiktok.com
+                    - img [ref=e1419]
+                  - link [ref=e1421] [cursor=pointer]:
+                    - /url: https://t.me
+                    - img [ref=e1422]
+                  - link [ref=e1424] [cursor=pointer]:
+                    - /url: https://reddit.com
+                    - img [ref=e1425]
+                  - link [ref=e1427] [cursor=pointer]:
+                    - /url: https://instagram.com
+                    - img [ref=e1428]
+                  - link [ref=e1430] [cursor=pointer]:
+                    - /url: https://github.com/oddsflowai-team
+                    - img [ref=e1431]
+              - generic [ref=e1433]:
+                - heading "Product" [level=4] [ref=e1434]
+                - list [ref=e1435]:
+                  - listitem [ref=e1436]:
+                    - link "Predictions" [ref=e1437] [cursor=pointer]:
+                      - /url: /worldcup/predictions
+                  - listitem [ref=e1438]:
+                    - link "Countries" [ref=e1439] [cursor=pointer]:
+                      - /url: /worldcup/countries
+                  - listitem [ref=e1440]:
+                    - link "AI Performance" [ref=e1441] [cursor=pointer]:
+                      - /url: /worldcup/performance
+                  - listitem [ref=e1442]:
+                    - link "Proof" [ref=e1443] [cursor=pointer]:
+                      - /url: /worldcup/proof
+                  - listitem [ref=e1444]:
+                    - link "Solution" [ref=e1445] [cursor=pointer]:
+                      - /url: /solution
+              - generic [ref=e1446]:
+                - heading "Popular Leagues" [level=4] [ref=e1447]
+                - list [ref=e1448]:
+                  - listitem [ref=e1449]:
+                    - link "Premier League" [ref=e1450] [cursor=pointer]:
+                      - /url: /leagues/premier-league
+                  - listitem [ref=e1451]:
+                    - link "La Liga" [ref=e1452] [cursor=pointer]:
+                      - /url: /leagues/la-liga
+                  - listitem [ref=e1453]:
+                    - link "Serie A" [ref=e1454] [cursor=pointer]:
+                      - /url: /leagues/serie-a
+                  - listitem [ref=e1455]:
+                    - link "Bundesliga" [ref=e1456] [cursor=pointer]:
+                      - /url: /leagues/bundesliga
+                  - listitem [ref=e1457]:
+                    - link "Ligue 1" [ref=e1458] [cursor=pointer]:
+                      - /url: /leagues/ligue-1
+                  - listitem [ref=e1459]:
+                    - link "Champions League" [ref=e1460] [cursor=pointer]:
+                      - /url: /leagues/champions-league
+              - generic [ref=e1461]:
+                - heading "Community" [level=4] [ref=e1462]
+                - list [ref=e1463]:
+                  - listitem [ref=e1464]:
+                    - link "Community" [ref=e1465] [cursor=pointer]:
+                      - /url: /community
+                  - listitem [ref=e1466]:
+                    - link "Global Chat" [ref=e1467] [cursor=pointer]:
+                      - /url: /community/global-chat
+                  - listitem [ref=e1468]:
+                    - link "User Predictions" [ref=e1469] [cursor=pointer]:
+                      - /url: /community/predictions
+                  - listitem [ref=e1470]:
+                    - link "Feeds" [ref=e1471] [cursor=pointer]:
+                      - /url: /community/feeds
+                  - listitem [ref=e1472]:
+                    - link "Groups" [ref=e1473] [cursor=pointer]:
+                      - /url: /community/groups
+              - generic [ref=e1474]:
+                - heading "Company" [level=4] [ref=e1475]
+                - list [ref=e1476]:
+                  - listitem [ref=e1477]:
+                    - link "About Us" [ref=e1478] [cursor=pointer]:
+                      - /url: /about
+                  - listitem [ref=e1479]:
+                    - link "Contact" [ref=e1480] [cursor=pointer]:
+                      - /url: /contact
+                  - listitem [ref=e1481]:
+                    - link "Blog" [ref=e1482] [cursor=pointer]:
+                      - /url: /blog
+                  - listitem [ref=e1483]:
+                    - link "Affiliate" [ref=e1484] [cursor=pointer]:
+                      - /url: /affiliate
+              - generic [ref=e1485]:
+                - heading "Legal" [level=4] [ref=e1486]
+                - list [ref=e1487]:
+                  - listitem [ref=e1488]:
+                    - link "Terms of Service" [ref=e1489] [cursor=pointer]:
+                      - /url: /terms-of-service
+                  - listitem [ref=e1490]:
+                    - link "Privacy Policy" [ref=e1491] [cursor=pointer]:
+                      - /url: /privacy-policy
+                  - listitem [ref=e1492]:
+                    - link "Responsible Gaming" [ref=e1493] [cursor=pointer]:
+                      - /url: /responsible-gaming
+            - paragraph [ref=e1495]: "Disclaimer: OddsFlow provides AI-powered predictions for informational and entertainment purposes only. We do not guarantee the accuracy of predictions and are not responsible for any financial losses. Predictions do not guarantee outcomes. Please use responsibly. Users must be 18+ years old."
+            - generic [ref=e1496]:
+              - paragraph [ref=e1497]: © 2026 OddsFlow. All rights reserved.
+              - paragraph [ref=e1498]: For informational and entertainment purposes only. Please use responsibly.
+        - generic [ref=e1501]:
+          - generic [ref=e1502]:
+            - generic [ref=e1503]: ⚽
+            - generic [ref=e1504]: 10 days to kickoff
+          - generic [ref=e1505]:
+            - link "Get World Cup Pass — $3.99" [ref=e1506] [cursor=pointer]:
+              - /url: /worldcup/pricing/checkout
+            - button "Dismiss" [ref=e1507]:
+              - img [ref=e1508]
+  - alert [ref=e1510]

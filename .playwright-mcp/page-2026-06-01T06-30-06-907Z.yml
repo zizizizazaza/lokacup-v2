@@ -1,0 +1,269 @@
+- generic [active] [ref=e1]:
+  - banner:
+    - navigation [ref=e5]:
+      - generic [ref=e6]:
+        - link "NerdyTips logo NERDYTIPS" [ref=e8] [cursor=pointer]:
+          - /url: https://nerdytips.com
+          - img "NerdyTips logo" [ref=e9]
+          - generic [ref=e10]: NERDYTIPS
+        - list [ref=e12]:
+          - listitem [ref=e13]:
+            - link "Bet of the day" [ref=e14] [cursor=pointer]:
+              - /url: https://nerdytips.com/bet-of-the-day
+          - listitem [ref=e15]:
+            - link "All Matches" [ref=e16] [cursor=pointer]:
+              - /url: https://nerdytips.com/all-matches
+          - listitem [ref=e17]:
+            - link "Bet Builder" [ref=e18] [cursor=pointer]:
+              - /url: https://nerdytips.com/bet-builder
+          - listitem [ref=e19]:
+            - button "Leagues" [ref=e20] [cursor=pointer]
+          - listitem [ref=e21]:
+            - link "Progress" [ref=e22] [cursor=pointer]:
+              - /url: https://nerdytips.com/progress
+          - listitem [ref=e23]:
+            - link "How it works" [ref=e24] [cursor=pointer]:
+              - /url: https://nerdytips.com/tutorial
+          - listitem [ref=e25]:
+            - link "Blog" [ref=e26] [cursor=pointer]:
+              - /url: https://nerdytips.com/blog
+        - generic [ref=e27]:
+          - generic [ref=e29] [cursor=pointer]:
+            - img [ref=e31]
+            - combobox "Language" [ref=e33]:
+              - option "Bahasa Indonesia"
+              - option "Bahasa Melayu"
+              - option "Català"
+              - option "Čeština"
+              - option "Dansk"
+              - option "Deutsch"
+              - option "Eesti"
+              - option "English" [selected]
+              - option "Español"
+              - option "Français"
+              - option "Hrvatski"
+              - option "Italiano"
+              - option "Magyar"
+              - option "Nederlands"
+              - option "Norsk"
+              - option "Polski"
+              - option "Português"
+              - option "Português (Brasil)"
+              - option "Română"
+              - option "Slovenčina"
+              - option "Srpski"
+              - option "Suomi"
+              - option "Svenska"
+              - option "Tiếng Việt"
+              - option "Türkçe"
+              - option "Ελληνικά"
+              - option "Български"
+              - option "Русский"
+              - option "العربية"
+              - option "ไทย"
+              - option "中文"
+              - option "日本語"
+              - option "한국어"
+            - img [ref=e35]
+          - link "Log In" [ref=e37] [cursor=pointer]:
+            - /url: "#login"
+  - img
+  - generic [ref=e39]:
+    - generic [ref=e40]:
+      - generic [ref=e41]:
+        - heading "The Science Behind the Tips." [level=1] [ref=e42]:
+          - generic [ref=e43]: The Science
+          - generic [ref=e44]: Behind the Tips.
+        - paragraph [ref=e45]: Mathematics over intuition. Data over emotion.
+      - generic [ref=e47] [cursor=pointer]: Scroll
+    - generic [ref=e52]:
+      - generic [ref=e53]: The technology
+      - heading "Mathematical AI algorithms" [level=2] [ref=e54]
+      - paragraph [ref=e55]: Unlike large language models, we use specialized algorithms built for numerical prediction. Each variable carries a calculated weight in the final analysis.
+    - generic [ref=e65]:
+      - generic [ref=e66]: The process
+      - heading "Analyzed 4 days before kickoff" [level=2] [ref=e67]
+      - paragraph [ref=e68]: Form. Head-to-head. Expected goals. Odds movements. Every metric weighted and processed days in advance.
+    - generic [ref=e73]:
+      - generic [ref=e74]:
+        - generic [ref=e75]: The coverage
+        - heading "Multiple markets, one analysis" [level=2] [ref=e76]
+        - paragraph [ref=e77]: Match result. Total goals. Both teams to score. Bet builder combinations. Corners, cards, possession.
+      - generic [ref=e79]:
+        - generic [ref=e80]:
+          - generic [ref=e81]: 1X2
+          - generic [ref=e82]: Result
+        - generic [ref=e83]:
+          - generic [ref=e84]: O/U
+          - generic [ref=e85]: Goals
+        - generic [ref=e86]:
+          - generic [ref=e87]: GG
+          - generic [ref=e88]: BTTS
+        - generic [ref=e89]:
+          - generic [ref=e90]: BB
+          - generic [ref=e91]: Builder
+    - generic [ref=e94]:
+      - generic [ref=e95]:
+        - generic [ref=e96]: The confidence
+        - heading "Trust score on every prediction" [level=2] [ref=e97]
+        - paragraph [ref=e98]: Every prediction carries a confidence score from 0 to 10. Above 9 becomes a Banker — featured on Bet of the Day.
+      - generic [ref=e100]:
+        - generic [ref=e101]:
+          - generic [ref=e102]: Trust
+          - generic [ref=e103]: "9.0"
+        - generic [ref=e107]: Banker — Bet of the Day
+    - generic [ref=e111]:
+      - generic [ref=e112]: The reach
+      - heading "Every league. Every match." [level=2] [ref=e113]
+      - paragraph [ref=e114]: From Premier League to regional amateur divisions. We analyze matches across the globe — if there's data, we have a prediction.
+    - generic [ref=e124]:
+      - generic [ref=e125]:
+        - generic [ref=e126]: The proof
+        - heading "Full transparency. Verifiable history." [level=2] [ref=e127]
+        - paragraph [ref=e128]: Every prediction we've ever made is available for review. Download our complete history and verify our track record yourself.
+      - generic [ref=e130]:
+        - generic [ref=e133]: Full prediction archive
+        - generic [ref=e136]: Downloadable CSV data
+        - generic [ref=e139]: No hidden results
+        - generic [ref=e142]: Real-time tracking
+    - generic [ref=e145]:
+      - generic [ref=e146]:
+        - generic [ref=e147]: The evolution
+        - heading "Constantly improving algorithms" [level=2] [ref=e148]
+        - paragraph [ref=e149]: Our AI models are continuously refined and updated. As football evolves, so does our prediction engine — always learning, always improving.
+      - img [ref=e153]
+    - generic [ref=e158]:
+      - generic [ref=e159]:
+        - generic [ref=e160]: 67%
+        - generic [ref=e161]: Overall Accuracy
+        - generic [ref=e162]: 1.48 avg odds
+      - generic [ref=e163]:
+        - generic [ref=e164]: 75%
+        - generic [ref=e165]: Banker success
+        - generic [ref=e166]: Trust 9+
+      - generic [ref=e167]:
+        - generic [ref=e168]: 4 Days
+        - generic [ref=e169]: Early analysis
+        - generic [ref=e170]: Before kickoff
+    - generic [ref=e173]:
+      - heading "Start winning." [level=2] [ref=e174]
+      - paragraph [ref=e175]: Full access to all predictions, Bet of the Day, and advanced analytics. Use it as your edge — or as a second opinion.
+      - text: .
+      - generic [ref=e176]:
+        - link "View Plans" [ref=e177] [cursor=pointer]:
+          - /url: https://nerdytips.com/login/signup
+        - generic [ref=e178]:
+          - img [ref=e179]
+          - generic [ref=e181]: 3-day money-back guarantee
+  - contentinfo [ref=e193]:
+    - generic [ref=e194]:
+      - generic [ref=e195]:
+        - link "Download on Google Play" [ref=e196] [cursor=pointer]:
+          - /url: https://play.google.com/store/apps/details?id=find.yourbets.NerdyTips
+          - img "Get it on Google Play" [ref=e197]
+        - link "Download on App Store" [ref=e198] [cursor=pointer]:
+          - /url: https://apps.apple.com/ro/app/nerdytips/id1659741278
+          - img "Download on the App Store" [ref=e199]
+        - link "Explore it on AppGallery" [ref=e200] [cursor=pointer]:
+          - /url: https://appgallery.huawei.com/app/C113933509
+          - img "Explore it on AppGallery" [ref=e201]
+      - generic [ref=e203]:
+        - generic [ref=e204]:
+          - generic [ref=e205]: Top Leagues
+          - link "Segunda División Predictions" [ref=e206] [cursor=pointer]:
+            - /url: https://nerdytips.com/football-predictions-for-segunda-division-peru
+          - link "II Liga - East Predictions" [ref=e207] [cursor=pointer]:
+            - /url: https://nerdytips.com/football-predictions-for-ii-liga-east-poland
+          - link "Botola Pro Predictions" [ref=e208] [cursor=pointer]:
+            - /url: https://nerdytips.com/football-predictions-for-botola-pro-morocco
+          - link "League Cup Predictions" [ref=e209] [cursor=pointer]:
+            - /url: https://nerdytips.com/football-predictions-for-league-cup-egypt
+          - link "J2/J3 League Predictions" [ref=e210] [cursor=pointer]:
+            - /url: https://nerdytips.com/football-predictions-for-j2-j3-league-japan
+        - generic [ref=e211]:
+          - generic [ref=e212]: Matches
+          - link "Molinos P vs Llacuabamba" [ref=e213] [cursor=pointer]:
+            - /url: https://nerdytips.com/match-details/molinos-el-pirata-vs-deportivo-llacuabamba-prediction-1269999
+          - link "Olimpia G vs Sandecja N" [ref=e214] [cursor=pointer]:
+            - /url: https://nerdytips.com/match-details/olimpia-grudziadz-vs-sandecja-nowy-sacz-prediction-1271765
+          - link "Podbeskidzie vs Slask II" [ref=e215] [cursor=pointer]:
+            - /url: https://nerdytips.com/match-details/podbeskidzie-vs-slask-wroclaw-ii-prediction-1271766
+          - link "UTS Rabat vs Kawkab M" [ref=e216] [cursor=pointer]:
+            - /url: https://nerdytips.com/match-details/uts-rabat-vs-kawkab-marrakech-prediction-1270000
+          - link "Olympique vs Maghreb Fes" [ref=e217] [cursor=pointer]:
+            - /url: https://nerdytips.com/match-details/olympique-safi-vs-maghreb-fes-prediction-1270012
+          - link "CODM Meknes vs Olympique D" [ref=e218] [cursor=pointer]:
+            - /url: https://nerdytips.com/match-details/codm-meknes-vs-olympique-dcheira-prediction-1270017
+          - link "Luunja vs Parnu V" [ref=e219] [cursor=pointer]:
+            - /url: https://nerdytips.com/match-details/luunja-vs-parnu-jk-vaprus-u21-prediction-1269996
+        - generic [ref=e220]:
+          - generic [ref=e221]: Popular Teams
+          - link "Throttur Reykjavik" [ref=e222] [cursor=pointer]:
+            - /url: https://nerdytips.com/team/throttur-reykjavik-829
+          - link "Mosul" [ref=e223] [cursor=pointer]:
+            - /url: https://nerdytips.com/team/mosul-26598
+          - link "Masr" [ref=e224] [cursor=pointer]:
+            - /url: https://nerdytips.com/team/masr-7520
+          - link "Uniclinic Atletico Clube" [ref=e225] [cursor=pointer]:
+            - /url: https://nerdytips.com/team/uniclinic-atletico-clube-2229
+          - link "Baghdad" [ref=e226] [cursor=pointer]:
+            - /url: https://nerdytips.com/team/baghdad-11069
+          - link "Aurora" [ref=e227] [cursor=pointer]:
+            - /url: https://nerdytips.com/team/aurora-3637
+          - link "Al Quwa Al Jawiya" [ref=e228] [cursor=pointer]:
+            - /url: https://nerdytips.com/team/al-quwa-al-jawiya-8009
+        - generic [ref=e229]:
+          - link "Minaa B" [ref=e230] [cursor=pointer]:
+            - /url: https://nerdytips.com/team/minaa-b-11065
+          - link "Erbil" [ref=e231] [cursor=pointer]:
+            - /url: https://nerdytips.com/team/erbil-11070
+          - link "Deportes Copiapo" [ref=e232] [cursor=pointer]:
+            - /url: https://nerdytips.com/team/deportes-copiapo-2343
+          - link "Kawkab Marrakech" [ref=e233] [cursor=pointer]:
+            - /url: https://nerdytips.com/team/kawkab-marrakech-971
+          - link "Sandecja Nowy Sacz" [ref=e234] [cursor=pointer]:
+            - /url: https://nerdytips.com/team/sandecja-nowy-sacz-3492
+          - link "Junior" [ref=e235] [cursor=pointer]:
+            - /url: https://nerdytips.com/team/junior-1135
+          - link "Brisbane Roar II" [ref=e236] [cursor=pointer]:
+            - /url: https://nerdytips.com/team/brisbane-roar-ii-10212
+      - generic [ref=e237]:
+        - generic [ref=e238]:
+          - link "NerdyTips Home" [ref=e239] [cursor=pointer]:
+            - /url: https://nerdytips.com
+            - img "NerdyTips logo" [ref=e240]
+            - generic [ref=e241]: NERDYTIPS
+          - navigation "Social media links" [ref=e242]:
+            - link "Follow us on Facebook" [ref=e243] [cursor=pointer]:
+              - /url: https://www.facebook.com/nerdytips/
+            - link "Follow us on Instagram" [ref=e244] [cursor=pointer]:
+              - /url: https://www.instagram.com/wearenerdytips/
+            - link "Follow us on X (Twitter)" [ref=e245] [cursor=pointer]:
+              - /url: https://twitter.com/nerdytips
+            - link "Subscribe on YouTube" [ref=e246] [cursor=pointer]:
+              - /url: https://www.youtube.com/channel/UCWXkhOpbCH4vZHaBXaAeGrA
+        - navigation "Footer navigation" [ref=e247]:
+          - link "About Us" [ref=e248] [cursor=pointer]:
+            - /url: https://nerdytips.com/about-us
+          - link "Contact" [ref=e249] [cursor=pointer]:
+            - /url: https://nerdytips.com/contactus
+          - link "Recommended Sites" [ref=e250] [cursor=pointer]:
+            - /url: https://nerdytips.com/recommended
+          - link "Terms and Conditions" [ref=e251] [cursor=pointer]:
+            - /url: https://nerdytips.com/terms-and-conditions
+          - link "Privacy Policy" [ref=e252] [cursor=pointer]:
+            - /url: https://nerdytips.com/privacy-policy
+          - link "Correct Score Predictions" [ref=e253] [cursor=pointer]:
+            - /url: https://nerdytips.com/correct-score-predictions-today
+          - link "Over 2.5 Predictions" [ref=e254] [cursor=pointer]:
+            - /url: https://nerdytips.com/over-2-5-goals-predictions-today
+          - link "Hit & Win" [ref=e255] [cursor=pointer]:
+            - /url: https://nerdytips.com/hitandwin
+          - link "TennisPredictions.ai" [ref=e256] [cursor=pointer]:
+            - /url: https://tennispredictions.ai
+      - generic [ref=e257]:
+        - paragraph [ref=e258]: 18+ • Please Gamble Responsibly
+        - generic [ref=e259]:
+          - link "support@nerdytips.com" [ref=e260] [cursor=pointer]:
+            - /url: mailto:support@nerdytips.com
+          - generic [ref=e261]: ©2026 NerdyTech Hub SRL

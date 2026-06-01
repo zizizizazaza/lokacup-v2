@@ -1,0 +1,258 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e5]:
+      - link "Alphascope" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - img "Alphascope" [ref=e7]
+      - navigation [ref=e8]:
+        - link "Forecast" [ref=e9] [cursor=pointer]:
+          - /url: /forecast
+        - link "Predictions" [ref=e10] [cursor=pointer]:
+          - /url: /predictions
+        - link "Odds" [ref=e11] [cursor=pointer]:
+          - /url: /odds
+        - link "News" [ref=e12] [cursor=pointer]:
+          - /url: /news
+        - link "Blog" [ref=e13] [cursor=pointer]:
+          - /url: /blog
+  - generic [ref=e14]:
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - generic [ref=e19]: Forecast composer
+        - heading "Predict Polymarket before it moves" [level=1] [ref=e21]:
+          - generic [ref=e22]:
+            - generic [ref=e23]: Predict
+            - generic [ref=e25]:
+              - generic [ref=e26]: Polymarket
+              - generic [ref=e28]:
+                - generic [ref=e29]: P
+                - generic [ref=e30]: o
+                - generic [ref=e31]: l
+                - generic [ref=e32]: "y"
+                - generic [ref=e33]: m
+                - generic [ref=e34]: a
+                - generic [ref=e35]: r
+                - generic [ref=e36]: k
+                - generic [ref=e37]: e
+                - generic [ref=e38]: t
+          - generic [ref=e39]: before it moves
+        - paragraph [ref=e40]: Paste a Polymarket or Kalshi link, ask a plain-English market question, or jump into the latest AI forecasts.
+      - generic [ref=e41]:
+        - generic [ref=e42]:
+          - generic [ref=e43]:
+            - img [ref=e44]
+            - generic [ref=e47]: Links and questions supported
+          - generic [ref=e48]: Ready
+        - textbox "Paste a market link or ask what you want to forecast..." [ref=e52]
+        - generic [ref=e54]:
+          - generic [ref=e55]:
+            - button "Paste link" [ref=e56] [cursor=pointer]:
+              - img [ref=e57]
+              - text: Paste link
+            - button "Example" [ref=e60] [cursor=pointer]:
+              - img [ref=e61]
+              - text: Example
+          - button "Analyze" [disabled] [ref=e64]:
+            - img [ref=e65]
+            - generic [ref=e68]: Analyze
+      - generic [ref=e69]:
+        - generic [ref=e70]:
+          - generic [ref=e71]:
+            - generic [ref=e72]: Latest forecasts
+            - heading "Latest AI forecasts from Predictions" [level=2] [ref=e73]
+          - button "View all predictions" [ref=e74] [cursor=pointer]:
+            - text: View all predictions
+            - img [ref=e75]
+        - generic [ref=e77]:
+          - button "Kalshi AI live BTC price on May 31, 2026 at 7pm EDT? Forecast 64% Liquidity $466.8K" [ref=e78] [cursor=pointer]:
+            - generic [ref=e80]:
+              - generic [ref=e81]: Kalshi
+              - generic [ref=e83]:
+                - img [ref=e84]
+                - text: AI live
+            - heading "BTC price on May 31, 2026 at 7pm EDT?" [level=3] [ref=e87]
+            - generic [ref=e88]:
+              - generic [ref=e89]:
+                - generic [ref=e90]: Forecast
+                - generic [ref=e91]: 64%
+              - generic [ref=e92]:
+                - generic [ref=e93]: Liquidity
+                - generic [ref=e94]: $466.8K
+              - img [ref=e96]
+          - button "Kalshi AI live BTC 15 min · $73,973.13 target Forecast 50% Liquidity $182K" [ref=e98] [cursor=pointer]:
+            - generic [ref=e100]:
+              - generic [ref=e101]: Kalshi
+              - generic [ref=e103]:
+                - img [ref=e104]
+                - text: AI live
+            - heading "BTC 15 min · $73,973.13 target" [level=3] [ref=e107]
+            - generic [ref=e108]:
+              - generic [ref=e109]:
+                - generic [ref=e110]: Forecast
+                - generic [ref=e111]: 50%
+              - generic [ref=e112]:
+                - generic [ref=e113]: Liquidity
+                - generic [ref=e114]: $182K
+              - img [ref=e116]
+          - button "Kalshi AI live BTC 15 min · $73,906.37 target Forecast 50% Liquidity $205.4K" [ref=e118] [cursor=pointer]:
+            - generic [ref=e120]:
+              - generic [ref=e121]: Kalshi
+              - generic [ref=e123]:
+                - img [ref=e124]
+                - text: AI live
+            - heading "BTC 15 min · $73,906.37 target" [level=3] [ref=e127]
+            - generic [ref=e128]:
+              - generic [ref=e129]:
+                - generic [ref=e130]: Forecast
+                - generic [ref=e131]: 50%
+              - generic [ref=e132]:
+                - generic [ref=e133]: Liquidity
+                - generic [ref=e134]: $205.4K
+              - img [ref=e136]
+    - article [ref=e138]:
+      - generic [ref=e139]:
+        - heading "How the Alphascope forecast composer works" [level=2] [ref=e140]
+        - paragraph [ref=e141]: The forecast composer is built for traders who already have a market in mind but need a faster way to turn that market into research. Paste a Polymarket or Kalshi link, or ask a plain-English question, and Alphascope tries to connect the request to an active prediction market. From there, the workflow leads to a market page with live odds, AI forecast context, related news, and links back to the wider board of prediction market opportunities.
+        - paragraph [ref=e142]: This is different from a generic chatbot. Prediction markets depend on exact contract wording, live prices, liquidity, and resolution sources. A useful forecast has to respect those details. The composer is designed to keep the user close to the real market instead of answering in the abstract. That makes it easier to compare the model output with the price that traders are actually paying.
+      - generic [ref=e143]:
+        - heading "What to ask before you trust a forecast" [level=2] [ref=e144]
+        - paragraph [ref=e145]: A strong forecast should answer three questions. First, what is the market currently implying? Second, what information could make that price wrong? Third, what would need to happen before the market resolves? If the answer skips one of those steps, the forecast is not complete enough to support a trade. The current odds may already include the obvious headline, and the remaining edge may depend on timing, liquidity, or a detail buried in the resolution criteria.
+        - paragraph [ref=e146]: Use the forecast as a structured second opinion. Compare it with your own estimate, then check whether the difference is large enough after fees and spread. If the market is thin, reduce the weight of the price until you know the entry is actually available. If the market is tied to official data, verify the release calendar and settlement source. If the market is driven by news, review whether related markets moved in the same direction.
+      - generic [ref=e147]:
+        - heading "Where the composer fits in the research process" [level=2] [ref=e148]
+        - paragraph [ref=e149]:
+          - text: The fastest workflow is to begin with a link or question, open the matched forecast, then branch into the supporting pages. The
+          - link "Predictions" [ref=e150] [cursor=pointer]:
+            - /url: /predictions
+          - text: page is useful for broad discovery, the
+          - link "Odds" [ref=e151] [cursor=pointer]:
+            - /url: /odds
+          - text: page is useful for category and topic scanning, and the
+          - link "News" [ref=e152] [cursor=pointer]:
+            - /url: /news
+          - text: page is useful when a headline appears to be moving several markets at once. The composer sits at the top of that flow because many users arrive with a specific market in mind.
+        - paragraph [ref=e153]: "Forecasts are most valuable when they shorten research time without hiding uncertainty. Alphascope surfaces the current price, the market context, and the next links to inspect, but the final decision still requires judgment. The goal is to make that judgment better informed: fewer stale prices, fewer missed catalysts, and fewer trades based on a headline that does not match the contract."
+      - generic [ref=e154]:
+        - heading "Forecast checks for Polymarket and Kalshi" [level=2] [ref=e155]
+        - paragraph [ref=e156]: Polymarket and Kalshi can list similar questions, but the trading mechanics and resolution language may differ. Kalshi contracts often depend on regulated event contract terms and specified data sources. Polymarket markets often depend on market-specific resolution criteria and oracle processes. A forecast that looks strong on one venue may not transfer cleanly to another venue unless the question, date, outcome, and settlement source are equivalent.
+        - paragraph [ref=e157]: Before acting on a forecast, compare the market with other contracts in the same theme. A crypto price target may be linked to other time windows. A sports contract may be linked to game markets and player props. An election contract may be linked to polls, turnout, candidate news, and party-control markets. The surrounding board often explains whether a price move is isolated or part of a larger repricing.
+      - generic [ref=e158]:
+        - heading "What the composer should not replace" [level=2] [ref=e159]
+        - paragraph [ref=e160]: The composer should not replace position sizing, bankroll rules, or final contract review. A good response can point you toward useful evidence, but it cannot know your risk tolerance, tax situation, available liquidity, or whether you can actually enter at the quoted price. Keep those decisions outside the model and make them explicit before opening a position.
+        - paragraph [ref=e161]: It also should not replace patience. Some markets are worth watching without trading immediately. If the forecast identifies a possible catalyst but the spread is wide, the better action may be to set an alert, wait for confirmation, or compare the market with a related contract. The fastest answer is not always the highest quality trade.
+      - generic [ref=e162]:
+        - heading "Examples of useful forecast questions" [level=2] [ref=e163]
+        - paragraph [ref=e164]: Useful questions are specific enough to map to a market. Instead of asking whether crypto will go up, ask whether a specific Bitcoin target market is mispriced at the current probability. Instead of asking who will win an election in general, ask about a listed candidate, state, party-control market, or polling catalyst. Specific questions make it easier to compare the answer with live odds and the actual settlement criteria.
+        - paragraph [ref=e165]: "Link-based forecasts are even stronger because they start from the exact contract. When you paste a Polymarket or Kalshi URL, the composer can keep the research tied to that market instead of making a broad claim about the topic. That is the safest way to use AI in prediction markets: anchor the model to a real contract, then verify the price, liquidity, and rules before acting."
+  - contentinfo [ref=e166]:
+    - generic [ref=e167]:
+      - generic [ref=e168]:
+        - generic [ref=e169]:
+          - heading "Product" [level=3] [ref=e170]
+          - list [ref=e171]:
+            - listitem [ref=e172]:
+              - link "Predictions" [ref=e173] [cursor=pointer]:
+                - /url: /predictions
+            - listitem [ref=e174]:
+              - link "Odds" [ref=e175] [cursor=pointer]:
+                - /url: /odds
+            - listitem [ref=e176]:
+              - link "News" [ref=e177] [cursor=pointer]:
+                - /url: /news
+            - listitem [ref=e178]:
+              - link "Blog" [ref=e179] [cursor=pointer]:
+                - /url: /blog
+            - listitem [ref=e180]:
+              - link "Site Index" [ref=e181] [cursor=pointer]:
+                - /url: /site-index
+            - listitem [ref=e182]:
+              - link "Polymarket vs Kalshi" [ref=e183] [cursor=pointer]:
+                - /url: /compare/polymarket-vs-kalshi
+        - generic [ref=e184]:
+          - heading "Markets" [level=3] [ref=e185]
+          - list [ref=e186]:
+            - listitem [ref=e187]:
+              - link "Election Odds" [ref=e188] [cursor=pointer]:
+                - /url: /odds/elections
+            - listitem [ref=e189]:
+              - link "Economy & Fed" [ref=e190] [cursor=pointer]:
+                - /url: /odds/economy
+            - listitem [ref=e191]:
+              - link "Sports Odds" [ref=e192] [cursor=pointer]:
+                - /url: /odds/sports
+            - listitem [ref=e193]:
+              - link "Crypto Odds" [ref=e194] [cursor=pointer]:
+                - /url: /odds/crypto
+        - generic [ref=e195]:
+          - heading "Popular" [level=3] [ref=e196]
+          - list [ref=e197]:
+            - listitem [ref=e198]:
+              - link "Trump Odds" [ref=e199] [cursor=pointer]:
+                - /url: /odds/topic/trump
+            - listitem [ref=e200]:
+              - link "Bitcoin Odds" [ref=e201] [cursor=pointer]:
+                - /url: /odds/topic/bitcoin
+            - listitem [ref=e202]:
+              - link "Fed Rate Odds" [ref=e203] [cursor=pointer]:
+                - /url: /odds/topic/fed-rate
+            - listitem [ref=e204]:
+              - link "NFL Odds" [ref=e205] [cursor=pointer]:
+                - /url: /odds/topic/nfl
+            - listitem [ref=e206]:
+              - link "Presidential Election" [ref=e207] [cursor=pointer]:
+                - /url: /odds/topic/presidential-election
+        - generic [ref=e208]:
+          - heading "Tools & Guides" [level=3] [ref=e209]
+          - list [ref=e210]:
+            - listitem [ref=e211]:
+              - link "Odds Calculator" [ref=e212] [cursor=pointer]:
+                - /url: /tools/odds-calculator
+            - listitem [ref=e213]:
+              - link "Polymarket Wallet Tracker" [ref=e214] [cursor=pointer]:
+                - /url: /tools/polymarket-wallet-tracker
+            - listitem [ref=e215]:
+              - link "Polymarket Best AI" [ref=e216] [cursor=pointer]:
+                - /url: /tools/polymarket-best-ai
+            - listitem [ref=e217]:
+              - link "Kalshi Trustpilot" [ref=e218] [cursor=pointer]:
+                - /url: /compare/kalshi-trustpilot
+            - listitem [ref=e219]:
+              - link "Profit Calculator" [ref=e220] [cursor=pointer]:
+                - /url: /tools/profit-calculator
+            - listitem [ref=e221]:
+              - link "How to Bet on Elections" [ref=e222] [cursor=pointer]:
+                - /url: /how-to/bet-on-elections
+            - listitem [ref=e223]:
+              - link "How to Bet on Bitcoin" [ref=e224] [cursor=pointer]:
+                - /url: /how-to/bet-on-bitcoin
+            - listitem [ref=e225]:
+              - link "How to Bet on Sports" [ref=e226] [cursor=pointer]:
+                - /url: /how-to/bet-on-sports
+        - generic [ref=e227]:
+          - heading "Company" [level=3] [ref=e228]
+          - list [ref=e229]:
+            - listitem [ref=e230]:
+              - link "Terms of Service" [ref=e231] [cursor=pointer]:
+                - /url: /terms
+            - listitem [ref=e232]:
+              - link "Privacy Policy" [ref=e233] [cursor=pointer]:
+                - /url: /privacy
+            - listitem [ref=e234]:
+              - link "Refund Policy" [ref=e235] [cursor=pointer]:
+                - /url: /refund-policy
+            - listitem [ref=e236]:
+              - link "X Twitter / X" [ref=e237] [cursor=pointer]:
+                - /url: https://x.com/xalphascope
+                - img "X" [ref=e238]
+                - text: Twitter / X
+            - listitem [ref=e239]:
+              - link "Telegram Telegram" [ref=e240] [cursor=pointer]:
+                - /url: https://t.me/alphascopee
+                - img "Telegram" [ref=e241]
+                - text: Telegram
+      - generic [ref=e242]:
+        - generic [ref=e243]:
+          - img "Alphascope" [ref=e244]
+          - generic [ref=e245]: © 2026 Alphascope. All rights reserved.
+        - paragraph [ref=e246]: Alphascope provides informational tools only. Not financial advice. Trading prediction markets involves risk of loss.
+  - alert [ref=e247]

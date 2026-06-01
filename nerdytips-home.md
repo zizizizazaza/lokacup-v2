@@ -1,0 +1,850 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation [ref=e3]:
+      - generic [ref=e4]:
+        - link "NerdyTips logo NERDYTIPS" [ref=e6] [cursor=pointer]:
+          - /url: https://nerdytips.com
+          - img "NerdyTips logo" [ref=e7]
+          - generic [ref=e8]: NERDYTIPS
+        - list [ref=e10]:
+          - listitem [ref=e11]:
+            - link "Bet of the day" [ref=e12] [cursor=pointer]:
+              - /url: https://nerdytips.com/bet-of-the-day
+          - listitem [ref=e13]:
+            - link "All Matches" [ref=e14] [cursor=pointer]:
+              - /url: https://nerdytips.com/all-matches
+          - listitem [ref=e15]:
+            - link "Bet Builder" [ref=e16] [cursor=pointer]:
+              - /url: https://nerdytips.com/bet-builder
+          - listitem [ref=e17]:
+            - button "Leagues" [ref=e18] [cursor=pointer]
+          - listitem [ref=e19]:
+            - link "Progress" [ref=e20] [cursor=pointer]:
+              - /url: https://nerdytips.com/progress
+          - listitem [ref=e21]:
+            - link "How it works" [ref=e22] [cursor=pointer]:
+              - /url: https://nerdytips.com/tutorial
+          - listitem [ref=e23]:
+            - link "Blog" [ref=e24] [cursor=pointer]:
+              - /url: https://nerdytips.com/blog
+        - generic [ref=e25]:
+          - generic [ref=e27] [cursor=pointer]:
+            - img [ref=e29]
+            - combobox "Language" [ref=e31]:
+              - option "Bahasa Indonesia"
+              - option "Bahasa Melayu"
+              - option "Català"
+              - option "Čeština"
+              - option "Dansk"
+              - option "Deutsch"
+              - option "Eesti"
+              - option "English" [selected]
+              - option "Español"
+              - option "Français"
+              - option "Hrvatski"
+              - option "Italiano"
+              - option "Magyar"
+              - option "Nederlands"
+              - option "Norsk"
+              - option "Polski"
+              - option "Português"
+              - option "Português (Brasil)"
+              - option "Română"
+              - option "Slovenčina"
+              - option "Srpski"
+              - option "Suomi"
+              - option "Svenska"
+              - option "Tiếng Việt"
+              - option "Türkçe"
+              - option "Ελληνικά"
+              - option "Български"
+              - option "Русский"
+              - option "العربية"
+              - option "ไทย"
+              - option "中文"
+              - option "日本語"
+              - option "한국어"
+            - img [ref=e33]
+          - link "Log In" [ref=e35] [cursor=pointer]:
+            - /url: "#"
+  - main [ref=e36]:
+    - generic [ref=e38]:
+      - generic [ref=e40]:
+        - heading "AI Football Predictions" [level=1] [ref=e43]:
+          - generic [ref=e44]: AI
+          - generic [ref=e45]: Football
+          - generic [ref=e46]: Predictions
+        - generic [ref=e50]:
+          - text: Powered by
+          - generic [ref=e51]: NT Apex AI
+        - link "GET STARTED NOW!" [ref=e55] [cursor=pointer]:
+          - /url: https://nerdytips.com/all-matches
+      - generic [ref=e56]:
+        - img "Rating 4.5 stele" [ref=e57]
+        - generic [ref=e58]: Trustpilot
+    - link "Orlando II logo Orlando II VS Chattanooga Chattanooga logo Over 2.5 Oriental logo Oriental VS Tacuarembo Tacuarembo logo Under 2.5 Remo logo Remo VS Sao Paulo Sao Paulo logo Over 1.5 Wieczysta K logo Wieczysta K VS Chrobry G Chrobry G logo 1 Deportivo logo Deportivo VS Encarnacion Encarnacion logo 1 Caudal logo Caudal VS Covadonga Covadonga logo 1X Malisheva logo Malisheva VS Drita Drita logo Under 3.5 Gjilani logo Gjilani VS Prishtina Prishtina logo 1 Dukagjini logo Dukagjini VS Ballkani Ballkani logo 1X Tacuary logo Tacuary VS Sportivo C Sportivo C logo Under 2.5" [ref=e59] [cursor=pointer]:
+      - /url: https://nerdytips.com/all-matches
+      - generic [ref=e61]:
+        - generic [ref=e62]:
+          - generic [ref=e63]:
+            - img "Orlando II logo" [ref=e64]
+            - generic [ref=e65]: Orlando II
+            - generic [ref=e66]: VS
+            - generic [ref=e67]: Chattanooga
+            - img "Chattanooga logo" [ref=e68]
+            - generic [ref=e69]:
+              - img [ref=e70]
+              - text: Over 2.5
+          - generic [ref=e72]:
+            - img "Oriental logo" [ref=e73]
+            - generic [ref=e74]: Oriental
+            - generic [ref=e75]: VS
+            - generic [ref=e76]: Tacuarembo
+            - img "Tacuarembo logo" [ref=e77]
+            - generic [ref=e78]:
+              - img [ref=e79]
+              - text: Under 2.5
+          - generic [ref=e81]:
+            - img "Remo logo" [ref=e82]
+            - generic [ref=e83]: Remo
+            - generic [ref=e84]: VS
+            - generic [ref=e85]: Sao Paulo
+            - img "Sao Paulo logo" [ref=e86]
+            - generic [ref=e87]:
+              - img [ref=e88]
+              - text: Over 1.5
+          - generic [ref=e90]:
+            - img "Wieczysta K logo" [ref=e91]
+            - generic [ref=e92]: Wieczysta K
+            - generic [ref=e93]: VS
+            - generic [ref=e94]: Chrobry G
+            - img "Chrobry G logo" [ref=e95]
+            - generic [ref=e96]:
+              - img [ref=e97]
+              - text: "1"
+          - generic [ref=e99]:
+            - img "Deportivo logo" [ref=e100]
+            - generic [ref=e101]: Deportivo
+            - generic [ref=e102]: VS
+            - generic [ref=e103]: Encarnacion
+            - img "Encarnacion logo" [ref=e104]
+            - generic [ref=e105]:
+              - img [ref=e106]
+              - text: "1"
+          - generic [ref=e108]:
+            - img "Caudal logo" [ref=e109]
+            - generic [ref=e110]: Caudal
+            - generic [ref=e111]: VS
+            - generic [ref=e112]: Covadonga
+            - img "Covadonga logo" [ref=e113]
+            - generic [ref=e114]:
+              - img [ref=e115]
+              - text: 1X
+          - generic [ref=e117]:
+            - img "Malisheva logo" [ref=e118]
+            - generic [ref=e119]: Malisheva
+            - generic [ref=e120]: VS
+            - generic [ref=e121]: Drita
+            - img "Drita logo" [ref=e122]
+            - generic [ref=e123]:
+              - img [ref=e124]
+              - text: Under 3.5
+          - generic [ref=e126]:
+            - img "Gjilani logo" [ref=e127]
+            - generic [ref=e128]: Gjilani
+            - generic [ref=e129]: VS
+            - generic [ref=e130]: Prishtina
+            - img "Prishtina logo" [ref=e131]
+            - generic [ref=e132]:
+              - img [ref=e133]
+              - text: "1"
+          - generic [ref=e135]:
+            - img "Dukagjini logo" [ref=e136]
+            - generic [ref=e137]: Dukagjini
+            - generic [ref=e138]: VS
+            - generic [ref=e139]: Ballkani
+            - img "Ballkani logo" [ref=e140]
+            - generic [ref=e141]:
+              - img [ref=e142]
+              - text: 1X
+          - generic [ref=e144]:
+            - img "Tacuary logo" [ref=e145]
+            - generic [ref=e146]: Tacuary
+            - generic [ref=e147]: VS
+            - generic [ref=e148]: Sportivo C
+            - img "Sportivo C logo" [ref=e149]
+            - generic [ref=e150]:
+              - img [ref=e151]
+              - text: Under 2.5
+        - generic [ref=e153]:
+          - generic [ref=e154]:
+            - img [ref=e155]
+            - generic [ref=e156]: Orlando II
+            - generic [ref=e157]: VS
+            - generic [ref=e158]: Chattanooga
+            - img [ref=e159]
+            - generic [ref=e160]:
+              - img [ref=e161]
+              - text: over 2.5
+          - generic [ref=e163]:
+            - img [ref=e164]
+            - generic [ref=e165]: Oriental
+            - generic [ref=e166]: VS
+            - generic [ref=e167]: Tacuarembo
+            - img [ref=e168]
+            - generic [ref=e169]:
+              - img [ref=e170]
+              - text: under 2.5
+          - generic [ref=e172]:
+            - img [ref=e173]
+            - generic [ref=e174]: Remo
+            - generic [ref=e175]: VS
+            - generic [ref=e176]: Sao Paulo
+            - img [ref=e177]
+            - generic [ref=e178]:
+              - img [ref=e179]
+              - text: over 1.5
+          - generic [ref=e181]:
+            - img [ref=e182]
+            - generic [ref=e183]: Wieczysta K
+            - generic [ref=e184]: VS
+            - generic [ref=e185]: Chrobry G
+            - img [ref=e186]
+            - generic [ref=e187]:
+              - img [ref=e188]
+              - text: "1"
+          - generic [ref=e190]:
+            - img [ref=e191]
+            - generic [ref=e192]: Deportivo
+            - generic [ref=e193]: VS
+            - generic [ref=e194]: Encarnacion
+            - img [ref=e195]
+            - generic [ref=e196]:
+              - img [ref=e197]
+              - text: "1"
+          - generic [ref=e199]:
+            - img [ref=e200]
+            - generic [ref=e201]: Caudal
+            - generic [ref=e202]: VS
+            - generic [ref=e203]: Covadonga
+            - img [ref=e204]
+            - generic [ref=e205]:
+              - img [ref=e206]
+              - text: 1X
+          - generic [ref=e208]:
+            - img [ref=e209]
+            - generic [ref=e210]: Malisheva
+            - generic [ref=e211]: VS
+            - generic [ref=e212]: Drita
+            - img [ref=e213]
+            - generic [ref=e214]:
+              - img [ref=e215]
+              - text: under 3.5
+          - generic [ref=e217]:
+            - img [ref=e218]
+            - generic [ref=e219]: Gjilani
+            - generic [ref=e220]: VS
+            - generic [ref=e221]: Prishtina
+            - img [ref=e222]
+            - generic [ref=e223]:
+              - img [ref=e224]
+              - text: "1"
+          - generic [ref=e226]:
+            - img [ref=e227]
+            - generic [ref=e228]: Dukagjini
+            - generic [ref=e229]: VS
+            - generic [ref=e230]: Ballkani
+            - img [ref=e231]
+            - generic [ref=e232]:
+              - img [ref=e233]
+              - text: 1X
+          - generic [ref=e235]:
+            - img [ref=e236]
+            - generic [ref=e237]: Tacuary
+            - generic [ref=e238]: VS
+            - generic [ref=e239]: Sportivo C
+            - img [ref=e240]
+            - generic [ref=e241]:
+              - img [ref=e242]
+              - text: under 2.5
+    - generic [ref=e244]:
+      - heading "1st June Free Football Predictions" [level=2] [ref=e246]:
+        - text: 1st June
+        - generic [ref=e247]: Free Football Predictions
+      - generic [ref=e248]:
+        - article [ref=e249]:
+          - generic [ref=e250]:
+            - link "Argentina" [ref=e251] [cursor=pointer]:
+              - /url: https://nerdytips.com/football-predictions-for-primera-b-metropolitana-argentina
+              - text: Argentina
+            - generic [ref=e253]:
+              - generic [ref=e254]: Tomorrow
+              - generic [ref=e255]: ·
+              - generic [ref=e256]: 03:30
+          - generic [ref=e257]:
+            - generic [ref=e258]:
+              - generic [ref=e259]: Argentino
+              - img "Argentino logo" [ref=e260]
+            - generic [ref=e261]: VS
+            - generic [ref=e262]:
+              - img "Ituzaingo logo" [ref=e263]
+              - generic [ref=e264]: Ituzaingo
+          - generic [ref=e265]:
+            - strong [ref=e266]: "1"
+            - generic [ref=e267]:
+              - meter "Confidence" [ref=e268]
+              - generic [ref=e270]: 86%
+        - article [ref=e271]:
+          - generic [ref=e272]:
+            - link "Primera División" [ref=e273] [cursor=pointer]:
+              - /url: https://nerdytips.com/football-predictions-for-primera-division-chile
+              - text: Primera División
+            - generic [ref=e275]:
+              - generic [ref=e276]: Today
+              - generic [ref=e277]: ·
+              - generic [ref=e278]: 09:00
+          - generic [ref=e279]:
+            - generic [ref=e280]:
+              - generic [ref=e281]: Palestino
+              - img "Palestino logo" [ref=e282]
+            - generic [ref=e283]: VS
+            - generic [ref=e284]:
+              - img "A. Italiano logo" [ref=e285]
+              - generic [ref=e286]: A. Italiano
+          - generic [ref=e287]:
+            - strong [ref=e288]: 1X
+            - generic [ref=e289]:
+              - meter "Confidence" [ref=e290]
+              - generic [ref=e292]: 85%
+        - article [ref=e293]:
+          - generic [ref=e294]:
+            - generic [ref=e295]: Esiliiga B
+            - generic [ref=e297]:
+              - generic [ref=e298]: Tomorrow
+              - generic [ref=e299]: ·
+              - generic [ref=e300]: 01:00
+          - generic [ref=e301]:
+            - generic [ref=e302]:
+              - generic [ref=e303]: Tallinna
+              - img "Tallinna logo" [ref=e304]
+            - generic [ref=e305]: VS
+            - generic [ref=e306]:
+              - img "Tartu Kalev logo" [ref=e307]
+              - generic [ref=e308]: Tartu Kalev
+          - generic [ref=e309]:
+            - strong [ref=e310]: X2
+            - generic [ref=e311]:
+              - meter "Confidence" [ref=e312]
+              - generic [ref=e314]: 85%
+        - article [ref=e315]:
+          - generic [ref=e316]:
+            - generic [ref=e317]: Esiliiga B
+            - generic [ref=e319]:
+              - generic [ref=e320]: Tomorrow
+              - generic [ref=e321]: ·
+              - generic [ref=e322]: 01:00
+          - generic [ref=e323]:
+            - generic [ref=e324]:
+              - generic [ref=e325]: Luunja
+              - img "Luunja logo" [ref=e326]
+            - generic [ref=e327]: VS
+            - generic [ref=e328]:
+              - img "Parnu V logo" [ref=e329]
+              - generic [ref=e330]: Parnu V
+          - generic [ref=e331]:
+            - strong [ref=e332]: GG
+            - generic [ref=e333]:
+              - meter "Confidence" [ref=e334]
+              - generic [ref=e336]: 85%
+        - article [ref=e337]:
+          - generic [ref=e338]:
+            - link "Victoria NPL 2" [ref=e339] [cursor=pointer]:
+              - /url: https://nerdytips.com/football-predictions-for-victoria-npl-2-australia
+              - text: Victoria NPL 2
+            - generic [ref=e341]:
+              - generic [ref=e342]: Today
+              - generic [ref=e343]: ·
+              - generic [ref=e344]: 19:30
+          - generic [ref=e345]:
+            - generic [ref=e346]:
+              - generic [ref=e347]: Bulleen L
+              - img "Bulleen L logo" [ref=e348]
+            - generic [ref=e349]: VS
+            - generic [ref=e350]:
+              - img "Port M logo" [ref=e351]
+              - generic [ref=e352]: Port M
+          - generic [ref=e353]:
+            - strong [ref=e354]: "1"
+            - generic [ref=e355]:
+              - meter "Confidence" [ref=e356]
+              - generic [ref=e358]: 80%
+        - article [ref=e359]:
+          - generic [ref=e360]:
+            - generic [ref=e361]: Esiliiga B
+            - generic [ref=e363]:
+              - generic [ref=e364]: Tomorrow
+              - generic [ref=e365]: ·
+              - generic [ref=e366]: 01:00
+          - generic [ref=e367]:
+            - generic [ref=e368]:
+              - generic [ref=e369]: Levadia U19
+              - img "Levadia U19 logo" [ref=e370]
+            - generic [ref=e371]: VS
+            - generic [ref=e372]:
+              - img "Legion logo" [ref=e373]
+              - generic [ref=e374]: Legion
+          - generic [ref=e375]:
+            - strong [ref=e376]: H1
+            - generic [ref=e377]:
+              - meter "Confidence" [ref=e378]
+              - generic [ref=e380]: 80%
+        - article [ref=e381]:
+          - generic [ref=e382]:
+            - link "Segunda División" [ref=e383] [cursor=pointer]:
+              - /url: https://nerdytips.com/football-predictions-for-segunda-division-peru
+              - text: Segunda División
+            - generic [ref=e385]:
+              - generic [ref=e386]: Tomorrow
+              - generic [ref=e387]: ·
+              - generic [ref=e388]: 01:00
+          - generic [ref=e389]:
+            - generic [ref=e390]:
+              - generic [ref=e391]: Molinos P
+              - img "Molinos P logo" [ref=e392]
+            - generic [ref=e393]: VS
+            - generic [ref=e394]:
+              - img "Llacuabamba logo" [ref=e395]
+              - generic [ref=e396]: Llacuabamba
+          - generic [ref=e397]:
+            - strong [ref=e398]: Under 3.5
+            - generic [ref=e399]:
+              - meter "Confidence" [ref=e400]
+              - generic [ref=e402]: 77%
+      - paragraph [ref=e404]:
+        - text: Above are today's
+        - strong [ref=e405]: 7 free AI football predictions
+        - text: from NerdyTips — featuring
+        - link "Argentina" [ref=e406] [cursor=pointer]:
+          - /url: https://nerdytips.com/football-predictions-for-primera-b-metropolitana-argentina
+        - text: ","
+        - link "Primera División" [ref=e407] [cursor=pointer]:
+          - /url: https://nerdytips.com/football-predictions-for-primera-division-chile
+        - text: ","
+        - link "Victoria NPL 2" [ref=e408] [cursor=pointer]:
+          - /url: https://nerdytips.com/football-predictions-for-victoria-npl-2-australia
+        - text: ", and more, all rated above"
+        - strong [ref=e409]: 77% confidence
+        - text: by our NT Apex engine. For the best AI football predictions on every match today, explore our full football predictions catalogue covering 160+ leagues worldwide.
+      - link "See All Predictions" [ref=e411] [cursor=pointer]:
+        - /url: https://nerdytips.com/all-matches
+        - generic [ref=e412]: See All Predictions
+        - img [ref=e413]
+    - generic [ref=e416]:
+      - generic [ref=e419]:
+        - paragraph [ref=e420]: WELCOME TO NERDYTIPS
+        - heading "Our Story - Engineered to Win" [level=2] [ref=e421]
+      - generic [ref=e422]:
+        - paragraph [ref=e424]: We developed a proprietary AI football prediction engine that uses machine learning to generate accurate, data-driven tips.
+        - paragraph [ref=e426]:
+          - strong [ref=e427]: "Constantly evolving intelligence:"
+          - text: Our algorithm undergoes daily learning processes to enhance the accuracy of its AI-powered football predictions.
+        - paragraph [ref=e429]:
+          - strong [ref=e430]: "Two years of development, proven results:"
+          - text: Launched on May 19, 2021, it has already analyzed 253 898 matches, with 169 300 successful predictions - and counting.
+        - paragraph [ref=e432]: Our Java-based software combines Artificial Intelligence, Mathematical Modeling, and Machine Learning to deliver AI-driven football predictions with unmatched consistency.
+        - paragraph [ref=e434]:
+          - strong [ref=e435]: "AI that outperforms humans:"
+          - text: On busy matchdays with 600+ games, our algorithm delivers the most reliable AI football tips, where manual analysis falls short.
+        - paragraph [ref=e437]:
+          - text: "Complete transparency: We maintain full openness with our clients, inviting you to monitor our entire"
+          - link "progress" [ref=e438] [cursor=pointer]:
+            - /url: https://nerdytips.com/progress
+          - text: firsthand.
+    - img "YouTube video" [ref=e449] [cursor=pointer]
+    - generic [ref=e452]:
+      - heading "Trusted by:" [level=2] [ref=e453]
+      - generic [ref=e455]:
+        - link "BeSoccer logo BeSoccer" [ref=e457] [cursor=pointer]:
+          - /url: https://www.besoccer.com/new/the-influence-of-artificial-intelligence-in-sport-1356941
+          - img "BeSoccer logo" [ref=e458]
+          - text: BeSoccer
+        - link "DAZN logo DAZN" [ref=e460] [cursor=pointer]:
+          - /url: https://www.dazn.com/es-ES/news/f%C3%BAtbol/footballs-silent-analyst-how-smart-systems-are-redefining-the-game/13fqnr0kxclur1oq7q71sxjhju
+          - img "DAZN logo" [ref=e461]
+          - text: DAZN
+        - link "OneFootball logo OneFootball" [ref=e463] [cursor=pointer]:
+          - /url: https://onefootball.com/en/news/why-emerging-italy-striker-has-attracted-milan-and-arsenal-interest-41040210
+          - img "OneFootball logo" [ref=e464]
+          - text: OneFootball
+        - link "Football365 logo Football365" [ref=e466] [cursor=pointer]:
+          - /url: https://www.football365.com/news/arsenal-transfers-berta-susprise-striker-option-major-gyokeres-doubt-sesko-delay
+          - img "Football365 logo" [ref=e467]
+          - text: Football365
+        - link "FlashScore logo FlashScore" [ref=e469] [cursor=pointer]:
+          - /url: https://www.flashscore.com/recommended/
+          - img "FlashScore logo" [ref=e470]
+          - text: FlashScore
+        - link "YahooSports logo YahooSports" [ref=e472] [cursor=pointer]:
+          - /url: https://sports.yahoo.com/article/ambrosini-gattuso-no-room-planning-145800540.html
+          - img "YahooSports logo" [ref=e473]
+          - text: YahooSports
+        - link "PlanetFootball logo PlanetFootball" [ref=e475] [cursor=pointer]:
+          - /url: https://www.planetfootball.com/manchester-united/marcus-rashford-next-club-potential-destinations-transfer
+          - img "PlanetFootball logo" [ref=e476]
+          - text: PlanetFootball
+    - generic [ref=e478]:
+      - generic [ref=e481]:
+        - paragraph [ref=e482]: Save Time with AI
+        - heading "Football Predictions Made Simple" [level=2] [ref=e483]
+        - paragraph [ref=e484]: Stop spending hours on research. NerdyTips delivers football predictions for over 160 leagues — from Premier League fixtures to second-division matches — powered by our proprietary AI for accuracy that surpasses human analysis.
+      - generic [ref=e485]:
+        - img "Photo with football leagues logos" [ref=e488]
+        - generic [ref=e489]:
+          - generic [ref=e491]:
+            - img [ref=e493]
+            - generic [ref=e497]:
+              - heading "PROFITABLE TIPS" [level=3] [ref=e498]
+              - paragraph [ref=e499]: NerdyTips delivers reliable, long-term profits that grow steadily with you.
+          - generic [ref=e501]:
+            - img [ref=e503]
+            - generic [ref=e506]:
+              - heading "All Matches" [level=3] [ref=e507]
+              - paragraph [ref=e508]: NerdyTips covers every football match — from top leagues to local games.
+    - generic [ref=e510]:
+      - generic [ref=e513]:
+        - paragraph [ref=e514]: BEHIND THE AI PREDICTIONS
+        - heading "How Our AI Works" [level=2] [ref=e515]
+      - generic [ref=e516]:
+        - generic [ref=e517]:
+          - img "AI Data Collection Diagram for Football Predictions" [ref=e519]
+          - generic [ref=e520]:
+            - generic [ref=e521]: "1"
+            - heading "Data Collection and Integration" [level=3] [ref=e522]
+            - paragraph [ref=e523]: Our software, built primarily in Java, collects verified football data from official and licensed sports data providers through secure APIs. This information covers every aspect of the game — from match statistics, xG (expected goals), and ball possession to player transfers, team form, and news updates.
+            - paragraph [ref=e524]: All this data is stored in our scalable big data platform, purpose-built for advanced AI football analysis. Our platform is engineered to handle massive volumes of data, ensuring that from the final whistle of a match to the latest transfer rumour, every piece of relevant information is captured and integrated.
+        - generic [ref=e525]:
+          - img "AI Data Processing and Normalization Diagram" [ref=e527]
+          - generic [ref=e528]:
+            - generic [ref=e529]: "2"
+            - heading "Data Normalization and Validation" [level=3] [ref=e530]
+            - paragraph [ref=e531]: Once collected, the data must be normalized to ensure quality and consistency. Machine learning models, including our proprietary ones, require standardized and validated inputs. Every dataset is therefore cleaned, structured, and cross-checked before entering the prediction pipeline — ensuring that our forecasts are based on reliable information, not noise.
+            - paragraph [ref=e532]: By dedicating significant resources to this thorough process, we eliminate inconsistencies and biases that could otherwise compromise the integrity of our predictions, ensuring that NT Apex operates on a foundation of pure, reliable data.
+        - generic [ref=e533]:
+          - img "AI Forecast Calculation Diagram for Match Outcomes" [ref=e535]
+          - generic [ref=e536]:
+            - generic [ref=e537]: "3"
+            - heading "Predictive Intelligence with NT Apex" [level=3] [ref=e538]
+            - paragraph [ref=e539]:
+              - text: At this stage, our proprietary model,
+              - strong [ref=e540]: NT Apex
+              - text: ", takes over. Developed by the"
+              - strong [ref=e541]: NerdyTips AI engineering team
+              - text: ", NT Apex combines deep neural networks with pattern recognition to interpret complex football dynamics. It processes dozens of contextual variables — such as match history, weather conditions, injuries, transfers, and xG trends — to produce objective, data-driven predictions with outstanding accuracy."
+            - paragraph [ref=e542]:
+              - text: At
+              - strong [ref=e543]: NerdyTips
+              - text: ", we value transparency and progress. Our team continuously tracks model performance and dataset improvements on our public"
+              - link "GitHub repository" [ref=e544] [cursor=pointer]:
+                - /url: https://github.com/Dani-Ionescu/nerdytips-data
+              - text: .
+    - generic [ref=e546]:
+      - generic [ref=e550]:
+        - paragraph [ref=e551]: Trusted By Bettors Worldwide
+        - paragraph [ref=e552]: What Our Users Say
+      - generic [ref=e557]:
+        - generic [ref=e558]:
+          - generic [ref=e559]: Excellent
+          - img "4.5 stars" [ref=e561]
+          - link "156 reviews" [ref=e563] [cursor=pointer]:
+            - /url: https://www.trustpilot.com/review/nerdytips.com
+          - generic [ref=e564]:
+            - img "logo white trustpilot"
+        - generic [ref=e565]:
+          - generic [ref=e566]:
+            - button "Previous" [disabled] [ref=e567]: ‹ Previous
+            - generic [ref=e569]:
+              - link "5 stars ✓ Verified Best prediction app/site Firstly, it's the banker tips... More than 90% accurate. Secondly, the number of goals on the app, u can decide to go for GG&over2.5. the accuracy on the app prediction is far better than other apps and sites because I have used different ones and nerdytips is the best soccer prediction app. Joseph, 5 months ago" [ref=e571] [cursor=pointer]:
+                - /url: https://www.trustpilot.com/users/66e36c9e38509400729620c1
+                - generic [ref=e572]:
+                  - generic:
+                    - img "5 stars"
+                  - generic [ref=e573]:
+                    - generic [ref=e574]: ✓
+                    - generic [ref=e575]: Verified
+                - generic [ref=e576]: Best prediction app/site
+                - generic [ref=e577]: Firstly, it's the banker tips... More than 90% accurate. Secondly, the number of goals on the app, u can decide to go for GG&over2.5. the accuracy on the app prediction is far better than other apps and sites because I have used different ones and nerdytips is the best soccer prediction app.
+                - generic [ref=e578]:
+                  - strong [ref=e579]: Joseph,
+                  - text: 5 months ago
+              - link "4 stars ✓ Verified Wonderful experience Its been a wonderful experience since i started using their services even though at the beginning it was a bit rocky but things improved later on and 70% of their games won. Ben Are Wealth, 4 months ago" [ref=e581] [cursor=pointer]:
+                - /url: https://www.trustpilot.com/reviews/671dacc0c03bb8e64953fb6d
+                - generic [ref=e582]:
+                  - generic:
+                    - img "4 stars"
+                  - generic [ref=e583]:
+                    - generic [ref=e584]: ✓
+                    - generic [ref=e585]: Verified
+                - generic [ref=e586]: Wonderful experience
+                - generic [ref=e587]: Its been a wonderful experience since i started using their services even though at the beginning it was a bit rocky but things improved later on and 70% of their games won.
+                - generic [ref=e588]:
+                  - strong [ref=e589]: Ben Are Wealth,
+                  - text: 4 months ago
+              - link [ref=e591] [cursor=pointer]:
+                - /url: https://www.trustpilot.com/reviews/65c326313659a3479211452a
+                - generic [ref=e594]: ✓
+                - generic [ref=e595]: Bankers are good
+                - generic [ref=e596]: The Bankers are especially good. Betting is not a crystal ball to get 100% predictions 365 days a year. But if you want good insights, or want to make an informed decision, then use this site. This is what separates sports betting from gambling.
+                - generic [ref=e597]:
+                  - strong [ref=e598]: Daniel Olara,
+                  - text: 1 year ago
+              - link [ref=e600] [cursor=pointer]:
+                - /url: https://www.trustpilot.com/reviews/6488075e13e9f23efb860747
+                - generic [ref=e603]: ✓
+                - generic [ref=e604]: Excellent
+                - generic [ref=e605]: The work done is great here, I have followed silently and seen great results the only place you have to improve is to accommodate everyone when it comes to down load the app it's not compatible with every phone.
+                - generic [ref=e606]:
+                  - strong [ref=e607]: John Kiguru,
+                  - text: 1 year ago
+              - link [ref=e609] [cursor=pointer]:
+                - /url: https://www.trustpilot.com/reviews/6628be91db365746b930f0f9
+                - generic [ref=e612]: ✓
+                - generic [ref=e613]: I love nerdy tips
+                - generic [ref=e614]: I love the fact that nerdy tips provides the best betting tips and their app interface is user friendly. Their bankers and slip of the day have the highest chances of winning. I kindly appreciate the brains behind this amazing app and I would recommend it to many friends.
+                - generic [ref=e615]:
+                  - strong [ref=e616]: Edraindi Hitleru,
+                  - text: 9 months ago
+              - link [ref=e618] [cursor=pointer]:
+                - /url: https://www.trustpilot.com/reviews/675741a71a208d85eafde28d
+                - generic [ref=e621]: ✓
+                - generic [ref=e622]: Nerdytips is the best
+                - generic [ref=e623]: Very good site especially the slip of the day.
+                - generic [ref=e624]:
+                  - strong [ref=e625]: Etorobi John,
+                  - text: 1 month ago
+              - link [ref=e627] [cursor=pointer]:
+                - /url: https://www.trustpilot.com/reviews/671e85ca203c1cb53368be12
+                - generic [ref=e630]: ✓
+                - generic [ref=e631]: 70% - 90% hit rate
+                - generic [ref=e632]: Their prediction hit rate especially for their bankers are around 70 to 90 percent daily clearly showing Nerdy Tips knows what they are doing. They make sports betting easy and convenient.
+                - generic [ref=e633]:
+                  - strong [ref=e634]: Kronikle,
+                  - text: 4 months ago
+            - button "Next" [ref=e635] [cursor=pointer]: › Next
+          - link "Showing our latest reviews" [ref=e637] [cursor=pointer]:
+            - /url: https://www.trustpilot.com/review/nerdytips.com
+    - generic [ref=e640]:
+      - generic [ref=e643]:
+        - paragraph [ref=e644]: Subscription Offer
+        - heading "Our Plans" [level=2] [ref=e645]
+        - paragraph [ref=e646]: All plans include complete access to every prediction, stat and tool. We value your trust - cancel effortlessly anytime if we don't exceed your expectations.
+      - generic [ref=e651]:
+        - generic [ref=e653]:
+          - generic [ref=e654]:
+            - generic [ref=e655]: Basic
+            - generic [ref=e656]: 1 Month
+          - generic [ref=e657]:
+            - generic [ref=e658]: 9.99$
+            - generic [ref=e659]: Price/Month
+            - generic [ref=e660]: Affordable
+          - list [ref=e661]:
+            - listitem [ref=e662]:
+              - generic [ref=e663]: ✓
+              - generic [ref=e664]:
+                - text: Access
+                - strong [ref=e665]: Full Access
+            - listitem [ref=e666]:
+              - generic [ref=e667]: ✓
+              - generic [ref=e668]:
+                - text: Technology
+                - strong [ref=e669]: NT Apex
+            - listitem [ref=e670]:
+              - generic [ref=e671]: ✓
+              - generic [ref=e672]:
+                - text: Win Rate
+                - strong [ref=e673]: 75%
+          - link "Subscribe Now" [ref=e675] [cursor=pointer]:
+            - /url: https://nerdytips.com/login/signup
+        - generic [ref=e677]:
+          - generic [ref=e678]: Most Popular🔥
+          - generic [ref=e679]:
+            - generic [ref=e680]: Standard
+            - generic [ref=e681]: 3 Months
+          - generic [ref=e682]:
+            - generic [ref=e683]: 7.29$
+            - generic [ref=e684]: Price/Month
+            - generic [ref=e685]:
+              - text: Save
+              - strong [ref=e686]: $8
+          - list [ref=e687]:
+            - listitem [ref=e688]:
+              - generic [ref=e689]: ✓
+              - generic [ref=e690]:
+                - text: Access
+                - strong [ref=e691]: Full Access
+            - listitem [ref=e692]:
+              - generic [ref=e693]: ✓
+              - generic [ref=e694]:
+                - text: Technology
+                - strong [ref=e695]: NT Apex
+            - listitem [ref=e696]:
+              - generic [ref=e697]: ✓
+              - generic [ref=e698]:
+                - text: Win Rate
+                - strong [ref=e699]: 75%
+          - link "Subscribe Now" [ref=e701] [cursor=pointer]:
+            - /url: https://nerdytips.com/login/signup
+        - generic [ref=e703]:
+          - generic [ref=e704]: Best Deal⭐
+          - generic [ref=e705]:
+            - generic [ref=e706]: Premium
+            - generic [ref=e707]: 6 Months
+          - generic [ref=e708]:
+            - generic [ref=e709]: 5.99$
+            - generic [ref=e710]: Price/Month
+            - generic [ref=e711]:
+              - text: Save
+              - strong [ref=e712]: $24
+          - list [ref=e713]:
+            - listitem [ref=e714]:
+              - generic [ref=e715]: ✓
+              - generic [ref=e716]:
+                - text: Access
+                - strong [ref=e717]: Full Access
+            - listitem [ref=e718]:
+              - generic [ref=e719]: ✓
+              - generic [ref=e720]:
+                - text: Technology
+                - strong [ref=e721]: NT Apex
+            - listitem [ref=e722]:
+              - generic [ref=e723]: ✓
+              - generic [ref=e724]:
+                - text: Win Rate
+                - strong [ref=e725]: 75%
+          - link "Subscribe Now" [ref=e727] [cursor=pointer]:
+            - /url: https://nerdytips.com/login/signup
+    - generic [ref=e729]:
+      - generic [ref=e732]:
+        - paragraph [ref=e733]: Got Any Questions?
+        - heading "We've Got Answers" [level=2] [ref=e734]
+      - generic [ref=e736]:
+        - tablist [ref=e737]:
+          - tab "Basic Questions" [selected] [ref=e738] [cursor=pointer]
+          - tab "Predictions Questions" [ref=e739] [cursor=pointer]
+        - tabpanel "Basic Questions" [ref=e741]:
+          - generic [ref=e742]:
+            - button "What is NerdyTips?" [expanded] [ref=e746] [cursor=pointer]: What is NerdyTips?
+            - button "How does the algorithm work?" [ref=e751] [cursor=pointer]: How does the algorithm work?
+            - button "What are the main advantages of NerdyTips?" [ref=e756] [cursor=pointer]: What are the main advantages of NerdyTips?
+            - button "Can I bet on NerdyTips?" [ref=e761] [cursor=pointer]: Can I bet on NerdyTips?
+  - contentinfo [ref=e763]:
+    - generic [ref=e764]:
+      - generic [ref=e765]:
+        - link "Download on Google Play" [ref=e766] [cursor=pointer]:
+          - /url: https://play.google.com/store/apps/details?id=find.yourbets.NerdyTips
+          - img "Get it on Google Play" [ref=e767]
+        - link "Download on App Store" [ref=e768] [cursor=pointer]:
+          - /url: https://apps.apple.com/ro/app/nerdytips/id1659741278
+          - img "Download on the App Store" [ref=e769]
+        - link "Explore it on AppGallery" [ref=e770] [cursor=pointer]:
+          - /url: https://appgallery.huawei.com/app/C113933509
+          - img "Explore it on AppGallery" [ref=e771]
+      - generic [ref=e773]:
+        - generic [ref=e774]:
+          - generic [ref=e775]: Top Leagues
+          - link "Segunda División Predictions" [ref=e776] [cursor=pointer]:
+            - /url: https://nerdytips.com/football-predictions-for-segunda-division-peru
+          - link "II Liga - East Predictions" [ref=e777] [cursor=pointer]:
+            - /url: https://nerdytips.com/football-predictions-for-ii-liga-east-poland
+          - link "Botola Pro Predictions" [ref=e778] [cursor=pointer]:
+            - /url: https://nerdytips.com/football-predictions-for-botola-pro-morocco
+          - link "League Cup Predictions" [ref=e779] [cursor=pointer]:
+            - /url: https://nerdytips.com/football-predictions-for-league-cup-egypt
+          - link "J2/J3 League Predictions" [ref=e780] [cursor=pointer]:
+            - /url: https://nerdytips.com/football-predictions-for-j2-j3-league-japan
+        - generic [ref=e781]:
+          - generic [ref=e782]: Matches
+          - link "Molinos P vs Llacuabamba" [ref=e783] [cursor=pointer]:
+            - /url: https://nerdytips.com/match-details/molinos-el-pirata-vs-deportivo-llacuabamba-prediction-1269999
+          - link "Olimpia G vs Sandecja N" [ref=e784] [cursor=pointer]:
+            - /url: https://nerdytips.com/match-details/olimpia-grudziadz-vs-sandecja-nowy-sacz-prediction-1271765
+          - link "Podbeskidzie vs Slask II" [ref=e785] [cursor=pointer]:
+            - /url: https://nerdytips.com/match-details/podbeskidzie-vs-slask-wroclaw-ii-prediction-1271766
+          - link "UTS Rabat vs Kawkab M" [ref=e786] [cursor=pointer]:
+            - /url: https://nerdytips.com/match-details/uts-rabat-vs-kawkab-marrakech-prediction-1270000
+          - link "Olympique vs Maghreb Fes" [ref=e787] [cursor=pointer]:
+            - /url: https://nerdytips.com/match-details/olympique-safi-vs-maghreb-fes-prediction-1270012
+          - link "CODM Meknes vs Olympique D" [ref=e788] [cursor=pointer]:
+            - /url: https://nerdytips.com/match-details/codm-meknes-vs-olympique-dcheira-prediction-1270017
+          - link "Luunja vs Parnu V" [ref=e789] [cursor=pointer]:
+            - /url: https://nerdytips.com/match-details/luunja-vs-parnu-jk-vaprus-u21-prediction-1269996
+        - generic [ref=e790]:
+          - generic [ref=e791]: Popular Teams
+          - link "Throttur Reykjavik" [ref=e792] [cursor=pointer]:
+            - /url: https://nerdytips.com/team/throttur-reykjavik-829
+          - link "Mosul" [ref=e793] [cursor=pointer]:
+            - /url: https://nerdytips.com/team/mosul-26598
+          - link "Masr" [ref=e794] [cursor=pointer]:
+            - /url: https://nerdytips.com/team/masr-7520
+          - link "Uniclinic Atletico Clube" [ref=e795] [cursor=pointer]:
+            - /url: https://nerdytips.com/team/uniclinic-atletico-clube-2229
+          - link "Baghdad" [ref=e796] [cursor=pointer]:
+            - /url: https://nerdytips.com/team/baghdad-11069
+          - link "Aurora" [ref=e797] [cursor=pointer]:
+            - /url: https://nerdytips.com/team/aurora-3637
+          - link "Al Quwa Al Jawiya" [ref=e798] [cursor=pointer]:
+            - /url: https://nerdytips.com/team/al-quwa-al-jawiya-8009
+        - generic [ref=e799]:
+          - link "Minaa B" [ref=e800] [cursor=pointer]:
+            - /url: https://nerdytips.com/team/minaa-b-11065
+          - link "Erbil" [ref=e801] [cursor=pointer]:
+            - /url: https://nerdytips.com/team/erbil-11070
+          - link "Deportes Copiapo" [ref=e802] [cursor=pointer]:
+            - /url: https://nerdytips.com/team/deportes-copiapo-2343
+          - link "Kawkab Marrakech" [ref=e803] [cursor=pointer]:
+            - /url: https://nerdytips.com/team/kawkab-marrakech-971
+          - link "Sandecja Nowy Sacz" [ref=e804] [cursor=pointer]:
+            - /url: https://nerdytips.com/team/sandecja-nowy-sacz-3492
+          - link "Junior" [ref=e805] [cursor=pointer]:
+            - /url: https://nerdytips.com/team/junior-1135
+          - link "Brisbane Roar II" [ref=e806] [cursor=pointer]:
+            - /url: https://nerdytips.com/team/brisbane-roar-ii-10212
+      - generic [ref=e807]:
+        - generic [ref=e808]:
+          - link "NerdyTips Home" [ref=e809] [cursor=pointer]:
+            - /url: https://nerdytips.com
+            - img "NerdyTips logo" [ref=e810]
+            - generic [ref=e811]: NERDYTIPS
+          - navigation "Social media links" [ref=e812]:
+            - link "Follow us on Facebook" [ref=e813] [cursor=pointer]:
+              - /url: https://www.facebook.com/nerdytips/
+            - link "Follow us on Instagram" [ref=e814] [cursor=pointer]:
+              - /url: https://www.instagram.com/wearenerdytips/
+            - link "Follow us on X (Twitter)" [ref=e815] [cursor=pointer]:
+              - /url: https://twitter.com/nerdytips
+            - link "Subscribe on YouTube" [ref=e816] [cursor=pointer]:
+              - /url: https://www.youtube.com/channel/UCWXkhOpbCH4vZHaBXaAeGrA
+        - navigation "Footer navigation" [ref=e817]:
+          - link "About Us" [ref=e818] [cursor=pointer]:
+            - /url: https://nerdytips.com/about-us
+          - link "Contact" [ref=e819] [cursor=pointer]:
+            - /url: https://nerdytips.com/contactus
+          - link "Recommended Sites" [ref=e820] [cursor=pointer]:
+            - /url: https://nerdytips.com/recommended
+          - link "Terms and Conditions" [ref=e821] [cursor=pointer]:
+            - /url: https://nerdytips.com/terms-and-conditions
+          - link "Privacy Policy" [ref=e822] [cursor=pointer]:
+            - /url: https://nerdytips.com/privacy-policy
+          - link "Correct Score Predictions" [ref=e823] [cursor=pointer]:
+            - /url: https://nerdytips.com/correct-score-predictions-today
+          - link "Over 2.5 Predictions" [ref=e824] [cursor=pointer]:
+            - /url: https://nerdytips.com/over-2-5-goals-predictions-today
+          - link "Hit & Win" [ref=e825] [cursor=pointer]:
+            - /url: https://nerdytips.com/hitandwin
+          - link "TennisPredictions.ai" [ref=e826] [cursor=pointer]:
+            - /url: https://tennispredictions.ai
+      - generic [ref=e827]:
+        - paragraph [ref=e828]: 18+ • Please Gamble Responsibly
+        - generic [ref=e829]:
+          - link "support@nerdytips.com" [ref=e830] [cursor=pointer]:
+            - /url: mailto:support@nerdytips.com
+          - generic [ref=e831]: ©2026 NerdyTech Hub SRL

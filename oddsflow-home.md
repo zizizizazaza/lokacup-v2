@@ -1,0 +1,1312 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - navigation [ref=e4]:
+        - generic [ref=e6]:
+          - link "OddsFlow OddsFlow" [ref=e7] [cursor=pointer]:
+            - /url: /
+            - img "OddsFlow" [ref=e8]
+            - generic [ref=e9]: OddsFlow
+          - generic [ref=e10]:
+            - link "Home" [ref=e11] [cursor=pointer]:
+              - /url: /
+            - link "Predictions" [ref=e12] [cursor=pointer]:
+              - /url: /predictions
+            - link "Leagues" [ref=e13] [cursor=pointer]:
+              - /url: /leagues
+            - link "AI Performance" [ref=e14] [cursor=pointer]:
+              - /url: /performance
+            - link "Proof" [ref=e15] [cursor=pointer]:
+              - /url: /performance/verification-proof
+            - link "Verification" [ref=e16] [cursor=pointer]:
+              - /url: /verification
+            - link "Community" [ref=e17] [cursor=pointer]:
+              - /url: /community
+            - link "Solution" [ref=e18] [cursor=pointer]:
+              - /url: /solution
+            - link "Pricing" [ref=e19] [cursor=pointer]:
+              - /url: /pricing
+          - generic [ref=e20]:
+            - button "Select language" [ref=e22] [cursor=pointer]:
+              - img "en flag" [ref=e23]
+              - generic [ref=e24]: EN
+              - img [ref=e25]
+            - generic [ref=e27]:
+              - link "Log In" [ref=e28] [cursor=pointer]:
+                - /url: /login
+              - link "Get Started" [ref=e29] [cursor=pointer]:
+                - /url: /get-started
+            - link "FIFA World Cup 2026 FIFA 2026" [ref=e30] [cursor=pointer]:
+              - /url: /worldcup
+              - img "FIFA World Cup 2026" [ref=e32]
+              - generic [ref=e33]: FIFA 2026
+      - generic [ref=e34]:
+        - generic [ref=e39]:
+          - heading "OddsFlow AI Smart AI Football Odds Analysis" [level=1] [ref=e40]:
+            - generic [ref=e41]: OddsFlow AI
+            - text: Smart AI Football Odds Analysis
+          - paragraph [ref=e42]: Track odds movement, Asian handicap, and O/U signals with verified performance records.
+          - generic [ref=e43]:
+            - link "54.7% Win Rate Verified prediction win rate" [ref=e44] [cursor=pointer]:
+              - /url: /performance
+              - generic [ref=e46]:
+                - generic [ref=e47]: 54.7%
+                - generic [ref=e48]: Win Rate
+                - generic [ref=e49]: Verified prediction win rate
+            - link "1475+ Matches Processed Historical data coverage" [ref=e50] [cursor=pointer]:
+              - /url: /performance
+              - generic [ref=e52]:
+                - generic [ref=e53]: 1475+
+                - generic [ref=e54]: Matches Processed
+                - generic [ref=e55]: Historical data coverage
+            - link "9451+ Verified Bets PDF-verified real predictions" [ref=e56] [cursor=pointer]:
+              - /url: /performance/verification-proof
+              - generic [ref=e58]:
+                - generic [ref=e59]: 9451+
+                - generic [ref=e60]: Verified Bets
+                - generic [ref=e61]: PDF-verified real predictions
+            - link "20 Leagues Global leagues & cups" [ref=e62] [cursor=pointer]:
+              - /url: /leagues
+              - generic [ref=e64]:
+                - generic [ref=e65]: "20"
+                - generic [ref=e66]: Leagues
+                - generic [ref=e67]: Global leagues & cups
+          - generic [ref=e68]:
+            - link "View Predictions" [ref=e69] [cursor=pointer]:
+              - /url: /predictions
+            - link "View Win Proof" [ref=e70] [cursor=pointer]:
+              - /url: /performance/verification-proof
+              - text: View Win Proof
+            - link "Free Sign Up" [ref=e72] [cursor=pointer]:
+              - /url: /get-started?redirect=/dashboard/onboarding
+          - link "FIFA World Cup 2026 FIFA World Cup 2026" [ref=e73] [cursor=pointer]:
+            - /url: /worldcup
+            - generic [ref=e74]:
+              - img "FIFA World Cup 2026" [ref=e75]
+              - generic [ref=e76]: FIFA World Cup 2026
+        - generic [ref=e80]:
+          - generic [ref=e82]:
+            - generic [ref=e86]: Kashima
+            - generic [ref=e87]: vs
+            - generic [ref=e90]: Vissel Kobe
+            - generic [ref=e91]: "1"
+          - generic [ref=e93]:
+            - generic [ref=e97]: JEF
+            - generic [ref=e98]: vs
+            - generic [ref=e101]: Avispa
+            - generic [ref=e102]: "2"
+          - generic [ref=e104]:
+            - generic [ref=e108]: FC Tokyo
+            - generic [ref=e109]: vs
+            - generic [ref=e112]: Cerezo Osaka
+            - generic [ref=e113]: 1X
+          - generic [ref=e115]:
+            - generic [ref=e119]: Machida
+            - generic [ref=e120]: vs
+            - generic [ref=e123]: Nagoya
+            - generic [ref=e124]: X2
+          - generic [ref=e126]:
+            - generic [ref=e130]: Mito
+            - generic [ref=e131]: vs
+            - generic [ref=e134]: V-varen
+            - generic [ref=e135]: Over 2.5
+          - generic [ref=e137]:
+            - generic [ref=e141]: Urawa
+            - generic [ref=e142]: vs
+            - generic [ref=e145]: Fagiano
+            - generic [ref=e146]: Under 2.5
+          - generic [ref=e148]:
+            - generic [ref=e152]: Tokyo Verdy
+            - generic [ref=e153]: vs
+            - generic [ref=e156]: Gamba Osaka
+            - generic [ref=e157]: "1"
+          - generic [ref=e159]:
+            - generic [ref=e163]: Yokohama
+            - generic [ref=e164]: vs
+            - generic [ref=e167]: Shimizu
+            - generic [ref=e168]: "2"
+          - generic [ref=e170]:
+            - generic [ref=e174]: Kashiwa
+            - generic [ref=e175]: vs
+            - generic [ref=e178]: Kyoto Sanga
+            - generic [ref=e179]: BTTS
+          - generic [ref=e181]:
+            - generic [ref=e185]: Kawasaki
+            - generic [ref=e186]: vs
+            - generic [ref=e189]: Sanfrecce
+            - generic [ref=e190]: "1"
+          - generic [ref=e192]:
+            - generic [ref=e196]: Mexico
+            - generic [ref=e197]: vs
+            - generic [ref=e200]: South Africa
+            - generic [ref=e201]: "2"
+          - generic [ref=e203]:
+            - generic [ref=e207]: South Korea
+            - generic [ref=e208]: vs
+            - generic [ref=e211]: Czech
+            - generic [ref=e212]: 1X
+          - generic [ref=e214]:
+            - generic [ref=e218]: Canada
+            - generic [ref=e219]: vs
+            - generic [ref=e222]: Bosnia
+            - generic [ref=e223]: X2
+          - generic [ref=e225]:
+            - generic [ref=e229]: USA
+            - generic [ref=e230]: vs
+            - generic [ref=e233]: Paraguay
+            - generic [ref=e234]: Over 2.5
+          - generic [ref=e236]:
+            - generic [ref=e240]: Qatar
+            - generic [ref=e241]: vs
+            - generic [ref=e244]: Switzerland
+            - generic [ref=e245]: Under 2.5
+          - generic [ref=e247]:
+            - generic [ref=e251]: Kashima
+            - generic [ref=e252]: vs
+            - generic [ref=e255]: Vissel Kobe
+            - generic [ref=e256]: "1"
+          - generic [ref=e258]:
+            - generic [ref=e262]: JEF
+            - generic [ref=e263]: vs
+            - generic [ref=e266]: Avispa
+            - generic [ref=e267]: "2"
+          - generic [ref=e269]:
+            - generic [ref=e273]: FC Tokyo
+            - generic [ref=e274]: vs
+            - generic [ref=e277]: Cerezo Osaka
+            - generic [ref=e278]: BTTS
+          - generic [ref=e280]:
+            - generic [ref=e284]: Machida
+            - generic [ref=e285]: vs
+            - generic [ref=e288]: Nagoya
+            - generic [ref=e289]: "1"
+          - generic [ref=e291]:
+            - generic [ref=e295]: Mito
+            - generic [ref=e296]: vs
+            - generic [ref=e299]: V-varen
+            - generic [ref=e300]: "2"
+          - generic [ref=e302]:
+            - generic [ref=e306]: Urawa
+            - generic [ref=e307]: vs
+            - generic [ref=e310]: Fagiano
+            - generic [ref=e311]: 1X
+          - generic [ref=e313]:
+            - generic [ref=e317]: Tokyo Verdy
+            - generic [ref=e318]: vs
+            - generic [ref=e321]: Gamba Osaka
+            - generic [ref=e322]: X2
+          - generic [ref=e324]:
+            - generic [ref=e328]: Yokohama
+            - generic [ref=e329]: vs
+            - generic [ref=e332]: Shimizu
+            - generic [ref=e333]: Over 2.5
+          - generic [ref=e335]:
+            - generic [ref=e339]: Kashiwa
+            - generic [ref=e340]: vs
+            - generic [ref=e343]: Kyoto Sanga
+            - generic [ref=e344]: Under 2.5
+          - generic [ref=e346]:
+            - generic [ref=e350]: Kawasaki
+            - generic [ref=e351]: vs
+            - generic [ref=e354]: Sanfrecce
+            - generic [ref=e355]: "1"
+          - generic [ref=e357]:
+            - generic [ref=e361]: Mexico
+            - generic [ref=e362]: vs
+            - generic [ref=e365]: South Africa
+            - generic [ref=e366]: "2"
+          - generic [ref=e368]:
+            - generic [ref=e372]: South Korea
+            - generic [ref=e373]: vs
+            - generic [ref=e376]: Czech
+            - generic [ref=e377]: BTTS
+          - generic [ref=e379]:
+            - generic [ref=e383]: Canada
+            - generic [ref=e384]: vs
+            - generic [ref=e387]: Bosnia
+            - generic [ref=e388]: "1"
+          - generic [ref=e390]:
+            - generic [ref=e394]: USA
+            - generic [ref=e395]: vs
+            - generic [ref=e398]: Paraguay
+            - generic [ref=e399]: "2"
+          - generic [ref=e401]:
+            - generic [ref=e405]: Qatar
+            - generic [ref=e406]: vs
+            - generic [ref=e409]: Switzerland
+            - generic [ref=e410]: 1X
+      - generic [ref=e412]:
+        - generic [ref=e413]:
+          - generic [ref=e414]: Global Coverage
+          - heading "Top Leagues We Cover" [level=2] [ref=e415]
+          - paragraph [ref=e416]: Get AI predictions for all major football leagues worldwide
+        - generic [ref=e417]:
+          - link "Premier League Premier League EPL top 5 AI predictions • Premier League AI predictor 380+ matches/season" [ref=e996] [cursor=pointer]:
+            - /url: /leagues/premier-league
+            - generic [ref=e998]:
+              - img "Premier League" [ref=e1002]
+              - generic [ref=e1003]:
+                - heading "Premier League" [level=3] [ref=e1004]
+                - paragraph [ref=e1005]: EPL top 5 AI predictions • Premier League AI predictor
+            - generic [ref=e1006]:
+              - generic [ref=e1007]: 380+
+              - paragraph [ref=e1008]: matches/season
+          - link "La Liga La Liga La Liga top 5 AI predictions • Spanish football analysis 380+ matches/season" [ref=e1009] [cursor=pointer]:
+            - /url: /leagues/la-liga
+            - generic [ref=e1011]:
+              - img "La Liga" [ref=e1015]
+              - generic [ref=e1016]:
+                - heading "La Liga" [level=3] [ref=e1017]
+                - paragraph [ref=e1018]: La Liga top 5 AI predictions • Spanish football analysis
+            - generic [ref=e1019]:
+              - generic [ref=e1020]: 380+
+              - paragraph [ref=e1021]: matches/season
+          - link "Bundesliga Bundesliga Bundesliga AI predictions • German league analysis 3+ matches/season" [ref=e1022] [cursor=pointer]:
+            - /url: /leagues/bundesliga
+            - generic [ref=e1024]:
+              - img "Bundesliga" [ref=e1028]
+              - generic [ref=e1029]:
+                - heading "Bundesliga" [level=3] [ref=e1030]
+                - paragraph [ref=e1031]: Bundesliga AI predictions • German league analysis
+            - generic [ref=e1032]:
+              - generic [ref=e1033]: 3+
+              - paragraph [ref=e1034]: matches/season
+          - link "Serie A Serie A Serie A artificial intelligence picks • Italian football tips 1+ matches/season" [ref=e1035] [cursor=pointer]:
+            - /url: /leagues/serie-a
+            - generic [ref=e1037]:
+              - img "Serie A" [ref=e1041]
+              - generic [ref=e1042]:
+                - heading "Serie A" [level=3] [ref=e1043]
+                - paragraph [ref=e1044]: Serie A artificial intelligence picks • Italian football tips
+            - generic [ref=e1045]:
+              - generic [ref=e1046]: 1+
+              - paragraph [ref=e1047]: matches/season
+          - link "Ligue 1 Ligue 1 Ligue 1 AI prediction model • French league insights 306+ matches/season" [ref=e1048] [cursor=pointer]:
+            - /url: /leagues/ligue-1
+            - generic [ref=e1050]:
+              - img "Ligue 1" [ref=e1054]
+              - generic [ref=e1055]:
+                - heading "Ligue 1" [level=3] [ref=e1056]
+                - paragraph [ref=e1057]: Ligue 1 AI prediction model • French league insights
+            - generic [ref=e1058]:
+              - generic [ref=e1059]: 306+
+              - paragraph [ref=e1060]: matches/season
+          - link "UEFA Champions League UEFA Champions League Champions League AI analysis • UCL predictions 125+ matches/season" [ref=e1061] [cursor=pointer]:
+            - /url: /leagues/champions-league
+            - generic [ref=e1063]:
+              - img "UEFA Champions League" [ref=e1067]
+              - generic [ref=e1068]:
+                - heading "UEFA Champions League" [level=3] [ref=e1069]
+                - paragraph [ref=e1070]: Champions League AI analysis • UCL predictions
+            - generic [ref=e1071]:
+              - generic [ref=e1072]: 125+
+              - paragraph [ref=e1073]: matches/season
+          - link "UEFA Europa League Europa League Europa League AI predictions • UEL match analysis 141+ matches/season" [ref=e1074] [cursor=pointer]:
+            - /url: /leagues/europa-league
+            - generic [ref=e1076]:
+              - img "UEFA Europa League" [ref=e1080]
+              - generic [ref=e1081]:
+                - heading "Europa League" [level=3] [ref=e1082]
+                - paragraph [ref=e1083]: Europa League AI predictions • UEL match analysis
+            - generic [ref=e1084]:
+              - generic [ref=e1085]: 141+
+              - paragraph [ref=e1086]: matches/season
+          - link "UEFA Europa Conference League Conference League Conference League AI predictions • UECL analysis 153+ matches/season" [ref=e1087] [cursor=pointer]:
+            - /url: /leagues/conference-league
+            - generic [ref=e1089]:
+              - img "UEFA Europa Conference League" [ref=e1093]
+              - generic [ref=e1094]:
+                - heading "Conference League" [level=3] [ref=e1095]
+                - paragraph [ref=e1096]: Conference League AI predictions • UECL analysis
+            - generic [ref=e1097]:
+              - generic [ref=e1098]: 153+
+              - paragraph [ref=e1099]: matches/season
+          - link "FA Cup FA Cup FA Cup AI predictions • English cup AI analysis 63+ matches/season" [ref=e1100] [cursor=pointer]:
+            - /url: /leagues/fa-cup
+            - generic [ref=e1102]:
+              - img "FA Cup" [ref=e1106]
+              - generic [ref=e1107]:
+                - heading "FA Cup" [level=3] [ref=e1108]
+                - paragraph [ref=e1109]: FA Cup AI predictions • English cup AI analysis
+            - generic [ref=e1110]:
+              - generic [ref=e1111]: 63+
+              - paragraph [ref=e1112]: matches/season
+          - link "Copa Del Rey Copa del Rey Copa del Rey AI predictions • Spanish cup analysis 62+ matches/season" [ref=e1113] [cursor=pointer]:
+            - /url: /leagues/copa-del-rey
+            - generic [ref=e1115]:
+              - img "Copa Del Rey" [ref=e1119]
+              - generic [ref=e1120]:
+                - heading "Copa del Rey" [level=3] [ref=e1121]
+                - paragraph [ref=e1122]: Copa del Rey AI predictions • Spanish cup analysis
+            - generic [ref=e1123]:
+              - generic [ref=e1124]: 62+
+              - paragraph [ref=e1125]: matches/season
+          - link "Eredivisie Eredivisie Eredivisie AI predictions • Dutch league analysis 2+ matches/season" [ref=e1126] [cursor=pointer]:
+            - /url: /leagues/eredivisie
+            - generic [ref=e1128]:
+              - img "Eredivisie" [ref=e1132]
+              - generic [ref=e1133]:
+                - heading "Eredivisie" [level=3] [ref=e1134]
+                - paragraph [ref=e1135]: Eredivisie AI predictions • Dutch league analysis
+            - generic [ref=e1136]:
+              - generic [ref=e1137]: 2+
+              - paragraph [ref=e1138]: matches/season
+          - link "Primeira Liga Primeira Liga Primeira Liga AI predictions • Portuguese league tips 306+ matches/season" [ref=e1139] [cursor=pointer]:
+            - /url: /leagues/primeira-liga
+            - generic [ref=e1141]:
+              - img "Primeira Liga" [ref=e1145]
+              - generic [ref=e1146]:
+                - heading "Primeira Liga" [level=3] [ref=e1147]
+                - paragraph [ref=e1148]: Primeira Liga AI predictions • Portuguese league tips
+            - generic [ref=e1149]:
+              - generic [ref=e1150]: 306+
+              - paragraph [ref=e1151]: matches/season
+          - link "Süper Lig Süper Lig Süper Lig AI predictions • Turkish league analysis 306+ matches/season" [ref=e1152] [cursor=pointer]:
+            - /url: /leagues/super-lig
+            - generic [ref=e1154]:
+              - img "Süper Lig" [ref=e1158]
+              - generic [ref=e1159]:
+                - heading "Süper Lig" [level=3] [ref=e1160]
+                - paragraph [ref=e1161]: Süper Lig AI predictions • Turkish league analysis
+            - generic [ref=e1162]:
+              - generic [ref=e1163]: 306+
+              - paragraph [ref=e1164]: matches/season
+          - link "Brazilian Serie A Brasileirão Brasileirão AI predictions • Brazilian league tips 18+ matches/season" [ref=e1165] [cursor=pointer]:
+            - /url: /leagues/brasileirao
+            - generic [ref=e1167]:
+              - img "Brazilian Serie A" [ref=e1171]
+              - generic [ref=e1172]:
+                - heading "Brasileirão" [level=3] [ref=e1173]
+                - paragraph [ref=e1174]: Brasileirão AI predictions • Brazilian league tips
+            - generic [ref=e1175]:
+              - generic [ref=e1176]: 18+
+              - paragraph [ref=e1177]: matches/season
+          - link "Pro League Saudi Pro League Saudi Pro League AI predictions • SPL analysis 306+ matches/season" [ref=e1178] [cursor=pointer]:
+            - /url: /leagues/saudi-pro-league
+            - generic [ref=e1180]:
+              - img "Pro League" [ref=e1184]
+              - generic [ref=e1185]:
+                - heading "Saudi Pro League" [level=3] [ref=e1186]
+                - paragraph [ref=e1187]: Saudi Pro League AI predictions • SPL analysis
+            - generic [ref=e1188]:
+              - generic [ref=e1189]: 306+
+              - paragraph [ref=e1190]: matches/season
+          - link "J1 League J1 League J1 League AI predictions • Japanese football analysis 10+ matches/season" [ref=e1191] [cursor=pointer]:
+            - /url: /leagues/j1-league
+            - generic [ref=e1193]:
+              - img "J1 League" [ref=e1197]
+              - generic [ref=e1198]:
+                - heading "J1 League" [level=3] [ref=e1199]
+                - paragraph [ref=e1200]: J1 League AI predictions • Japanese football analysis
+            - generic [ref=e1201]:
+              - generic [ref=e1202]: 10+
+              - paragraph [ref=e1203]: matches/season
+          - link "K League 1 K League 1 K League 1 AI predictions • Korean football analysis 20+ matches/season" [ref=e1204] [cursor=pointer]:
+            - /url: /leagues/k-league-1
+            - generic [ref=e1206]:
+              - img "K League 1" [ref=e1210]
+              - generic [ref=e1211]:
+                - heading "K League 1" [level=3] [ref=e1212]
+                - paragraph [ref=e1213]: K League 1 AI predictions • Korean football analysis
+            - generic [ref=e1214]:
+              - generic [ref=e1215]: 20+
+              - paragraph [ref=e1216]: matches/season
+          - link "Chinese Super League Chinese Super League Chinese Super League AI predictions • CSL analysis 20+ matches/season" [ref=e1217] [cursor=pointer]:
+            - /url: /leagues/chinese-super-league
+            - generic [ref=e1219]:
+              - img "Chinese Super League" [ref=e1223]
+              - generic [ref=e1224]:
+                - heading "Chinese Super League" [level=3] [ref=e1225]
+                - paragraph [ref=e1226]: Chinese Super League AI predictions • CSL analysis
+            - generic [ref=e1227]:
+              - generic [ref=e1228]: 20+
+              - paragraph [ref=e1229]: matches/season
+          - link "Indian Super League Indian Super League Indian Super League AI predictions • ISL analysis 20+ matches/season" [ref=e1230] [cursor=pointer]:
+            - /url: /leagues/indian-super-league
+            - generic [ref=e1232]:
+              - img "Indian Super League" [ref=e1236]
+              - generic [ref=e1237]:
+                - heading "Indian Super League" [level=3] [ref=e1238]
+                - paragraph [ref=e1239]: Indian Super League AI predictions • ISL analysis
+            - generic [ref=e1240]:
+              - generic [ref=e1241]: 20+
+              - paragraph [ref=e1242]: matches/season
+          - link "Thai League 1 Thai League 1 Thai League 1 AI predictions • Thai football analysis 240+ matches/season" [ref=e1243] [cursor=pointer]:
+            - /url: /leagues/thai-league-1
+            - generic [ref=e1245]:
+              - img "Thai League 1" [ref=e1249]
+              - generic [ref=e1250]:
+                - heading "Thai League 1" [level=3] [ref=e1251]
+                - paragraph [ref=e1252]: Thai League 1 AI predictions • Thai football analysis
+            - generic [ref=e1253]:
+              - generic [ref=e1254]: 240+
+              - paragraph [ref=e1255]: matches/season
+      - generic [ref=e420]:
+        - generic [ref=e432]:
+          - generic [ref=e433]:
+            - generic [ref=e436]: AI Predictions
+            - img [ref=e437]
+          - heading "Upcoming Matches" [level=2] [ref=e439]
+          - paragraph [ref=e440]: AI-analyzed matches with the highest confidence scores
+        - generic [ref=e441]:
+          - generic [ref=e442]:
+            - generic [ref=e443]: Date / League
+            - generic [ref=e1256]: Fixture
+            - generic [ref=e1257]: 1x2 Prediction
+          - generic [ref=e1258]:
+            - link "J1 League J1 League 6 Jun • 13:00 Kashima Kashima vs Vissel Kobe Vissel Kobe 33% 28% 39%" [ref=e1259] [cursor=pointer]:
+              - /url: /predictions/2026-06-06/kashima-vs-vissel-kobe-1546317
+              - generic [ref=e1261]:
+                - generic [ref=e1262]:
+                  - generic [ref=e1263]:
+                    - img "J1 League" [ref=e1265]
+                    - generic [ref=e1266]: J1 League
+                  - generic [ref=e1267]:
+                    - generic [ref=e1268]: 6 Jun
+                    - generic [ref=e1269]: •
+                    - generic [ref=e1270]: 13:00
+                - generic [ref=e1272]:
+                  - generic [ref=e1273]:
+                    - generic [ref=e1274]: Kashima
+                    - img "Kashima" [ref=e1277]
+                  - generic [ref=e1278]: vs
+                  - generic [ref=e1279]:
+                    - img "Vissel Kobe" [ref=e1282]
+                    - generic [ref=e1283]: Vissel Kobe
+                - generic [ref=e1285]:
+                  - generic [ref=e1286]: 33%
+                  - generic [ref=e1287]: 28%
+                  - generic [ref=e1288]: 39%
+                  - img [ref=e1290]
+            - link "J1 League J1 League 6 Jun • 13:00 JEF United Chiba JEF United Chiba vs Avispa Fukuoka Avispa Fukuoka 39% 27% 34%" [ref=e1292] [cursor=pointer]:
+              - /url: /predictions/2026-06-06/jef-united-chiba-vs-avispa-fukuoka-1546316
+              - generic [ref=e1294]:
+                - generic [ref=e1295]:
+                  - generic [ref=e1296]:
+                    - img "J1 League" [ref=e1298]
+                    - generic [ref=e1299]: J1 League
+                  - generic [ref=e1300]:
+                    - generic [ref=e1301]: 6 Jun
+                    - generic [ref=e1302]: •
+                    - generic [ref=e1303]: 13:00
+                - generic [ref=e1305]:
+                  - generic [ref=e1306]:
+                    - generic [ref=e1307]: JEF United Chiba
+                    - img "JEF United Chiba" [ref=e1310]
+                  - generic [ref=e1311]: vs
+                  - generic [ref=e1312]:
+                    - img "Avispa Fukuoka" [ref=e1315]
+                    - generic [ref=e1316]: Avispa Fukuoka
+                - generic [ref=e1318]:
+                  - generic [ref=e1319]: 39%
+                  - generic [ref=e1320]: 27%
+                  - generic [ref=e1321]: 34%
+                  - img [ref=e1323]
+            - link "J1 League J1 League 6 Jun • 13:00 FC Tokyo FC Tokyo vs Cerezo Osaka Cerezo Osaka 15% 17% 68%" [ref=e1325] [cursor=pointer]:
+              - /url: /predictions/2026-06-06/fc-tokyo-vs-cerezo-osaka-1546400
+              - generic [ref=e1327]:
+                - generic [ref=e1328]:
+                  - generic [ref=e1329]:
+                    - img "J1 League" [ref=e1331]
+                    - generic [ref=e1332]: J1 League
+                  - generic [ref=e1333]:
+                    - generic [ref=e1334]: 6 Jun
+                    - generic [ref=e1335]: •
+                    - generic [ref=e1336]: 13:00
+                - generic [ref=e1338]:
+                  - generic [ref=e1339]:
+                    - generic [ref=e1340]: FC Tokyo
+                    - img "FC Tokyo" [ref=e1343]
+                  - generic [ref=e1344]: vs
+                  - generic [ref=e1345]:
+                    - img "Cerezo Osaka" [ref=e1348]
+                    - generic [ref=e1349]: Cerezo Osaka
+                - generic [ref=e1351]:
+                  - generic [ref=e1352]: 15%
+                  - generic [ref=e1353]: 17%
+                  - generic [ref=e1354]: 68%
+                  - img [ref=e1356]
+            - link "J1 League J1 League 6 Jun • 14:00 Machida Zelvia Machida Zelvia vs Nagoya Grampus Nagoya Grampus 75% 15% 10%" [ref=e1358] [cursor=pointer]:
+              - /url: /predictions/2026-06-06/machida-zelvia-vs-nagoya-grampus-1546401
+              - generic [ref=e1360]:
+                - generic [ref=e1361]:
+                  - generic [ref=e1362]:
+                    - img "J1 League" [ref=e1364]
+                    - generic [ref=e1365]: J1 League
+                  - generic [ref=e1366]:
+                    - generic [ref=e1367]: 6 Jun
+                    - generic [ref=e1368]: •
+                    - generic [ref=e1369]: 14:00
+                - generic [ref=e1371]:
+                  - generic [ref=e1372]:
+                    - generic [ref=e1373]: Machida Zelvia
+                    - img "Machida Zelvia" [ref=e1376]
+                  - generic [ref=e1377]: vs
+                  - generic [ref=e1378]:
+                    - img "Nagoya Grampus" [ref=e1381]
+                    - generic [ref=e1382]: Nagoya Grampus
+                - generic [ref=e1384]:
+                  - generic [ref=e1385]: 75%
+                  - generic [ref=e1386]: 15%
+                  - generic [ref=e1387]: 10%
+                  - img [ref=e1389]
+            - link "J1 League J1 League 6 Jun • 14:00 Mito Hollyhock Mito Hollyhock vs V-varen Nagasaki V-varen Nagasaki 10% 18% 72%" [ref=e1391] [cursor=pointer]:
+              - /url: /predictions/2026-06-06/mito-hollyhock-vs-v-varen-nagasaki-1546402
+              - generic [ref=e1393]:
+                - generic [ref=e1394]:
+                  - generic [ref=e1395]:
+                    - img "J1 League" [ref=e1397]
+                    - generic [ref=e1398]: J1 League
+                  - generic [ref=e1399]:
+                    - generic [ref=e1400]: 6 Jun
+                    - generic [ref=e1401]: •
+                    - generic [ref=e1402]: 14:00
+                - generic [ref=e1404]:
+                  - generic [ref=e1405]:
+                    - generic [ref=e1406]: Mito Hollyhock
+                    - img "Mito Hollyhock" [ref=e1409]
+                  - generic [ref=e1410]: vs
+                  - generic [ref=e1411]:
+                    - img "V-varen Nagasaki" [ref=e1414]
+                    - generic [ref=e1415]: V-varen Nagasaki
+                - generic [ref=e1417]:
+                  - generic [ref=e1418]: 10%
+                  - generic [ref=e1419]: 18%
+                  - generic [ref=e1420]: 72%
+                  - img [ref=e1422]
+            - link "J1 League J1 League 6 Jun • 15:00 Urawa Urawa vs Fagiano Okayama Fagiano Okayama 46% 30% 24%" [ref=e1424] [cursor=pointer]:
+              - /url: /predictions/2026-06-06/urawa-vs-fagiano-okayama-1546403
+              - generic [ref=e1426]:
+                - generic [ref=e1427]:
+                  - generic [ref=e1428]:
+                    - img "J1 League" [ref=e1430]
+                    - generic [ref=e1431]: J1 League
+                  - generic [ref=e1432]:
+                    - generic [ref=e1433]: 6 Jun
+                    - generic [ref=e1434]: •
+                    - generic [ref=e1435]: 15:00
+                - generic [ref=e1437]:
+                  - generic [ref=e1438]:
+                    - generic [ref=e1439]: Urawa
+                    - img "Urawa" [ref=e1442]
+                  - generic [ref=e1443]: vs
+                  - generic [ref=e1444]:
+                    - img "Fagiano Okayama" [ref=e1447]
+                    - generic [ref=e1448]: Fagiano Okayama
+                - generic [ref=e1450]:
+                  - generic [ref=e1451]: 46%
+                  - generic [ref=e1452]: 30%
+                  - generic [ref=e1453]: 24%
+                  - img [ref=e1455]
+            - link "J1 League J1 League 6 Jun • 15:00 Tokyo Verdy Tokyo Verdy vs Gamba Osaka Gamba Osaka 19% 32% 48%" [ref=e1457] [cursor=pointer]:
+              - /url: /predictions/2026-06-06/tokyo-verdy-vs-gamba-osaka-1546404
+              - generic [ref=e1459]:
+                - generic [ref=e1460]:
+                  - generic [ref=e1461]:
+                    - img "J1 League" [ref=e1463]
+                    - generic [ref=e1464]: J1 League
+                  - generic [ref=e1465]:
+                    - generic [ref=e1466]: 6 Jun
+                    - generic [ref=e1467]: •
+                    - generic [ref=e1468]: 15:00
+                - generic [ref=e1470]:
+                  - generic [ref=e1471]:
+                    - generic [ref=e1472]: Tokyo Verdy
+                    - img "Tokyo Verdy" [ref=e1475]
+                  - generic [ref=e1476]: vs
+                  - generic [ref=e1477]:
+                    - img "Gamba Osaka" [ref=e1480]
+                    - generic [ref=e1481]: Gamba Osaka
+                - generic [ref=e1483]:
+                  - generic [ref=e1484]: 19%
+                  - generic [ref=e1485]: 32%
+                  - generic [ref=e1486]: 48%
+                  - img [ref=e1488]
+            - link "J1 League J1 League 6 Jun • 16:00 Yokohama F. Marinos Yokohama F. Marinos vs Shimizu S-pulse Shimizu S-pulse 66% 22% 12%" [ref=e1490] [cursor=pointer]:
+              - /url: /predictions/2026-06-06/yokohama-f-marinos-vs-shimizu-s-pulse-1546405
+              - generic [ref=e1492]:
+                - generic [ref=e1493]:
+                  - generic [ref=e1494]:
+                    - img "J1 League" [ref=e1496]
+                    - generic [ref=e1497]: J1 League
+                  - generic [ref=e1498]:
+                    - generic [ref=e1499]: 6 Jun
+                    - generic [ref=e1500]: •
+                    - generic [ref=e1501]: 16:00
+                - generic [ref=e1503]:
+                  - generic [ref=e1504]:
+                    - generic [ref=e1505]: Yokohama F. Marinos
+                    - img "Yokohama F. Marinos" [ref=e1508]
+                  - generic [ref=e1509]: vs
+                  - generic [ref=e1510]:
+                    - img "Shimizu S-pulse" [ref=e1513]
+                    - generic [ref=e1514]: Shimizu S-pulse
+                - generic [ref=e1516]:
+                  - generic [ref=e1517]: 66%
+                  - generic [ref=e1518]: 22%
+                  - generic [ref=e1519]: 12%
+                  - img [ref=e1521]
+        - link "View All Predictions" [ref=e445] [cursor=pointer]:
+          - /url: /predictions
+      - generic [ref=e448]:
+        - generic [ref=e449]:
+          - generic [ref=e450]: Why OddsFlow
+          - heading "The Most Advanced Prediction Engine" [level=2] [ref=e451]:
+            - text: The Most Advanced
+            - text: Prediction Engine
+          - paragraph [ref=e452]: Our AI analyzes millions of historical matches, real-time data, and market trends to deliver predictions with unmatched accuracy.
+          - generic [ref=e453]:
+            - generic [ref=e454]:
+              - img [ref=e456]
+              - generic [ref=e458]:
+                - heading "AI-Powered Performance" [level=3] [ref=e459]
+                - paragraph [ref=e460]: Machine learning models analyze thousands of data points for precise predictions.
+            - generic [ref=e461]:
+              - img [ref=e463]
+              - generic [ref=e465]:
+                - heading "Real-time Tracking" [level=3] [ref=e466]
+                - paragraph [ref=e467]: Monitor odds movements across odds providers with instant live updates.
+            - generic [ref=e468]:
+              - img [ref=e470]
+              - generic [ref=e472]:
+                - heading "Deep Statistics" [level=3] [ref=e473]
+                - paragraph [ref=e474]: Access team stats, head-to-head records, and historical performance data.
+            - generic [ref=e475]:
+              - img [ref=e477]
+              - generic [ref=e479]:
+                - heading "Smart Alerts" [level=3] [ref=e480]
+                - paragraph [ref=e481]: Get notified when value opportunities arise or odds shift significantly.
+        - generic [ref=e485]:
+          - generic [ref=e486]:
+            - generic [ref=e487]: AI Prediction Dashboard
+            - generic [ref=e488]: LIVE
+          - generic [ref=e490]:
+            - generic [ref=e491]:
+              - generic [ref=e492]:
+                - img "Premier League" [ref=e494]
+                - generic [ref=e495]: Premier League
+              - generic [ref=e496]: Starting in 2h
+            - generic [ref=e497]:
+              - generic [ref=e498]:
+                - img "Manchester City" [ref=e501]
+                - generic [ref=e502]: Manchester City
+                - generic [ref=e503]: "2"
+              - generic [ref=e504]: VS
+              - generic [ref=e505]:
+                - img "Arsenal" [ref=e508]
+                - generic [ref=e509]: Arsenal
+                - generic [ref=e510]: "3"
+            - generic [ref=e512]:
+              - generic [ref=e513]: AI Confidence
+              - generic [ref=e514]: 87%
+          - generic [ref=e517]:
+            - generic [ref=e518]:
+              - generic [ref=e519]: 68%
+              - generic [ref=e520]: Home Win
+            - generic [ref=e521]:
+              - generic [ref=e522]: 18%
+              - generic [ref=e523]: Draw
+            - generic [ref=e524]:
+              - generic [ref=e525]: 14%
+              - generic [ref=e526]: Away Win
+      - generic [ref=e528]:
+        - generic [ref=e529]:
+          - generic [ref=e530]: Why Choose Us
+          - heading "Why Choose OddsFlow" [level=2] [ref=e531]
+          - paragraph [ref=e532]: Experience the difference with our AI-powered platform
+        - generic [ref=e533]:
+          - generic [ref=e534] [cursor=pointer]:
+            - img [ref=e536]
+            - heading "99.9% Uptime" [level=3] [ref=e538]
+            - paragraph [ref=e539]: Our platform runs 24/7 with enterprise-grade reliability
+          - generic [ref=e540] [cursor=pointer]:
+            - img [ref=e542]
+            - heading "Real-time Data" [level=3] [ref=e544]
+            - paragraph [ref=e545]: Get instant updates from 50+ odds providers worldwide
+          - generic [ref=e546] [cursor=pointer]:
+            - img [ref=e548]
+            - heading "AI Accuracy" [level=3] [ref=e550]
+            - paragraph [ref=e551]: Our models achieve 56%+ verified win rate
+          - generic [ref=e552] [cursor=pointer]:
+            - img [ref=e554]
+            - heading "Secure & Private" [level=3] [ref=e556]
+            - paragraph [ref=e557]: Bank-level encryption protects your data
+          - generic [ref=e558] [cursor=pointer]:
+            - img [ref=e560]
+            - heading "24/7 Support" [level=3] [ref=e562]
+            - paragraph [ref=e563]: Expert support team available around the clock
+          - generic [ref=e564] [cursor=pointer]:
+            - img [ref=e566]
+            - heading "Money Back" [level=3] [ref=e568]
+            - paragraph [ref=e569]: 30-day money back guarantee, no questions asked
+      - generic [ref=e571]:
+        - generic [ref=e572]:
+          - generic [ref=e573]: Trusted By Users
+          - heading "Trusted by Thousands" [level=2] [ref=e574]
+          - paragraph [ref=e575]: Real results, fully transparent and independently verifiable
+        - generic [ref=e576]:
+          - generic [ref=e577] [cursor=pointer]:
+            - generic [ref=e580]: "1"
+            - generic [ref=e581]: Leagues
+          - generic [ref=e582] [cursor=pointer]:
+            - generic [ref=e585]: "1"
+            - generic [ref=e586]: AI Models
+          - generic [ref=e587] [cursor=pointer]:
+            - generic [ref=e590]: 9401+
+            - generic [ref=e591]: Verified Bets
+          - generic [ref=e592] [cursor=pointer]:
+            - generic [ref=e595]: 15%
+            - generic [ref=e596]: Best ROI (Core Strategy)
+        - generic [ref=e598]:
+          - generic [ref=e599] [cursor=pointer]:
+            - generic [ref=e600]:
+              - img [ref=e601]
+              - img [ref=e603]
+              - img [ref=e605]
+              - img [ref=e607]
+              - img [ref=e609]
+            - paragraph [ref=e611]: "\"Rated 5/5\""
+            - generic [ref=e612]:
+              - generic [ref=e1523]: G
+              - generic [ref=e614]:
+                - generic [ref=e615]:
+                  - text: Geeker wan
+                  - generic [ref=e1524]: Verified
+                - generic [ref=e616]: ⭐⭐⭐⭐⭐ Verified User
+          - generic [ref=e617] [cursor=pointer]:
+            - generic [ref=e618]:
+              - img [ref=e619]
+              - img [ref=e621]
+              - img [ref=e623]
+              - img [ref=e625]
+              - img [ref=e627]
+            - paragraph [ref=e629]: "\"Rated 5/5\""
+            - generic [ref=e630]:
+              - generic [ref=e1525]: M
+              - generic [ref=e632]:
+                - generic [ref=e633]:
+                  - text: Michael Macharia
+                  - generic [ref=e1526]: Verified
+                - generic [ref=e634]: ⭐⭐⭐⭐⭐ Verified User
+          - generic [ref=e635] [cursor=pointer]:
+            - generic [ref=e636]:
+              - img [ref=e637]
+              - img [ref=e639]
+              - img [ref=e641]
+              - img [ref=e643]
+              - img [ref=e645]
+            - paragraph [ref=e647]: "\"Rated 5/5\""
+            - generic [ref=e648]:
+              - generic [ref=e1527]: M
+              - generic [ref=e650]:
+                - generic [ref=e651]:
+                  - text: mxp333
+                  - generic [ref=e1528]: Verified
+                - generic [ref=e652]: ⭐⭐⭐⭐⭐ Verified User
+          - generic [ref=e653] [cursor=pointer]:
+            - generic [ref=e654]:
+              - img [ref=e655]
+              - img [ref=e657]
+              - img [ref=e659]
+              - img [ref=e661]
+              - img [ref=e663]
+            - paragraph [ref=e665]: "\"Rated 5/5\""
+            - generic [ref=e666]:
+              - generic [ref=e1529]: 何
+              - generic [ref=e668]:
+                - generic [ref=e669]:
+                  - text: 何熙朋
+                  - generic [ref=e1530]: Verified
+                - generic [ref=e670]: ⭐⭐⭐⭐⭐ Verified User
+          - generic [ref=e671] [cursor=pointer]:
+            - generic [ref=e672]:
+              - img [ref=e673]
+              - img [ref=e675]
+              - img [ref=e677]
+              - img [ref=e679]
+              - img [ref=e681]
+            - paragraph [ref=e683]: "\"Rated 5/5\""
+            - generic [ref=e684]:
+              - generic [ref=e1531]: 毛
+              - generic [ref=e686]:
+                - generic [ref=e687]:
+                  - text: 毛城军
+                  - generic [ref=e1532]: Verified
+                - generic [ref=e688]: ⭐⭐⭐⭐⭐ Verified User
+          - generic [ref=e689] [cursor=pointer]:
+            - generic [ref=e690]:
+              - img [ref=e691]
+              - img [ref=e693]
+              - img [ref=e695]
+              - img [ref=e697]
+              - img [ref=e699]
+            - paragraph [ref=e701]: "\"Rated 5/5\""
+            - generic [ref=e702]:
+              - generic [ref=e1533]: M
+              - generic [ref=e704]:
+                - generic [ref=e705]:
+                  - text: men
+                  - generic [ref=e1534]: Verified
+                - generic [ref=e706]: ⭐⭐⭐⭐⭐ Verified User
+          - generic [ref=e707] [cursor=pointer]:
+            - generic [ref=e708]:
+              - img [ref=e709]
+              - img [ref=e711]
+              - img [ref=e713]
+              - img [ref=e715]
+              - img [ref=e717]
+            - paragraph [ref=e719]: "\"Rated 4/5\""
+            - generic [ref=e720]:
+              - generic [ref=e1535]: P
+              - generic [ref=e722]:
+                - generic [ref=e723]:
+                  - text: Prince Ndinga
+                  - generic [ref=e1536]: Verified
+                - generic [ref=e724]: ⭐⭐⭐⭐ Verified User
+          - generic [ref=e725] [cursor=pointer]:
+            - generic [ref=e726]:
+              - img [ref=e727]
+              - img [ref=e729]
+              - img [ref=e731]
+              - img [ref=e733]
+              - img [ref=e735]
+            - paragraph [ref=e737]: "\"Rated 5/5\""
+            - generic [ref=e738]:
+              - generic [ref=e1537]: P
+              - generic [ref=e740]:
+                - generic [ref=e741]:
+                  - text: Panbaicun
+                  - generic [ref=e1538]: Verified
+                - generic [ref=e742]: ⭐⭐⭐⭐⭐ Verified User
+          - generic [ref=e743] [cursor=pointer]:
+            - generic [ref=e744]:
+              - img [ref=e745]
+              - img [ref=e747]
+              - img [ref=e749]
+              - img [ref=e751]
+              - img [ref=e753]
+            - paragraph [ref=e755]: "\"Rated 5/5\""
+            - generic [ref=e756]:
+              - generic [ref=e1539]: T
+              - generic [ref=e758]:
+                - generic [ref=e759]:
+                  - text: TomTang0105
+                  - generic [ref=e1540]: Verified
+                - generic [ref=e760]: ⭐⭐⭐⭐⭐ Verified User
+          - generic [ref=e761] [cursor=pointer]:
+            - generic [ref=e762]:
+              - img [ref=e763]
+              - img [ref=e765]
+              - img [ref=e767]
+              - img [ref=e769]
+              - img [ref=e771]
+            - paragraph [ref=e773]: "\"Rated 5/5\""
+            - generic [ref=e774]:
+              - generic [ref=e1541]: D
+              - generic [ref=e776]:
+                - generic [ref=e777]:
+                  - text: Derrick D
+                  - generic [ref=e1542]: Verified
+                - generic [ref=e778]: ⭐⭐⭐⭐⭐ Verified User
+          - generic [ref=e1543] [cursor=pointer]:
+            - generic [ref=e1544]:
+              - img [ref=e1545]
+              - img [ref=e1547]
+              - img [ref=e1549]
+              - img [ref=e1551]
+              - img [ref=e1553]
+            - paragraph [ref=e1555]: "\"Rated 5/5\""
+            - generic [ref=e1556]:
+              - generic [ref=e1557]: G
+              - generic [ref=e1558]:
+                - generic [ref=e1559]:
+                  - text: Geeker wan
+                  - generic [ref=e1560]: Verified
+                - generic [ref=e1561]: ⭐⭐⭐⭐⭐ Verified User
+          - generic [ref=e1562] [cursor=pointer]:
+            - generic [ref=e1563]:
+              - img [ref=e1564]
+              - img [ref=e1566]
+              - img [ref=e1568]
+              - img [ref=e1570]
+              - img [ref=e1572]
+            - paragraph [ref=e1574]: "\"Rated 5/5\""
+            - generic [ref=e1575]:
+              - generic [ref=e1576]: M
+              - generic [ref=e1577]:
+                - generic [ref=e1578]:
+                  - text: Michael Macharia
+                  - generic [ref=e1579]: Verified
+                - generic [ref=e1580]: ⭐⭐⭐⭐⭐ Verified User
+          - generic [ref=e1581] [cursor=pointer]:
+            - generic [ref=e1582]:
+              - img [ref=e1583]
+              - img [ref=e1585]
+              - img [ref=e1587]
+              - img [ref=e1589]
+              - img [ref=e1591]
+            - paragraph [ref=e1593]: "\"Rated 5/5\""
+            - generic [ref=e1594]:
+              - generic [ref=e1595]: M
+              - generic [ref=e1596]:
+                - generic [ref=e1597]:
+                  - text: mxp333
+                  - generic [ref=e1598]: Verified
+                - generic [ref=e1599]: ⭐⭐⭐⭐⭐ Verified User
+          - generic [ref=e1600] [cursor=pointer]:
+            - generic [ref=e1601]:
+              - img [ref=e1602]
+              - img [ref=e1604]
+              - img [ref=e1606]
+              - img [ref=e1608]
+              - img [ref=e1610]
+            - paragraph [ref=e1612]: "\"Rated 5/5\""
+            - generic [ref=e1613]:
+              - generic [ref=e1614]: 何
+              - generic [ref=e1615]:
+                - generic [ref=e1616]:
+                  - text: 何熙朋
+                  - generic [ref=e1617]: Verified
+                - generic [ref=e1618]: ⭐⭐⭐⭐⭐ Verified User
+          - generic [ref=e1619] [cursor=pointer]:
+            - generic [ref=e1620]:
+              - img [ref=e1621]
+              - img [ref=e1623]
+              - img [ref=e1625]
+              - img [ref=e1627]
+              - img [ref=e1629]
+            - paragraph [ref=e1631]: "\"Rated 5/5\""
+            - generic [ref=e1632]:
+              - generic [ref=e1633]: 毛
+              - generic [ref=e1634]:
+                - generic [ref=e1635]:
+                  - text: 毛城军
+                  - generic [ref=e1636]: Verified
+                - generic [ref=e1637]: ⭐⭐⭐⭐⭐ Verified User
+          - generic [ref=e1638] [cursor=pointer]:
+            - generic [ref=e1639]:
+              - img [ref=e1640]
+              - img [ref=e1642]
+              - img [ref=e1644]
+              - img [ref=e1646]
+              - img [ref=e1648]
+            - paragraph [ref=e1650]: "\"Rated 5/5\""
+            - generic [ref=e1651]:
+              - generic [ref=e1652]: M
+              - generic [ref=e1653]:
+                - generic [ref=e1654]:
+                  - text: men
+                  - generic [ref=e1655]: Verified
+                - generic [ref=e1656]: ⭐⭐⭐⭐⭐ Verified User
+          - generic [ref=e1657] [cursor=pointer]:
+            - generic [ref=e1658]:
+              - img [ref=e1659]
+              - img [ref=e1661]
+              - img [ref=e1663]
+              - img [ref=e1665]
+              - img [ref=e1667]
+            - paragraph [ref=e1669]: "\"Rated 4/5\""
+            - generic [ref=e1670]:
+              - generic [ref=e1671]: P
+              - generic [ref=e1672]:
+                - generic [ref=e1673]:
+                  - text: Prince Ndinga
+                  - generic [ref=e1674]: Verified
+                - generic [ref=e1675]: ⭐⭐⭐⭐ Verified User
+          - generic [ref=e1676] [cursor=pointer]:
+            - generic [ref=e1677]:
+              - img [ref=e1678]
+              - img [ref=e1680]
+              - img [ref=e1682]
+              - img [ref=e1684]
+              - img [ref=e1686]
+            - paragraph [ref=e1688]: "\"Rated 5/5\""
+            - generic [ref=e1689]:
+              - generic [ref=e1690]: P
+              - generic [ref=e1691]:
+                - generic [ref=e1692]:
+                  - text: Panbaicun
+                  - generic [ref=e1693]: Verified
+                - generic [ref=e1694]: ⭐⭐⭐⭐⭐ Verified User
+          - generic [ref=e1695] [cursor=pointer]:
+            - generic [ref=e1696]:
+              - img [ref=e1697]
+              - img [ref=e1699]
+              - img [ref=e1701]
+              - img [ref=e1703]
+              - img [ref=e1705]
+            - paragraph [ref=e1707]: "\"Rated 5/5\""
+            - generic [ref=e1708]:
+              - generic [ref=e1709]: T
+              - generic [ref=e1710]:
+                - generic [ref=e1711]:
+                  - text: TomTang0105
+                  - generic [ref=e1712]: Verified
+                - generic [ref=e1713]: ⭐⭐⭐⭐⭐ Verified User
+          - generic [ref=e1714] [cursor=pointer]:
+            - generic [ref=e1715]:
+              - img [ref=e1716]
+              - img [ref=e1718]
+              - img [ref=e1720]
+              - img [ref=e1722]
+              - img [ref=e1724]
+            - paragraph [ref=e1726]: "\"Rated 5/5\""
+            - generic [ref=e1727]:
+              - generic [ref=e1728]: D
+              - generic [ref=e1729]:
+                - generic [ref=e1730]:
+                  - text: Derrick D
+                  - generic [ref=e1731]: Verified
+                - generic [ref=e1732]: ⭐⭐⭐⭐⭐ Verified User
+      - generic [ref=e780]:
+        - generic [ref=e781]:
+          - generic [ref=e782]: FAQ
+          - heading "Frequently Asked Questions" [level=2] [ref=e783]
+          - paragraph [ref=e784]: Everything You Need to Know About OddsFlow
+        - generic [ref=e785]:
+          - generic [ref=e786]:
+            - button "Is OddsFlow a prediction platform?" [ref=e787] [cursor=pointer]:
+              - generic [ref=e788]: Is OddsFlow a prediction platform?
+              - img [ref=e789]
+            - generic [ref=e791]: Yes. OddsFlow is purely a data analytics company. We do NOT accept deposits, we do NOT open markets, and we do NOT handle any funds. We provide AI-powered predictions and odds analysis for informational purposes only. We are a sports analytics tool.
+          - generic [ref=e792]:
+            - button "Does using your data guarantee profit?" [ref=e793] [cursor=pointer]:
+              - generic [ref=e794]: Does using your data guarantee profit?
+              - img [ref=e795]
+            - generic [ref=e797]: "Let's be honest: No. Anyone promising you \"guaranteed wins\" is lying to you. Think of OddsFlow as your tactical advisor—we provide the data backing and the analytical angle to improve your decision-making and your edge. But football is unpredictable, and the final call (and the risk) is always yours."
+          - generic [ref=e798]:
+            - button "How does OddsFlow interpret Asian Handicap markets?" [ref=e799] [cursor=pointer]:
+              - generic [ref=e800]: How does OddsFlow interpret Asian Handicap markets?
+              - img [ref=e801]
+            - generic [ref=e803]: We don't just look at what the lines are; we look at how they move. We track capital flow and odds provider adjustments to help you understand where the market sentiment lies, or if there's a potential "trap." This gives you far more actionable value than just looking at the league table.
+          - generic [ref=e804]:
+            - button "How does the goal trend analysis work?" [ref=e805] [cursor=pointer]:
+              - generic [ref=e806]: How does the goal trend analysis work?
+              - img [ref=e807]
+            - generic [ref=e809]: Beyond just looking at average goals per game, we analyze "match tempo" and time-segment habits. For example, does a team tend to chase goals in the last 15 minutes? Or do two specific playstyles usually result in a deadlock? We dig up these deep-layer stats for you.
+          - generic [ref=e810]:
+            - button "Which leagues do you cover?" [ref=e811] [cursor=pointer]:
+              - generic [ref=e812]: Which leagues do you cover?
+              - img [ref=e813]
+            - generic [ref=e815]: We cover all the major leagues (the "Big Five"), of course. But we also cover selected secondary and lower-tier leagues. Why? Because we know that the "edge" and value often hide in the smaller leagues where odds providers are more likely to make mistakes.
+          - generic [ref=e816]:
+            - button "How is OddsFlow different from other score sites?" [ref=e817] [cursor=pointer]:
+              - generic [ref=e818]: How is OddsFlow different from other score sites?
+              - img [ref=e819]
+            - generic [ref=e821]: Most websites just tell you what happened (scores, cards). OddsFlow focuses on why it happened and what the market is thinking. We specialize in odds movement analysis and market behavior. We are a tool for serious analysis, not just a news feed.
+          - generic [ref=e822]:
+            - button "What specific analysis do you provide?" [ref=e823] [cursor=pointer]:
+              - generic [ref=e824]: What specific analysis do you provide?
+              - img [ref=e825]
+            - generic [ref=e827]: "Our core features include: Market Movement Monitoring (real-time tracking of significant odds shifts), Probability Models (outcome estimations based on big data), Match Tempo Indicators (who is controlling the game vs. who is under pressure), and Historical Odds Analysis (how similar handicaps have performed in the past)."
+          - generic [ref=e828]:
+            - button "Can AI actually analyze football matches?" [ref=e829] [cursor=pointer]:
+              - generic [ref=e830]: Can AI actually analyze football matches?
+              - img [ref=e831]
+            - generic [ref=e833]: "AI isn't a crystal ball—it can't predict the future. However, it can process massive amounts of data far faster than any human. OddsFlow uses algorithms to analyze historical stats, market movements, and match variables to spot patterns that the naked eye misses. Simply put: We don't guess the score; we reveal the true state of the market and the teams."
+          - generic [ref=e834]:
+            - button "Is it suitable for beginners?" [ref=e835] [cursor=pointer]:
+              - generic [ref=e836]: Is it suitable for beginners?
+              - img [ref=e837]
+            - generic [ref=e839]: Definitely. While the logic behind our models is complex, the dashboard you see is designed to be simple and intuitive. We simplify the data so that even if you are new to football analysis, you can spot the trends and market direction immediately.
+          - generic [ref=e840]:
+            - button "Important Disclaimer" [ref=e841] [cursor=pointer]:
+              - generic [ref=e842]: Important Disclaimer
+              - img [ref=e843]
+            - generic [ref=e845]: "While we have full confidence in our models, we have to be clear: All content provided by OddsFlow is for reference and research only. The football market is volatile. Please use the data rationally and responsibly."
+      - generic [ref=e847]:
+        - generic [ref=e848]: POWERED BY
+        - heading "AI Technology Partners" [level=2] [ref=e849]
+        - paragraph [ref=e850]: OddsFlow is part of a growing AI sports analytics ecosystem powered by advanced prediction engines and data networks.
+        - generic [ref=e851]:
+          - link "ClawSport AI ClawSport AI" [ref=e852] [cursor=pointer]:
+            - /url: https://www.clawsportbot.io/
+            - img "ClawSport AI" [ref=e854]
+            - generic [ref=e855]: ClawSport AI
+          - link "OddsFlow Partners OddsFlow Partners" [ref=e856] [cursor=pointer]:
+            - /url: https://www.oddsflow-partners.com/
+            - img "OddsFlow Partners" [ref=e858]
+            - generic [ref=e859]: OddsFlow Partners
+      - contentinfo [ref=e860]:
+        - generic [ref=e861]:
+          - generic [ref=e862]:
+            - generic [ref=e863]:
+              - link "OddsFlow OddsFlow" [ref=e864] [cursor=pointer]:
+                - /url: /
+                - img "OddsFlow" [ref=e865]
+                - generic [ref=e866]: OddsFlow
+              - paragraph [ref=e867]: AI-powered football odds analysis for smarter predictions. Make data-driven decisions with real-time insights.
+              - generic [ref=e868]:
+                - link "Follow OddsFlow on YouTube" [ref=e869] [cursor=pointer]:
+                  - /url: https://www.youtube.com/channel/UCwG9DWzF87_RZcGXN5Vk9Fg
+                  - img [ref=e870]
+                - link "Follow OddsFlow on X" [ref=e872] [cursor=pointer]:
+                  - /url: https://x.com/Oddsflow_Nat
+                  - img [ref=e873]
+                - link "Follow OddsFlow on Facebook" [ref=e875] [cursor=pointer]:
+                  - /url: https://www.facebook.com/profile.php?id=61584728786578
+                  - img [ref=e876]
+                - link "Follow OddsFlow on TikTok" [ref=e878] [cursor=pointer]:
+                  - /url: https://www.tiktok.com/@oddsflow2
+                  - img [ref=e879]
+                - link "Follow OddsFlow on Telegram" [ref=e881] [cursor=pointer]:
+                  - /url: https://t.me/oddsflowai
+                  - img [ref=e882]
+                - link "Follow OddsFlow on Reddit" [ref=e884] [cursor=pointer]:
+                  - /url: https://www.reddit.com/user/Relative-Airport1274/
+                  - img [ref=e885]
+                - link "Follow OddsFlow on Instagram" [ref=e887] [cursor=pointer]:
+                  - /url: https://www.instagram.com/oddsflow.ai/
+                  - img [ref=e888]
+                - link "Follow OddsFlow on GitHub" [ref=e890] [cursor=pointer]:
+                  - /url: https://github.com/oddsflowai-team
+                  - img [ref=e891]
+            - generic [ref=e893]:
+              - heading "Product" [level=3] [ref=e894]
+              - list [ref=e895]:
+                - listitem [ref=e896]:
+                  - link "Predictions" [ref=e897] [cursor=pointer]:
+                    - /url: /predictions
+                - listitem [ref=e898]:
+                  - link "FIFA World Cup 2026" [ref=e899] [cursor=pointer]:
+                    - /url: /worldcup
+                - listitem [ref=e900]:
+                  - link "Leagues" [ref=e901] [cursor=pointer]:
+                    - /url: /leagues
+                - listitem [ref=e902]:
+                  - link "AI Performance" [ref=e903] [cursor=pointer]:
+                    - /url: /performance
+                - listitem [ref=e904]:
+                  - link "Verification" [ref=e905] [cursor=pointer]:
+                    - /url: /verification
+                - listitem [ref=e906]:
+                  - link "Solution" [ref=e907] [cursor=pointer]:
+                    - /url: /solution
+                - listitem [ref=e908]:
+                  - group [ref=e909]:
+                    - generic "AI Predictions Guide" [ref=e910] [cursor=pointer]:
+                      - generic [ref=e911]: AI Predictions Guide
+                      - img [ref=e912]
+                - listitem [ref=e914]:
+                  - link "Pricing" [ref=e915] [cursor=pointer]:
+                    - /url: /pricing
+            - generic [ref=e916]:
+              - heading "Popular Leagues" [level=3] [ref=e917]
+              - list [ref=e918]:
+                - listitem [ref=e919]:
+                  - link "Premier League" [ref=e920] [cursor=pointer]:
+                    - /url: /leagues/premier-league
+                - listitem [ref=e921]:
+                  - link "La Liga" [ref=e922] [cursor=pointer]:
+                    - /url: /leagues/la-liga
+                - listitem [ref=e923]:
+                  - link "Serie A" [ref=e924] [cursor=pointer]:
+                    - /url: /leagues/serie-a
+                - listitem [ref=e925]:
+                  - link "Bundesliga" [ref=e926] [cursor=pointer]:
+                    - /url: /leagues/bundesliga
+                - listitem [ref=e927]:
+                  - link "Ligue 1" [ref=e928] [cursor=pointer]:
+                    - /url: /leagues/ligue-1
+                - listitem [ref=e929]:
+                  - link "Champions League" [ref=e930] [cursor=pointer]:
+                    - /url: /leagues/champions-league
+            - generic [ref=e931]:
+              - heading "Community" [level=3] [ref=e932]
+              - list [ref=e933]:
+                - listitem [ref=e934]:
+                  - link "Community" [ref=e935] [cursor=pointer]:
+                    - /url: /community
+                - listitem [ref=e936]:
+                  - link "Global Chat" [ref=e937] [cursor=pointer]:
+                    - /url: /community/global-chat
+                - listitem [ref=e938]:
+                  - link "User Predictions" [ref=e939] [cursor=pointer]:
+                    - /url: /community/predictions
+                - listitem [ref=e940]:
+                  - link "Feeds" [ref=e941] [cursor=pointer]:
+                    - /url: /community/feeds
+                - listitem [ref=e942]:
+                  - link "Groups" [ref=e943] [cursor=pointer]:
+                    - /url: /community/groups
+            - generic [ref=e944]:
+              - heading "Company" [level=3] [ref=e945]
+              - list [ref=e946]:
+                - listitem [ref=e947]:
+                  - link "About Us" [ref=e948] [cursor=pointer]:
+                    - /url: /about
+                - listitem [ref=e949]:
+                  - link "Contact" [ref=e950] [cursor=pointer]:
+                    - /url: /contact
+                - listitem [ref=e951]:
+                  - link "Blog" [ref=e952] [cursor=pointer]:
+                    - /url: /blog
+                - listitem [ref=e953]:
+                  - link "Affiliate" [ref=e954] [cursor=pointer]:
+                    - /url: /affiliate
+                - listitem [ref=e955]:
+                  - link "GitHub" [ref=e956] [cursor=pointer]:
+                    - /url: https://github.com/oddsflowai-team
+                - listitem [ref=e957]:
+                  - link "Hugging Face" [ref=e958] [cursor=pointer]:
+                    - /url: https://huggingface.co/Oddsflowai-team/oddsflow-transparency
+                - listitem [ref=e959]:
+                  - link "Medium" [ref=e960] [cursor=pointer]:
+                    - /url: https://medium.com/@oddsflow.ai
+            - generic [ref=e961]:
+              - heading "Legal" [level=3] [ref=e962]
+              - list [ref=e963]:
+                - listitem [ref=e964]:
+                  - link "Terms of Service" [ref=e965] [cursor=pointer]:
+                    - /url: /terms-of-service
+                - listitem [ref=e966]:
+                  - link "Privacy Policy" [ref=e967] [cursor=pointer]:
+                    - /url: /privacy-policy
+                - listitem [ref=e968]:
+                  - link "Responsible Gaming" [ref=e969] [cursor=pointer]:
+                    - /url: /responsible-gaming
+          - paragraph [ref=e971]: "Disclaimer: OddsFlow provides AI-powered predictions for informational and entertainment purposes only. We do not guarantee the accuracy of predictions and are not responsible for any financial losses. Predictions do not guarantee outcomes. Please use responsibly. Users must be 18+ years old."
+          - generic [ref=e972]:
+            - paragraph [ref=e973]: © 2026 OddsFlow. All rights reserved.
+            - paragraph [ref=e974]: For informational and entertainment purposes only. Please use responsibly.
+      - generic [ref=e1735]:
+        - generic [ref=e1736]:
+          - generic [ref=e1737]:
+            - img [ref=e1739]
+            - heading "We use cookies" [level=2] [ref=e1741]
+          - paragraph [ref=e1742]: We use cookies to enhance your browsing experience, analyze site traffic, and personalize content. By clicking "Accept All", you consent to our use of cookies.
+        - generic [ref=e1743]:
+          - generic [ref=e1744]:
+            - button "Reject All" [ref=e1745] [cursor=pointer]
+            - button "Accept All" [ref=e1746] [cursor=pointer]
+          - button "Customize" [ref=e1747] [cursor=pointer]
+          - link "Privacy Policy" [ref=e1749] [cursor=pointer]:
+            - /url: /privacy-policy
+    - generic [ref=e975]:
+      - paragraph [ref=e976]: "OddsFlow.ai is an AI-powered sports analytics platform. Official domain: oddsflow.ai."
+      - navigation "FIFA World Cup 2026" [ref=e977]:
+        - heading "FIFA World Cup 2026 AI Predictions" [level=2] [ref=e978]
+        - paragraph [ref=e979]: OddsFlow covers all 104 World Cup 2026 matches with AI-powered predictions. 48 teams across 12 groups, hosted in USA, Mexico, and Canada. June 11 – July 19, 2026.
+        - list [ref=e980]:
+          - listitem [ref=e981]:
+            - link "World Cup 2026 Hub" [ref=e982] [cursor=pointer]:
+              - /url: https://www.oddsflow.ai/worldcup
+          - listitem [ref=e983]:
+            - link "All Match Predictions" [ref=e984] [cursor=pointer]:
+              - /url: https://www.oddsflow.ai/worldcup/predictions
+          - listitem [ref=e985]:
+            - link "48 Participating Nations" [ref=e986] [cursor=pointer]:
+              - /url: https://www.oddsflow.ai/worldcup/countries
+          - listitem [ref=e987]:
+            - link "Group Standings" [ref=e988] [cursor=pointer]:
+              - /url: https://www.oddsflow.ai/worldcup/countries/standings
+          - listitem [ref=e989]:
+            - link "Match Schedule & Results" [ref=e990] [cursor=pointer]:
+              - /url: https://www.oddsflow.ai/worldcup/countries/matches
+          - listitem [ref=e991]:
+            - link "AI Performance Tracker" [ref=e992] [cursor=pointer]:
+              - /url: https://www.oddsflow.ai/worldcup/performance
+          - listitem [ref=e993]:
+            - link "Live Signal Room" [ref=e994] [cursor=pointer]:
+              - /url: https://www.oddsflow.ai/worldcup/predictions/live
+  - alert [ref=e995]

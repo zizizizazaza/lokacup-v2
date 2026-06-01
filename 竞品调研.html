@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>世界杯 AI 预测项目 — 市场与竞品调研</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style>
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  body { font-family: "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif; max-width: 880px; margin: 2em auto; padding: 0 1.5em; line-height: 1.65; color: #222; }
+  h1 { border-bottom: 2px solid #333; padding-bottom: .3em; }
+  h2 { border-bottom: 1px solid #ccc; padding-bottom: .25em; margin-top: 2em; }
+  h3 { margin-top: 1.6em; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; font-size: 0.9em; border: 1px solid #999; }
+  th, td { border: 1px solid #999 !important; padding: 6px 10px; text-align: left; vertical-align: top; }
+  th { background: #f0f0f0 !important; font-weight: 600; }
+  tr:nth-child(even) td { background: #fafafa !important; }
+  code { background: #f3f3f3; padding: 1px 5px; border-radius: 3px; font-size: 0.9em; }
+  pre { background: #f7f7f7; padding: 1em; border-radius: 6px; overflow-x: auto; font-size: 0.85em; border: 1px solid #ddd; }
+  blockquote { border-left: 3px solid #888; padding-left: 1em; color: #555; margin-left: 0; }
+  a { color: #2563eb; text-decoration: none; }
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">世界杯 AI 预测项目 — 市场与竞品调研</h1>
+</header>
+<h1 id="世界杯-ai-预测项目-市场与竞品调研">世界杯 AI 预测项目 —
+市场与竞品调研</h1>
+<blockquote>
+<p>调研时间：2026-06-01
+重点：竞品在做什么、用什么数据；以及<strong>我们做 Polymarket 世界杯 AI
+预测需要哪些数据</strong></p>
+</blockquote>
+<hr />
+<h2 id="目录">目录</h2>
+<ul>
+<li><a href="#一市场分类">一、市场分类</a></li>
+<li><a href="#二核心竞品足球-ai-预测类">二、核心竞品（足球 AI
+预测类）</a></li>
+<li><a href="#三核心竞品polymarket-生态-ai-类">三、核心竞品（Polymarket
+生态 AI 类）</a></li>
+<li><a href="#四我们的数据需求清单">四、我们的数据需求清单</a></li>
+</ul>
+<hr />
+<h2 id="一市场分类">一、市场分类</h2>
+<p>围绕”AI +
+预测”目前市场可清晰分成两类，<strong>它们的用户、数据栈、产品形态完全不同</strong>：</p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 30%" />
+<col style="width: 30%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>类别</th>
+<th>服务对象</th>
+<th>数据基底</th>
+<th>输出</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>A. AI 足球预测</strong></td>
+<td>传统 sportsbook 投注者</td>
+<td>足球比赛数据（xG/阵容/伤病/赔率）</td>
+<td>1X2、比分、BTTS、大小球的概率</td>
+</tr>
+<tr class="even">
+<td><strong>B. Polymarket 生态 AI</strong></td>
+<td>预测市场交易者</td>
+<td>CLOB 订单簿 + 新闻 + 链上数据</td>
+<td>市场隐含概率 vs AI 估计概率的 edge</td>
+</tr>
+</tbody>
+</table>
+<p><strong>没有任何一个产品同时服务两边</strong>——这是我们的产品空间。</p>
+<hr />
+<h2 id="二核心竞品足球-ai-预测类">二、核心竞品（足球 AI 预测类）</h2>
+<p>只挑 3 个最值得对标的：</p>
+<h3 id="oddsflow.ai-最直接的世界杯竞品">2.1 <a
+href="https://www.oddsflow.ai/">OddsFlow.ai</a> —
+<strong>最直接的世界杯竞品</strong></h3>
+<ul>
+<li><strong>做什么</strong>：AI 价值投注工具，计算”公平赔率 vs
+庄家赔率”，给出 edge %。已经为世界杯每场比赛建立独立预测页（如
+<code>/zh/worldcup/predictions/2026-06-13/brazil-vs-morocco-1489371</code>），多语言（含中文）</li>
+<li><strong>数据栈</strong>：FIFA 排名、ELO
+评分、预选赛战绩、历史交手、阵容、<strong>Bet365 / Pinnacle
+实时赔率</strong></li>
+<li><strong>方法论</strong>：单一 ML 模型；公开历史 performance
+logs，自报 ~54-56% 胜率、+17% ROI</li>
+<li><strong>定价</strong>：订阅制</li>
+<li><strong>强</strong>：透明（公开日志/PDF 记录）、实时
+mispricing、专攻世界杯</li>
+<li><strong>弱</strong>：界面偏技术、单模型、不接
+Polymarket、不解释为什么</li>
+</ul>
+<h3 id="nerdytips-数据栈最完整的足球-ai">2.2 <a
+href="https://nerdytips.com/">NerdyTips</a> — <strong>数据栈最完整的足球
+AI</strong></h3>
+<ul>
+<li><strong>做什么</strong>：自研 AI 引擎 NT Apex，160+
+联赛日推预测，Banker 高置信 tips</li>
+<li><strong>数据栈</strong>：xG、控球、<strong>球员转会、新闻</strong>、状态、H2H；存储在自己的大数据平台</li>
+<li><strong>方法论</strong>：Java + AI + 数学建模 + ML；三阶段：采集 →
+归一化 → 预测；声称 25 万+ 场比赛历史</li>
+<li><strong>定价</strong>：$5.99-$9.99/月</li>
+<li><strong>强</strong>：覆盖广、Trustpilot 4.5/5、<strong>是少数把新闻
++ 转会纳入特征集的足球 AI</strong></li>
+<li><strong>弱</strong>：单模型黑箱、无 Polymarket 整合、解释性一般</li>
+</ul>
+<h3 id="opta-supercomputer-theanalyst.com-叙事霸主">2.3 <a
+href="https://theanalyst.com/articles/opta-football-predictions">Opta
+Supercomputer (theanalyst.com)</a> — <strong>叙事霸主</strong></h3>
+<ul>
+<li><strong>做什么</strong>：媒体级世界杯预测文章，全球媒体引用基准</li>
+<li><strong>数据栈</strong>：Opta Power Rankings（Elo
+衍生：净胜球、赛事系数、攻防分项，250+ 联赛 13000+ 球队）+
+<strong>博彩市场赔率</strong></li>
+<li><strong>方法论</strong>：单场胜/平/负概率 → 蒙特卡洛模拟剩余赛程 →
+夺冠/出线 %</li>
+<li><strong>强</strong>：<strong>唯一方法论完全公开</strong>的对手；可信度天花板；坦承赔率是模型输入</li>
+<li><strong>弱</strong>：单向编辑稿，不可问、不可追问、不可个性化</li>
+</ul>
+<blockquote>
+<p>其他足球 AI（Forebet、Footystats、KickOff.ai、Scoore.ai、SportBot
+AI、Predicd 等）方法论同质化严重，不一一列举。</p>
+</blockquote>
+<hr />
+<h2 id="三核心竞品polymarket-生态-ai-类">三、核心竞品（Polymarket 生态
+AI 类）</h2>
+<p>只挑 4 个最有代表性的：</p>
+<h3 id="polymarket-agents-官方-参考实现">3.1 <a
+href="https://github.com/Polymarket/agents">Polymarket Agents 官方</a> —
+<strong>参考实现</strong></h3>
+<ul>
+<li><strong>数据</strong>：Gamma API（市场元数据）+ CLOB（订单簿/成交）+
+<strong>NewsAPI → Chroma 向量库</strong>做 RAG</li>
+<li><strong>方法论</strong>：单 LLM + RAG；市场价 vs LLM 概率 → edge
+下单</li>
+<li><strong>特点</strong>：通用，不分场景；体育不是它的强项</li>
+<li><strong>借鉴价值</strong>：<strong>新闻 → RAG → LLM
+估计概率</strong>的标准链路</li>
+</ul>
+<h3 id="alphascope-研究情报型">3.2 <a
+href="https://alphascope.app/">Alphascope</a> —
+<strong>研究情报型</strong></h3>
+<ul>
+<li><strong>做什么</strong>：粘贴 Polymarket 链接 → AI
+自动汇总新闻、概率分析、催化剂扫描、钱包追踪、跨平台（Kalshi
+等）对比</li>
+<li><strong>数据</strong>：新闻聚合 + 链上巨鲸数据 + 跨市场赔率</li>
+<li><strong>方法论</strong>：单 LLM 情报聚合，不强调辩论或共识</li>
+<li><strong>定价</strong>：免费 beta + 付费</li>
+<li><strong>强</strong>：上下文深度、新闻 +
+催化剂、研究型交易者最爱</li>
+<li><strong>弱</strong>：<strong>无结构化多视角</strong>，单 AI
+摘要风险高</li>
+</ul>
+<h3 id="polymarket-prediction-alert-aiapp-picks-推送型">3.3 Polymarket
+Prediction Alert AI（App） — <strong>picks 推送型</strong></h3>
+<ul>
+<li><strong>做什么</strong>：AI 选市场、日推 picks、智能警报、AI 概率 vs
+市场价差、关键驱动因素</li>
+<li><strong>数据</strong>：未完全公开，大概率是 LLM + 新闻 +
+价格历史</li>
+<li><strong>方法论</strong>：单模型 → actionable picks + 理由</li>
+<li><strong>强</strong>：移动端、直接给结论 + 推送</li>
+<li><strong>弱</strong>：理由可能较薄、单模型</li>
+</ul>
+<h3 id="willmin-kalshi-claude-bot-唯一开源的多-agent-共识实现">3.4 <a
+href="https://github.com/Willmin-wm/kalshi-claude-trading-bot">Willmin
+Kalshi-Claude Bot</a> — <strong>唯一开源的多 Agent
+共识实现</strong></h3>
+<ul>
+<li><strong>数据</strong>：仅 Kalshi
+订单簿；<strong>无外部数据</strong>——三 Agent 完全靠 Claude
+参数化知识</li>
+<li><strong>方法论</strong>：Forecaster / Critic / Trader 三角色辩论 →
+共识后交易 + Kelly sizing</li>
+<li><strong>强</strong>：<strong>架构上与我们最像</strong>，必须读源码理解共识机制</li>
+<li><strong>弱</strong>：数据极简、纯 Kalshi、未产品化</li>
+</ul>
+<blockquote>
+<p>其他（PolyPulse / POLYBRO 浏览器扩展、Unusual Predictions
+巨鲸追踪、Octagon Kalshi CLI、学术的 PolyBench / PolyGnosis
+2.0）作为参考存在，但不是直接竞品。</p>
+</blockquote>
+<hr />
+<h2 id="四我们的数据需求清单">四、我们的数据需求清单</h2>
+<blockquote>
+<p><strong>前提</strong>：我们做的是”世界杯比赛 → Polymarket 市场 → AI
+多 Agent 共识预测 + 解释”。</p>
+<p>把竞品的数据栈拼起来，可以得出我们<strong>真正需要</strong>接入的数据。</p>
+</blockquote>
+<h3 id="必备polymarket-市场数据核心定价锚">4.1 必备：Polymarket
+市场数据（核心定价锚）</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>数据</th>
+<th>用途</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>市场元数据</strong></td>
+<td>知道有哪些世界杯市场、解算标准是什么</td>
+<td><a
+href="https://docs.polymarket.com/developers/gamma-markets-api/overview">Polymarket
+Gamma API</a></td>
+</tr>
+<tr class="even">
+<td><strong>CLOB 订单簿</strong></td>
+<td>实时买卖一价 / 深度 / 点差</td>
+<td><a
+href="https://docs.polymarket.com/developers/CLOB/introduction">Polymarket
+CLOB</a></td>
+</tr>
+<tr class="odd">
+<td><strong>历史价格 / 成交磁带</strong></td>
+<td>看价格如何随消息/比赛进程变化、回测</td>
+<td>Gamma + CLOB 历史端点</td>
+</tr>
+<tr class="even">
+<td><strong>巨鲸 / 大额成交</strong></td>
+<td>知道聪明钱方向</td>
+<td><a href="https://api.unusualwhales.com/docs">Unusual Predictions
+API</a> 或自建链上索引（Polygon）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>为什么必需</strong>：Polymarket
+没有定价模型，盘口就是用户共识。我们的 AI
+估计概率必须<strong>对标这个共识</strong>，差值就是我们要交付给用户的
+edge。</p>
+<h3 id="必备足球比赛数据ai-预测的输入">4.2 必备：足球比赛数据（AI
+预测的输入）</h3>
+<p>参考 SportBot AI / NerdyTips / Opta 的栈，世界杯场景下需要：</p>
+<table>
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 28%" />
+<col style="width: 42%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>数据</th>
+<th>用途</th>
+<th>来源建议</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>历史比赛结果 + H2H</strong></td>
+<td>球队基础强度先验</td>
+<td>StatsBomb 开源 / FBref（爬取）</td>
+</tr>
+<tr class="even">
+<td><strong>xG / 控球 / 射门 / 传球</strong></td>
+<td>球队近期真实战斗力（结果之外）</td>
+<td>StatsBomb 开源 / FBref / 付费可上 Opta</td>
+</tr>
+<tr class="odd">
+<td><strong>FIFA / ELO 排名</strong></td>
+<td>国家队对比的基线（OddsFlow 在用）</td>
+<td><a href="https://www.fifa.com/fifa-world-ranking/">FIFA 官方</a> /
+<a href="https://www.eloratings.net/">eloratings.net</a></td>
+</tr>
+<tr class="even">
+<td><strong>阵容 / 首发预测</strong></td>
+<td>比赛即时变量（最关键）</td>
+<td>Sofascore（爬取）/ 推特公告 / Footystats</td>
+</tr>
+<tr class="odd">
+<td><strong>伤病 / 停赛</strong></td>
+<td>比赛即时变量</td>
+<td>球队官网 + Twitter / Transfermarkt</td>
+</tr>
+<tr class="even">
+<td><strong>赛程 / 比赛元数据</strong>（场地/时间/裁判/天气）</td>
+<td>二阶变量；天气和裁判被 SportBot AI 证明有效</td>
+<td>体育数据 API + OpenWeather</td>
+</tr>
+</tbody>
+</table>
+<p><strong>为什么必需</strong>：纯靠 LLM
+参数化知识做世界杯预测会过时（Willmin Bot 的极简方案在 Kalshi
+政治市场行得通，但在体育上靠不住——球员状态变化太快）。</p>
+<h3 id="必备新闻-信息流即时变量">4.3 必备：新闻 /
+信息流（即时变量）</h3>
+<p>参考 Polymarket Agents 的 NewsAPI、PolyGnosis 的 GDELT、PolyPulse 的
+Perplexity：</p>
+<table>
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 28%" />
+<col style="width: 42%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>数据</th>
+<th>用途</th>
+<th>来源建议</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>结构化新闻</strong></td>
+<td>RAG 喂给 Agent，提供赛前最新信息</td>
+<td><a href="https://newsapi.org/">NewsAPI</a> 起步；可叠加 <a
+href="https://www.gdeltproject.org/">GDELT</a></td>
+</tr>
+<tr class="even">
+<td><strong>球队/球员官方公告</strong></td>
+<td>阵容、伤病、内部消息源</td>
+<td>Twitter/X API（球队官号）+ 球队官网 RSS</td>
+</tr>
+<tr class="odd">
+<td><strong>赛前赔率变动</strong></td>
+<td>sharp action 的领先指标</td>
+<td>Bet365 / Pinnacle / 多盘口聚合（Oddspedia 等）</td>
+</tr>
+<tr class="even">
+<td><strong>可选：社交语调 / GDELT tone</strong></td>
+<td>公众情绪——PolyGnosis 2.0 的”Perspective Mismatch”特征</td>
+<td>GDELT GKG</td>
+</tr>
+</tbody>
+</table>
+<p><strong>为什么必需</strong>：用户用 AI 而不是直接看
+Polymarket，是因为想要<strong>“为什么”</strong>。“为什么”的内容来源就是新闻和信息流。</p>
+<h3 id="可选跨盘口赔率差异化加成">4.4
+可选：跨盘口赔率（差异化加成）</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>数据</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Bet365 / Pinnacle / DraftKings / FanDuel 实时盘口</td>
+<td>与 Polymarket 价格对比，发现 Polymarket 是否定价错误</td>
+</tr>
+</tbody>
+</table>
+<p><strong>为什么可选</strong>：竞品 OddsFlow.ai
+的核心功能就是这个；但它只对比传统 sportsbook
+之间，<strong>没人做”传统赔率 vs Polymarket
+价格”对比</strong>——这是我们的独门 edge。</p>
+<h3 id="专题博彩赔率-vs-polymarket-订单簿为什么两种都要">4.5
+专题：博彩赔率 vs Polymarket 订单簿——为什么两种都要</h3>
+<p>两者本质都是”群体对结果的判断”，但机制完全不同，所以信号不同。</p>
+<p><strong>机制差异</strong></p>
+<table>
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 50%" />
+<col style="width: 37%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>维度</th>
+<th>博彩公司赔率（Bet365 等）</th>
+<th>Polymarket 订单簿</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>定价者</strong></td>
+<td>博彩公司的交易员 / 算法</td>
+<td>用户自己挂单</td>
+</tr>
+<tr class="even">
+<td><strong>盈利模式</strong></td>
+<td>抽水（vig，通常 5-10%）</td>
+<td>平台抽手续费（极低）</td>
+</tr>
+<tr class="odd">
+<td><strong>本质</strong></td>
+<td>“庄家愿意以这个价收你的注”</td>
+<td>“买卖双方撮合成交价”</td>
+</tr>
+<tr class="even">
+<td><strong>是否反映真实概率</strong></td>
+<td>不直接——已扣抽水 + 庄家会主动调线管理敞口</td>
+<td><strong>直接</strong>——价格 = 隐含概率</td>
+</tr>
+<tr class="odd">
+<td><strong>谁在下注</strong></td>
+<td>大众球迷为主，sharp 被限红</td>
+<td>Crypto 用户、量化、对冲基金、政治分析师</td>
+</tr>
+<tr class="even">
+<td><strong>响应速度</strong></td>
+<td>内部交易员看到消息 → 调线（有延迟）</td>
+<td>任何人看到消息 → 直接挂单（秒级）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>举例</strong></p>
+<blockquote>
+<p>巴西 vs 摩洛哥，Bet365 巴西赢赔率 1.50（隐含概率
+66.7%，扣掉抽水后真实约 64%） Polymarket 巴西赢挂单价格 0.62（直接 = 62%
+概率） → 差距 2 个百分点，Polymarket 比博彩公司”更看好摩洛哥一点”</p>
+</blockquote>
+<p><strong>为什么两种数据都要</strong></p>
+<ol type="1">
+<li><strong>交叉验证</strong>：两者一致 → 真实共识，置信度高；两者分歧 →
+有 edge 或风险</li>
+<li><strong>不同人群的判断</strong>：传统盘口反映大众球迷 +
+庄家调整；Polymarket 反映
+Crypto/量化/分析师群体——后者对足球（尤其非美足球）可能反应慢，是机会</li>
+<li><strong>信息传导速度差</strong>：突发消息（赛前阵容变动）Polymarket
+反应更快，博彩公司临时关盘或调线慢——中间有套利窗口</li>
+<li><strong>AI 各自的用法</strong>：
+<ul>
+<li>Polymarket 价格 = 我们 AI 要<strong>对标的市场共识基准</strong></li>
+<li>博彩赔率 = <strong>校准 / 参考</strong>，看主流市场怎么想</li>
+</ul></li>
+</ol>
+<p><strong>判断逻辑示例</strong></p>
+<pre><code>AI 估计概率 65%
+↓
+对比 Polymarket：62% → AI 比市场高 3 个点 → 有 edge，看涨
+对比 Bet365：64%（扣抽水后）→ 与 AI 接近，传统市场也认同
+↓
+高置信度信号：Polymarket 低估了，建议买入</code></pre>
+<p>反过来：</p>
+<pre><code>AI 估计概率 65%
+对比 Polymarket：62%
+对比 Bet365：55%（扣抽水后）→ 两市场分歧很大
+↓
+先别动：要么 AI 错，要么有我们不知道的信息</code></pre>
+<p><strong>结论</strong></p>
+<ul>
+<li><strong>Polymarket 订单簿 = 主战场</strong>（AI 直接对标它）</li>
+<li><strong>博彩公司赔率 = 第二意见</strong>（交叉验证、套利信号）</li>
+<li>两者结合还能反映 <strong>“Crypto 群体” vs
+“大众球迷群体”</strong>的判断差异——本身就是有信息量的特征</li>
+</ul>
+<h3 id="数据栈分层总结">4.5 数据栈分层总结</h3>
+<pre><code>┌─────────────────────────────────────────────┐
+│  解释层（用户看到的）                          │
+│  - Multi-Agent 共识 + 分歧理由                │
+│  - 置信度 % vs Polymarket 市场价             │
+└─────────────────────────────────────────────┘
+            ↑ AI Agent 调用
+┌─────────────────────────────────────────────┐
+│  即时变量层（决定预测准不准）                  │
+│  - 阵容 / 伤病 / 新闻 / sharp action         │
+│  数据源：Twitter/X、Sofascore、NewsAPI       │
+└─────────────────────────────────────────────┘
+            ↑
+┌─────────────────────────────────────────────┐
+│  基础数据层（球队强度先验）                    │
+│  - xG / 历史 / H2H / FIFA / ELO              │
+│  数据源：StatsBomb / FBref / FIFA            │
+└─────────────────────────────────────────────┘
+            ↑
+┌─────────────────────────────────────────────┐
+│  市场锚层（对标谁）                            │
+│  - Polymarket Gamma + CLOB                   │
+│  - 巨鲸/大额成交                              │
+│  - 跨盘口赔率（可选）                         │
+└─────────────────────────────────────────────┘</code></pre>
+<p>四层都需要才能形成完整闭环：<strong>市场锚 → 基础数据 → 即时变量 →
+解释层</strong>。少了任何一层，要么没法对标（没市场锚就成了通用预测站）、要么不准（没即时变量），要么用户不买账（没解释）。</p>
+<h3 id="优先级建议">4.6 优先级建议</h3>
+<p>如果 MVP 阶段要砍：</p>
+<table>
+<colgroup>
+<col style="width: 57%" />
+<col style="width: 42%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>优先级</th>
+<th>数据</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>P0 必做</strong></td>
+<td>Polymarket CLOB + Gamma、StatsBomb/FBref
+历史、FIFA/ELO、阵容/伤病新闻、NewsAPI</td>
+</tr>
+<tr class="even">
+<td><strong>P1 重要</strong></td>
+<td>Twitter/X 球队官号、Bet365 实时赔率（对比 Polymarket 用）</td>
+</tr>
+<tr class="odd">
+<td><strong>P2 加分</strong></td>
+<td>GDELT、巨鲸数据、天气、裁判数据</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="附录核心链接">附录：核心链接</h2>
+<ul>
+<li><a
+href="https://docs.polymarket.com/developers/gamma-markets-api/overview">Polymarket
+Gamma API</a> · <a
+href="https://docs.polymarket.com/developers/CLOB/introduction">CLOB
+文档</a> · <a href="https://github.com/Polymarket/agents">Polymarket
+Agents</a></li>
+<li><a
+href="https://github.com/Willmin-wm/kalshi-claude-trading-bot">Willmin
+Kalshi-Claude Bot</a></li>
+<li><a href="https://alphascope.app/">Alphascope</a> · <a
+href="https://unusualwhales.com/predictions">Unusual
+Predictions</a></li>
+<li><a
+href="https://www.oddsflow.ai/zh/worldcup/predictions/">OddsFlow.ai
+世界杯页</a> · <a href="https://nerdytips.com/">NerdyTips</a> · <a
+href="https://theanalyst.com/articles/opta-football-predictions">Opta
+Supercomputer</a></li>
+<li><a href="https://github.com/statsbomb/open-data">StatsBomb
+开源数据</a> · <a href="https://fbref.com/">FBref</a> · <a
+href="https://www.eloratings.net/">eloratings.net</a></li>
+<li><a href="https://newsapi.org/">NewsAPI</a> · <a
+href="https://www.gdeltproject.org/">GDELT</a></li>
+</ul>
+</body>
+</html>

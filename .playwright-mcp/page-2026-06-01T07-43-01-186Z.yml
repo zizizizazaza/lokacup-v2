@@ -1,0 +1,159 @@
+- generic [ref=e2]:
+  - navigation [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]: WC26//ORACLE
+      - generic [ref=e7]:
+        - link "Ask" [ref=e8] [cursor=pointer]:
+          - /url: /
+        - link "Match Hub" [ref=e9] [cursor=pointer]:
+          - /url: /matches
+      - generic [ref=e10]: SYS ONLINE · 04 AGENTS
+  - generic [ref=e11]:
+    - generic [ref=e13]:
+      - generic [ref=e15]: SYS.VER.26 // ORACLE
+      - heading "World Cup AI Predict WC26" [level=1] [ref=e16]
+      - paragraph [ref=e17]: Paste Polymarket/Kalshi URL or Query Directly. 4 Agents. Weighted Consensus. 30s Execution.
+      - generic [ref=e18]:
+        - text: ">"
+        - textbox "e.g., Will Brazil reach the finals? Paste market link here_" [ref=e19]
+        - button "Analyze" [ref=e20] [cursor=pointer]
+      - generic [ref=e21]:
+        - link "◆ polymarket.com/event/world-cup-winner-2026" [ref=e22] [cursor=pointer]:
+          - /url: "#"
+        - link "◆ kalshi.com/markets/soccer/wc26-golden-boot" [ref=e23] [cursor=pointer]:
+          - /url: "#"
+        - link "◆ polymarket.com/event/argentina-stage-elimination" [ref=e24] [cursor=pointer]:
+          - /url: "#"
+    - link "SCROLL FOR MARKETS" [ref=e25] [cursor=pointer]:
+      - /url: "#main"
+      - generic [ref=e26]: SCROLL FOR MARKETS
+      - img [ref=e27]
+  - generic [ref=e29]:
+    - generic [ref=e30]:
+      - generic [ref=e31]:
+        - heading "Hot Markets //" [level=2] [ref=e32]
+        - generic [ref=e33]: "LIVE VOL: $42.8M // LAST UPDATE: 12s AGO"
+      - generic [ref=e34]:
+        - article [ref=e35]:
+          - generic [ref=e36]:
+            - heading "Outright Winner 2026" [level=3] [ref=e37]
+            - generic [ref=e38]:
+              - text: 24H VOL
+              - generic [ref=e39]: $14.2M
+          - list [ref=e40]:
+            - listitem [ref=e41]:
+              - generic [ref=e42]:
+                - generic [ref=e43]: "01"
+                - text: Brazil
+              - generic [ref=e44]:
+                - text: 18.5%
+                - generic [ref=e45]: ▲
+            - listitem [ref=e46]:
+              - generic [ref=e47]:
+                - generic [ref=e48]: "02"
+                - text: France
+              - generic [ref=e49]:
+                - text: 16.2%
+                - generic [ref=e50]: —
+            - listitem [ref=e51]:
+              - generic [ref=e52]:
+                - generic [ref=e53]: "03"
+                - text: Argentina
+              - generic [ref=e54]:
+                - text: 12.0%
+                - generic [ref=e55]: ▼
+          - button "Ask AI for Edge →" [ref=e56] [cursor=pointer]
+        - article [ref=e57]:
+          - generic [ref=e58]:
+            - heading "Golden Boot Prop" [level=3] [ref=e59]
+            - generic [ref=e60]:
+              - text: 24H VOL
+              - generic [ref=e61]: $4.8M
+          - list [ref=e62]:
+            - listitem [ref=e63]:
+              - generic [ref=e64]:
+                - generic [ref=e65]: "01"
+                - text: Mbappé
+              - generic [ref=e66]:
+                - text: 22%
+                - generic [ref=e67]: ▲
+            - listitem [ref=e68]:
+              - generic [ref=e69]:
+                - generic [ref=e70]: "02"
+                - text: Haaland
+              - generic [ref=e71]:
+                - text: 15%
+                - generic [ref=e72]: ▲
+            - listitem [ref=e73]:
+              - generic [ref=e74]:
+                - generic [ref=e75]: "03"
+                - text: Vini Jr.
+              - generic [ref=e76]:
+                - text: 11%
+                - generic [ref=e77]: —
+          - button "Evaluate Form →" [ref=e78] [cursor=pointer]
+        - article [ref=e79]:
+          - generic [ref=e80]:
+            - heading "Tournament Total Goals" [level=3] [ref=e81]
+            - generic [ref=e82]:
+              - text: 24H VOL
+              - generic [ref=e83]: $2.1M
+          - list [ref=e84]:
+            - listitem [ref=e85]:
+              - generic [ref=e86]: Over 168.5
+              - generic [ref=e87]:
+                - text: 54%
+                - generic [ref=e88]: ▲
+            - listitem [ref=e89]:
+              - generic [ref=e90]: Under 168.5
+              - generic [ref=e91]:
+                - text: 46%
+                - generic [ref=e92]: ▼
+          - button "Analyze Historic Data →" [ref=e93] [cursor=pointer]
+        - article [ref=e94]:
+          - generic [ref=e95]:
+            - heading "Cross-Platform Arb" [level=3] [ref=e96]
+            - generic [ref=e97]:
+              - text: SPREAD
+              - generic [ref=e98]: 4.2%
+          - generic [ref=e99]: "Market: USA to advance from Group Stage. Discrepancy detected between order books."
+          - list [ref=e100]:
+            - listitem [ref=e101]:
+              - generic [ref=e102]: Polymarket (YES)
+              - generic [ref=e103]: 42.0%
+            - listitem [ref=e104]:
+              - generic [ref=e105]: Kalshi (NO)
+              - generic [ref=e106]: 53.8%
+          - button "Calculate Arb Path →" [ref=e107] [cursor=pointer]
+    - generic [ref=e108]:
+      - generic [ref=e109]:
+        - heading "AI Suggested Prompts" [level=2] [ref=e110]
+        - generic [ref=e111]: 07 PROMPTS · UPDATED 8s AGO
+      - generic [ref=e112]:
+        - button "All" [ref=e113] [cursor=pointer]
+        - button "Winner Odds" [ref=e114] [cursor=pointer]
+        - button "Player Props" [ref=e115] [cursor=pointer]
+        - button "Market Moves" [ref=e116] [cursor=pointer]
+        - button "Arb Targets" [ref=e117] [cursor=pointer]
+      - generic [ref=e118]:
+        - generic [ref=e120] [cursor=pointer]: Is Argentina's 12% probability rational based on qualifying stats?
+        - generic [ref=e122] [cursor=pointer]: Will Neymar score tonight? (Cross-reference Kalshi injury reports)
+        - generic [ref=e124] [cursor=pointer]: Why did France's odds drop 3% in the last 4 hours?
+        - generic [ref=e126] [cursor=pointer]: Find me the highest +EV bet for the Golden Boot right now.
+        - generic [ref=e128] [cursor=pointer]: Compare Polymarket vs Kalshi odds for England reaching Semis.
+        - generic [ref=e130] [cursor=pointer]: Analyze weather impact on 'Total Goals Under 168.5' market.
+        - generic [ref=e132] [cursor=pointer]: What does the AI consensus say about USA vs Mexico outrights?
+    - contentinfo [ref=e133]:
+      - generic [ref=e134]:
+        - generic [ref=e135]:
+          - generic [ref=e136]: HISTORIC ACCURACY (WC22)
+          - generic [ref=e137]: 84.7%
+        - generic [ref=e138]:
+          - generic [ref=e139]: ACTIVE AGENTS
+          - generic [ref=e140]: "04"
+        - generic [ref=e141]:
+          - generic [ref=e142]: MODELS
+          - generic [ref=e143]: GPT-4o / CLAUDE 3.5 / LLAMA-3 / MISTRAL
+      - generic [ref=e144] [cursor=pointer]:
+        - text: ENTER MATCH HUB
+        - img [ref=e145]
