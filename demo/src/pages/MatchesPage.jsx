@@ -217,7 +217,6 @@ export default function MatchesPage() {
                 <div className="form-side away"><FormDots form={m.away.form} /><span className="form-label">Last 5</span></div>
               </div>
               <div className="mc-h2h">{m.h2h}</div>
-              <div className="mc-lineup">📋 {m.lineup}</div>
 
               <div className="mc-events">
                 {m.events.map((e, i) => (
