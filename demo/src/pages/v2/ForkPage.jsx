@@ -45,7 +45,7 @@ export default function ForkPage() {
 
         <div className="fork-banner">
           <div className="fork-banner-left">
-            <div className="fork-from">🍴 Forked from {sourceHost}'s table at msg #{forkAt + 1}</div>
+            <div className="fork-from">Forked from {sourceHost}'s table at msg #{forkAt + 1}</div>
             <div className="src-title">
               <Link to={`/table/${sourceTableId}`} style={{ color: 'var(--accent-green)' }}>{sourceTitle}</Link>
             </div>
@@ -65,7 +65,7 @@ export default function ForkPage() {
           <div className="chat-stream">
             {history.map((m, i) => (
               <div key={i} className="msg">
-                {m.role !== 'system' && <div className={'msg-avatar ' + m.role}>{m.role === 'ai' ? '🧠' : '🎙'}</div>}
+                {m.role !== 'system' && <div className={'msg-avatar ' + m.role}>{m.role === 'ai' ? 'AI' : 'H'}</div>}
                 <div className="msg-body">
                   <div className="msg-meta-row">
                     <span className="who">{m.role === 'ai' ? 'AI · 4 agents' : 'Host'}</span>
@@ -84,7 +84,7 @@ export default function ForkPage() {
           <div className="chat-stream">
             {myMessages.map((m, i) => (
               <div key={i} className="msg">
-                <div className={'msg-avatar ' + m.role}>{m.role === 'ai' ? '🧠' : '🎙'}</div>
+                <div className={'msg-avatar ' + m.role}>{m.role === 'ai' ? 'AI' : 'H'}</div>
                 <div className="msg-body">
                   <div className="msg-meta-row">
                     <span className="who">{m.role === 'ai' ? 'AI · 4 agents' : 'You'}</span>

@@ -13,7 +13,7 @@ function Message({ m, onFork }) {
   const isAI = m.role === 'ai'
   return (
     <div className="msg">
-      <div className={'msg-avatar ' + m.role}>{isAI ? '🧠' : '🎙'}</div>
+      <div className={'msg-avatar ' + m.role}>{isAI ? 'AI' : 'H'}</div>
       <div className="msg-body">
         <div className="msg-meta-row">
           <span className="who">{isAI ? 'AI · 4 agents' : 'Host'}</span>
@@ -22,7 +22,7 @@ function Message({ m, onFork }) {
         <div className={'msg-bubble ' + m.role}>{m.text}</div>
         {isAI && (
           <div className="msg-actions">
-            <button className="fork-btn" onClick={onFork}>🍴 Fork from here</button>
+            <button className="fork-btn" onClick={onFork}>Fork from here</button>
           </div>
         )}
       </div>
@@ -87,9 +87,9 @@ export default function TableRoomPage() {
           <button className="tr-back" onClick={() => navigate('/')}>← Back to tables</button>
           <h2 className="tr-title">{t.market.title}</h2>
           <div className="tr-meta">
-            <span className="pill">{t.host.emoji} {t.host.handle}</span>
-            <span className="pill">👀 {t.spectatorCount}</span>
-            <span className="pill">🍴 {t.forkCount}</span>
+            <span className="pill">{t.host.handle}</span>
+            <span className="pill">{t.spectatorCount} watching</span>
+            <span className="pill">{t.forkCount} forks</span>
             <span className={'pill ' + (t.market.edge > 0 ? 'edge-up' : t.market.edge < 0 ? 'edge-down' : '')}>
               AI {t.market.aiConsensus}% vs Market {t.market.currentPrice}% ({t.market.edge > 0 ? '+' : ''}{t.market.edge}pt)
             </span>
@@ -117,7 +117,7 @@ export default function TableRoomPage() {
             </div>
           ) : (
             <div className="chat-input-readonly">
-              <span className="lock">🔒</span>
+              <span className="lock">Locked</span>
               <span>Only the host can prompt the AI on this table.</span>
               <button onClick={() => fork(messages.length - 1)}>Fork to ask privately</button>
             </div>

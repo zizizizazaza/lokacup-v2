@@ -39,7 +39,7 @@ export default function OpenTablePage() {
               >
                 <div className="opt-radio" />
                 <div className="opt-body">
-                  <div className="opt-title">🤖 Let LokaCup AI host</div>
+                  <div className="opt-title">Let LokaCup AI host</div>
                   <div className="opt-desc">
                     The AI runs the conversation automatically — generating questions, analysis, and recalibrations as the match unfolds. You and others can watch and fork.
                   </div>
@@ -51,7 +51,7 @@ export default function OpenTablePage() {
               >
                 <div className="opt-radio" />
                 <div className="opt-body">
-                  <div className="opt-title">🎙 I'll host</div>
+                  <div className="opt-title">I'll host</div>
                   <div className="opt-desc">
                     You are the only one who can prompt the AI on this table. Spectators can watch and fork your conversation into private chats.
                   </div>

@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { TABLES } from '../../data/tables'
+import { IconEye, IconFork } from '../../components/Icons.jsx'
+import { withFlags } from '../../components/Flag.jsx'
 
-const FILTERS = ['All', 'Official', 'User', 'Hot 🔥', 'Closing soon ⏰']
+const FILTERS = ['All', 'Official', 'User', 'Hot', 'Closing soon']
 
 function TableCard({ t }) {
   const isArb = t.market.isArb
@@ -12,14 +14,14 @@ function TableCard({ t }) {
     <Link to={`/table/${t.id}`} className={cls}>
       <div className="tc-head">
         <div className="tc-host">
-          <span className="tc-host-avatar">{t.host.emoji}</span>
+          <span className="tc-host-avatar">{t.host.handle.replace(/[^A-Za-z]/g, '').slice(0,2).toUpperCase()}</span>
           <span>{t.host.handle}</span>
           <span className="tc-host-tag">{isOff ? 'Official' : isArb ? 'Arb' : 'User'}</span>
         </div>
-        {t.status === 'live' && <span className="tc-live">LIVE</span>}
+        {t.status === 'live' && <span className="tc-live">Live</span>}
       </div>
 
-      <div className="tc-question">{t.market.title}</div>
+      <div className="tc-question">{withFlags(t.market.title)}</div>
 
       <div className="tc-prices">
         <div className="tc-price-cell">
@@ -42,8 +44,8 @@ function TableCard({ t }) {
 
       <div className="tc-foot">
         <div>
-          <span className="stat">👀 {t.spectatorCount}</span>
-          <span className="stat">🍴 {t.forkCount}</span>
+          <span className="stat"><IconEye width={14} height={14} /> {t.spectatorCount}</span>
+          <span className="stat"><IconFork width={14} height={14} /> {t.forkCount}</span>
         </div>
         <span className="tc-watch">Watch →</span>
       </div>
@@ -59,58 +61,52 @@ export default function TablesListPage() {
     if (filter === 'All') return true
     if (filter === 'Official') return t.isOfficial
     if (filter === 'User') return !t.isOfficial
-    if (filter === 'Hot 🔥') return t.spectatorCount > 30
+    if (filter === 'Hot') return t.spectatorCount > 30
     return true
   })
 
   const totalSpec = TABLES.reduce((sum, t) => sum + t.spectatorCount, 0)
-  const totalForks = TABLES.reduce((sum, t) => sum + t.forkCount, 0)
 
   return (
-    <div className="container">
-      {/* Compact page header with stats strip */}
-      <div className="tables-page-head">
-        <div className="tables-page-title-row">
-          <div>
-            <div className="hero-pill">{TABLES.length} live tables · {totalSpec} watching now</div>
-            <h1 className="tables-page-title">Live tables</h1>
-            <p className="tables-page-subtitle">
-              Watch the AI debate Polymarket and Kalshi markets in real time. Fork any conversation into a private chat.
-            </p>
+    <div>
+      <div className="banner">
+        <div className="banner-content">
+          <div className="banner-eyebrow">World Cup '26 · Featured pot</div>
+          <h1 className="banner-title">
+            Watch AI <span className="grad">predict the cup</span> in real time
+          </h1>
+          <p className="banner-sub">
+            {TABLES.length} live tables. Polymarket and Kalshi markets debated by 4 agents — fork any conversation and run your own.
+          </p>
+          <div className="banner-ctas">
+            <button className="banner-cta" onClick={() => navigate('/open')}>+ Open a table</button>
+            <button className="banner-cta ghost">View leaderboard</button>
           </div>
-          <button className="v2-cta-primary" onClick={() => navigate('/open')}>
-            + Open my own table
-          </button>
+          <div className="banner-stats">
+            <div className="banner-stat"><div className="lbl">Volume tracked</div><div className="val">$42.8M</div></div>
+            <div className="banner-stat"><div className="lbl">AI accuracy</div><div className="val">84.7%</div></div>
+            <div className="banner-stat"><div className="lbl">Watching now</div><div className="val">{totalSpec}</div></div>
+          </div>
         </div>
-
-        <div className="page-stats-strip">
-          <div className="page-stat">
-            <div className="label">Total volume tracked</div>
-            <div className="value grad">$42.8M</div>
-          </div>
-          <div className="page-stat">
-            <div className="label">AI accuracy (WC22)</div>
-            <div className="value">84.7%</div>
-          </div>
-          <div className="page-stat">
-            <div className="label">Active agents</div>
-            <div className="value">04</div>
-          </div>
-          <div className="page-stat">
-            <div className="label">Forks today</div>
-            <div className="value">{totalForks}</div>
+        <div className="banner-pot">
+          <div className="ring">
+            <div className="ring-inner">
+              <div className="pot-lbl">Top pot</div>
+              <div className="pot-val">$2.4M</div>
+              <div className="pot-meta">{withFlags('Argentina vs Brazil')}</div>
+            </div>
           </div>
         </div>
       </div>
 
       <section className="tables-section">
+        <div className="section-header">
+          <h2 className="section-title">Live tables</h2>
+          <span className="section-meta">{filtered.length} matching · sorted by heat</span>
+        </div>
         <div className="tables-filter-row">
           {FILTERS.map((f) => (
-            <button
-              key={f}
-              className={'filter-chip' + (filter === f ? ' active' : '')}
-              onClick={() => setFilter(f)}
-            >
+            <button key={f} className={'filter-chip' + (filter === f ? ' active' : '')} onClick={() => setFilter(f)}>
               {f}
             </button>
           ))}
@@ -121,7 +117,7 @@ export default function TablesListPage() {
         </div>
       </section>
 
-      <button className="fab-open" onClick={() => navigate('/open')} title="Open your own table">+</button>
+      <button className="fab-open" onClick={() => navigate('/open')} title="Open your own table" aria-label="Open">+</button>
     </div>
   )
 }

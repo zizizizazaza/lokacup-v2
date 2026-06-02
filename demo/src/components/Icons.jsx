@@ -1,0 +1,26 @@
+const base = { width: 18, height: 18, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.8, strokeLinecap: 'round', strokeLinejoin: 'round' }
+
+export const IconTable = (p) => (
+  <svg {...base} {...p}><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 10h18" /><path d="M9 5v14" /></svg>
+)
+export const IconFork = (p) => (
+  <svg {...base} {...p}><circle cx="6" cy="6" r="2.2" /><circle cx="18" cy="6" r="2.2" /><circle cx="12" cy="18" r="2.2" /><path d="M6 8.2v3.6a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V8.2" /><path d="M12 13.8v2" /></svg>
+)
+export const IconPlus = (p) => (
+  <svg {...base} {...p}><path d="M12 5v14M5 12h14" /></svg>
+)
+export const IconSpark = (p) => (
+  <svg {...base} {...p}><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M5.6 18.4l2.8-2.8M15.6 8.4l2.8-2.8" /></svg>
+)
+export const IconUser = (p) => (
+  <svg {...base} {...p}><circle cx="12" cy="8" r="3.5" /><path d="M5 20c1.2-3.5 4-5 7-5s5.8 1.5 7 5" /></svg>
+)
+export const IconEye = (p) => (
+  <svg {...base} {...p}><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z" /><circle cx="12" cy="12" r="2.6" /></svg>
+)
+export const IconBot = (p) => (
+  <svg {...base} {...p}><rect x="4" y="7" width="16" height="12" rx="3" /><circle cx="9" cy="13" r="1.2" /><circle cx="15" cy="13" r="1.2" /><path d="M12 3v4" /><path d="M9 3h6" /></svg>
+)
+export const IconSend = (p) => (
+  <svg {...base} {...p}><path d="M3 11.5 21 4l-7.5 18-2.5-8-8-2.5z" /></svg>
+)
