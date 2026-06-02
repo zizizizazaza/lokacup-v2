@@ -48,8 +48,15 @@ function LangSwitcher() {
 }
 
 export default function TopNav() {
+  const [scrolled, setScrolled] = useState(false)
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 120)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
   return (
-    <nav className="top-nav">
+    <nav className={'top-nav' + (scrolled ? ' scrolled' : '')}>
       <div className="top-nav-inner">
         <Link to="/" className="nav-brand">LokaCup</Link>
         <div className="nav-links">
