@@ -19,9 +19,9 @@ function TableCard({ t }) {
     <Link to={`/table/${t.id}`} className={cls}>
       <div className="tc-head">
         <div className="tc-host">
-          <span>{t.host.emoji}</span>
+          <span className="tc-host-avatar">{t.host.emoji}</span>
           <span>{t.host.handle}</span>
-          <span className="tc-host-tag">{isOff ? 'Official' : 'User'}</span>
+          <span className="tc-host-tag">{isOff ? 'Official' : isArb ? 'Arb' : 'User'}</span>
         </div>
         {t.status === 'live' && <span className="tc-live">LIVE</span>}
       </div>
@@ -78,15 +78,32 @@ export default function TablesListPage() {
         </video>
         <div className="hero-overlay" />
         <div className="hero-content">
-          <h1 className="hero-title">World Cup AI Prediction</h1>
+          <div className="hero-pill">8 live tables · 309 watching now</div>
+          <h1 className="hero-title">
+            Predict the World Cup with <span className="grad">AI consensus</span>
+          </h1>
           <p className="v2-hero-subtitle">
-            Live tables, real-time multi-agent analysis. Watch, fork, debate.
+            Live tables, real-time multi-agent analysis. Watch the AI debate the markets, fork your own private chat, and find your edge.
           </p>
           <div className="v2-hero-ctas">
-            <a href="#tables" className="v2-cta-primary">Browse live tables ↓</a>
+            <a href="#tables" className="v2-cta-primary">Browse live tables</a>
             <button className="v2-cta-secondary" onClick={() => navigate('/open')}>
               Open my own table
             </button>
+          </div>
+          <div className="hero-stats">
+            <div className="hero-stat">
+              <div className="label">Total volume tracked</div>
+              <div className="value grad">$42.8M</div>
+            </div>
+            <div className="hero-stat">
+              <div className="label">AI accuracy (WC22)</div>
+              <div className="value">84.7%</div>
+            </div>
+            <div className="hero-stat">
+              <div className="label">Active agents</div>
+              <div className="value">04</div>
+            </div>
           </div>
         </div>
       </section>

@@ -144,13 +144,13 @@ export default function TableRoomPage() {
             <h4>Spectators ({t.spectatorCount})</h4>
             <div className="spectator-list">
               <div className="spectator host-row">
-                <span className="spectator-dot" />
+                <span className="spectator-avatar" />
                 <span>{t.host.handle}</span>
                 <span style={{ marginLeft: 'auto', fontSize: '0.7rem', color: 'var(--fg-dim)' }}>HOST</span>
               </div>
               {t.spectators.slice(0, 5).map((s) => (
                 <div key={s.handle} className="spectator">
-                  <span className="spectator-dot" />
+                  <span className="spectator-avatar" />
                   <span>{s.handle}</span>
                   <span style={{ marginLeft: 'auto', fontSize: '0.72rem', color: 'var(--fg-dim)' }}>{s.joinedAgo}</span>
                 </div>
