@@ -38,9 +38,6 @@ export default function Shell({ children, hideChat }) {
                 <span className="live-dot" aria-hidden="true" />
                 Live tables
               </NavLink>
-              <NavLink to="/forks" className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')}>
-                My Chat
-              </NavLink>
               <NavLink to="/campaign" className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')}>
                 Campaign
               </NavLink>

@@ -1,4 +1,3 @@
-import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './styles/tokens.css'
@@ -10,19 +9,22 @@ import ForkPage from './pages/v2/ForkPage.jsx'
 import OpenTablePage from './pages/v2/OpenTablePage.jsx'
 import MyForksPage from './pages/v2/MyForksPage.jsx'
 
+// NOTE: StrictMode is intentionally NOT used here. It double-mounts components in dev,
+// which causes two simultaneous speechSynthesis intervals to run for Coach Mike /
+// PresenterBar — making mute appear "broken" because the invisible second instance
+// keeps queueing utterances. Production builds don't have this issue, but for a clean
+// dev experience we leave it off.
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <BrowserRouter>
-      <div className="bg-grid" />
-      <Shell>
-        <Routes>
-          <Route path="/" element={<TablesListPage />} />
-          <Route path="/table/:id" element={<TableRoomPage />} />
-          <Route path="/fork/:id" element={<ForkPage />} />
-          <Route path="/open" element={<OpenTablePage />} />
-          <Route path="/forks" element={<MyForksPage />} />
-        </Routes>
-      </Shell>
-    </BrowserRouter>
-  </StrictMode>,
+  <BrowserRouter>
+    <div className="bg-grid" />
+    <Shell>
+      <Routes>
+        <Route path="/" element={<TablesListPage />} />
+        <Route path="/table/:id" element={<TableRoomPage />} />
+        <Route path="/fork/:id" element={<ForkPage />} />
+        <Route path="/open" element={<OpenTablePage />} />
+        <Route path="/forks" element={<MyForksPage />} />
+      </Routes>
+    </Shell>
+  </BrowserRouter>,
 )

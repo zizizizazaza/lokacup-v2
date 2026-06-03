@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { acquireVoice, hasVoiceLock } from '../lib/voiceLock.js'
 
 const AGENT_TONE = { 'Stats Analyst': 'mint', 'Market Analyst': 'gold', 'News Analyst': 'coral', 'Tactics Analyst': 'cyan' }
 
@@ -15,17 +16,36 @@ function PresenterBar() {
   const [muted, setMuted] = useState(false) // default unmuted — narrator is talking on entry
   const [line, setLine] = useState(PRESENTER_LINES[0])
   const idx = useRef(0)
+  const mutedRef = useRef(muted)
+  mutedRef.current = muted // synchronous sync — interval callbacks see the latest mute state instantly
   const supportsTTS = typeof window !== 'undefined' && 'speechSynthesis' in window
+  const voiceLockRef = useRef(null)
+  if (voiceLockRef.current === null) voiceLockRef.current = acquireVoice()
+  useEffect(() => () => voiceLockRef.current?.release(), [])
 
   // Rotate spoken lines every ~12s while unmuted.
   useEffect(() => {
+    if (!supportsTTS) return
     if (muted) {
-      if (supportsTTS) window.speechSynthesis.cancel()
-      return
+      const ss = window.speechSynthesis
+      // Monkey-patch speak to a no-op so nothing can queue while muted.
+      const origSpeak = ss.speak.bind(ss)
+      ss.speak = () => {}
+      // Hammer cancel for 1.2s to kill anything mid-utterance.
+      const kill = () => { try { ss.pause() } catch (e) {} ; ss.cancel() }
+      kill()
+      const ids = [50, 150, 350, 700, 1200].map((d) => setTimeout(kill, d))
+      return () => {
+        ids.forEach(clearTimeout)
+        ss.speak = origSpeak
+        try { ss.resume() } catch (e) {}
+      }
     }
     let alive = true
     const speak = (text) => {
-      if (!supportsTTS || !alive) return
+      if (!alive || mutedRef.current) return
+      // Only the lock holder speaks — kills any phantom duplicate instance.
+      if (!hasVoiceLock(voiceLockRef.current?.id)) return
       window.speechSynthesis.cancel()
       const u = new SpeechSynthesisUtterance(text)
       u.rate = 1.05
@@ -34,6 +54,7 @@ function PresenterBar() {
     }
     speak(line)
     const id = setInterval(() => {
+      if (mutedRef.current) return
       idx.current = (idx.current + 1) % PRESENTER_LINES.length
       const next = PRESENTER_LINES[idx.current]
       setLine(next)
@@ -42,12 +63,17 @@ function PresenterBar() {
     return () => {
       alive = false
       clearInterval(id)
-      if (supportsTTS) window.speechSynthesis.cancel()
+      window.speechSynthesis.cancel()
     }
   }, [muted])
 
-  // Cleanup on unmount: stop any speech.
-  useEffect(() => () => { if (supportsTTS) window.speechSynthesis.cancel() }, [])
+  // Cleanup on unmount: stop any speech, twice for good measure.
+  useEffect(() => () => {
+    if (supportsTTS) {
+      window.speechSynthesis.cancel()
+      setTimeout(() => window.speechSynthesis.cancel(), 60)
+    }
+  }, [])
 
   return (
     <div className={'pr-presenter' + (muted ? ' is-muted' : ' is-live')}>

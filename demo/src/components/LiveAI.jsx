@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { IconVolumeOn, IconVolumeOff } from './Icons.jsx'
+import { acquireVoice, hasVoiceLock } from '../lib/voiceLock.js'
 
 const AGENTS = {
   stats:   { name: 'Stats Analyst',   tone: 'mint',  desc: 'FBref · xG · H2H · ELO' },
@@ -187,7 +188,11 @@ export default function LiveAI() {
   const minute = useRef(62)
   const voiceOnRef = useRef(voiceOn)
   const voiceCacheRef = useRef(null)
-  useEffect(() => { voiceOnRef.current = voiceOn }, [voiceOn])
+  const voiceLockRef = useRef(null)
+  // Acquire the global voice lock once at mount; release on unmount.
+  if (voiceLockRef.current === null) voiceLockRef.current = acquireVoice()
+  useEffect(() => () => voiceLockRef.current?.release(), [])
+  // voiceOnRef is synced synchronously below — see "Sync voiceOnRef IMMEDIATELY".
 
   const pickVoice = () => {
     if (typeof window === 'undefined' || !window.speechSynthesis) return null
@@ -209,13 +214,18 @@ export default function LiveAI() {
 
   const speak = (text) => {
     if (!voiceOnRef.current || typeof window === 'undefined' || !window.speechSynthesis) return
+    // Only the lock holder may speak — silences any duplicate instances.
+    if (!hasVoiceLock(voiceLockRef.current?.id)) return
+    // Always clear the queue before speaking — otherwise rapid back-to-back lines
+    // pile up and overlap (causes the "two people talking" effect).
+    window.speechSynthesis.cancel()
     const u = new SpeechSynthesisUtterance(text)
     const v = pickVoice()
     if (v) u.voice = v
     u.rate = 1.05
     u.pitch = 0.95
     u.volume = 1
-    u.onstart = () => setSpeaking(true)
+    u.onstart = () => { if (voiceOnRef.current) setSpeaking(true) }
     u.onend = () => setSpeaking(false)
     u.onerror = () => setSpeaking(false)
     window.speechSynthesis.speak(u)
@@ -243,24 +253,36 @@ export default function LiveAI() {
     return () => clearInterval(id)
   }, [eventIdx])
 
+  // Sync voiceOnRef IMMEDIATELY (don't wait for the next render-after effect).
+  // Without this, the interval that fires between mute click and ref update can still speak().
+  voiceOnRef.current = voiceOn
+
   useEffect(() => {
-    if (!voiceOn && typeof window !== 'undefined' && window.speechSynthesis) {
-      window.speechSynthesis.cancel()
-      setSpeaking(false)
+    if (voiceOn || typeof window === 'undefined' || !window.speechSynthesis) return
+    const ss = window.speechSynthesis
+    // 1. Replace ss.speak with a no-op while muted. NOTHING can queue audio, period —
+    //    no matter how aggressive the streaming interval gets.
+    const origSpeak = ss.speak.bind(ss)
+    ss.speak = () => {}
+    // 2. Pause + cancel, repeatedly, to kill anything mid-utterance.
+    //    Chrome/Safari ignore cancel() inconsistently when an utterance has just started.
+    const kill = () => { try { ss.pause() } catch (e) {} ; ss.cancel() }
+    kill()
+    setSpeaking(false)
+    const ids = [50, 150, 350, 700, 1200].map((d) => setTimeout(kill, d))
+    return () => {
+      ids.forEach(clearTimeout)
+      ss.speak = origSpeak
+      try { ss.resume() } catch (e) {}
     }
   }, [voiceOn])
 
   const toggleVoice = () => {
     setVoiceOn((on) => {
       const next = !on
-      if (next && window.speechSynthesis) {
-        const u = new SpeechSynthesisUtterance('Live AI commentary on.')
-        const v = pickVoice()
-        if (v) u.voice = v
-        u.rate = 1.05
-        u.onstart = () => setSpeaking(true)
-        u.onend = () => setSpeaking(false)
-        window.speechSynthesis.speak(u)
+      // No confirmation utterance — just flip the switch. The next streaming line plays naturally.
+      if (!next && typeof window !== 'undefined' && window.speechSynthesis) {
+        window.speechSynthesis.cancel()
       }
       return next
     })
