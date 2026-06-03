@@ -4243,23 +4243,49 @@
   justify-content: center;
   background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
   border: 1.5px solid rgba(255,255,255,0.12);
-  color: rgba(255,255,255,0.55);
-  margin: 0 auto 0.75rem;
-  transition: color 0.2s, border-color 0.2s;
+  margin: 2.2rem auto 1.4rem; /* breathing room so the rings + bars don't clip */
+  /* Theme color drives ring border, bar fill, and mic glyph stroke via currentColor. */
+  --wave-color: rgba(255,255,255,0.45);
+  color: var(--wave-color);
+  transition: color 0.25s, border-color 0.25s, background 0.25s;
 }
 .presenter-mic.is-live {
-  color: var(--accent-red);
-  border-color: rgba(217,28,28,0.5);
-  background: radial-gradient(circle at 30% 30%, rgba(217,28,28,0.18), rgba(217,28,28,0.03));
+  --wave-color: var(--accent-red);
+  border-color: rgba(217,28,28,0.55);
+  background: radial-gradient(circle at 30% 30%, rgba(217,28,28,0.2), rgba(217,28,28,0.04));
 }
+.presenter-mic.is-muted {
+  --wave-color: rgba(255,255,255,0.4);
+  border-color: rgba(255,255,255,0.18);
+}
+
+/* Expanding rings — always animating; color and intensity convey state.
+   Speaking (red, bright + glow) > Idle live (red, medium) > Muted (grey, softer). */
 .presenter-mic-ring {
   position: absolute;
-  inset: -6px;
+  inset: 0;
   border-radius: 50%;
-  border: 1.5px solid rgba(217,28,28,0.5);
-  animation: presenter-ring 1.8s ease-out infinite;
+  border: 1.5px solid currentColor;
+  opacity: 0;
   pointer-events: none;
+  animation: presenter-ring 3.4s cubic-bezier(0.16, 0.7, 0.4, 1) infinite;
 }
+.presenter-mic-ring.r1 { animation-delay: 0s; }
+.presenter-mic-ring.r2 { animation-delay: 1.13s; }
+.presenter-mic-ring.r3 { animation-delay: 2.26s; }
+@keyframes presenter-ring {
+  0%   { transform: scale(1);    opacity: 0.55; }
+  60%  { opacity: 0.18; }
+  100% { transform: scale(1.7);  opacity: 0; }
+}
+
+/* Live — soft red glow (subtle, not blasting) */
+.presenter-mic.is-live .presenter-mic-ring {
+  filter: drop-shadow(0 0 3px rgba(217,28,28,0.5));
+}
+/* Muted — same pace + same shape as Live, just grey.
+   Coach Mike is still talking, just silenced. Not "thinking" or slowed down. */
+
 
 .presenter-identity {
   display: flex;

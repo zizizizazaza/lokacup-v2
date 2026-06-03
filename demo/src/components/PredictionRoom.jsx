@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { acquireVoice, hasVoiceLock } from '../lib/voiceLock.js'
+import { getInitialMuted, persistMuted } from '../lib/mutePref.js'
 
 const AGENT_TONE = { 'Stats Analyst': 'mint', 'Market Analyst': 'gold', 'News Analyst': 'coral', 'Tactics Analyst': 'cyan' }
 
@@ -13,8 +14,10 @@ const PRESENTER_LINES = [
 ]
 
 function PresenterBar() {
-  const [muted, setMuted] = useState(false) // default unmuted — narrator is talking on entry
+  // Read persisted preference — if the user muted last session, start muted.
+  const [muted, setMuted] = useState(() => getInitialMuted())
   const [line, setLine] = useState(PRESENTER_LINES[0])
+  const [speaking, setSpeaking] = useState(false)
   const idx = useRef(0)
   const mutedRef = useRef(muted)
   mutedRef.current = muted // synchronous sync — interval callbacks see the latest mute state instantly
@@ -34,6 +37,7 @@ function PresenterBar() {
       // Hammer cancel for 1.2s to kill anything mid-utterance.
       const kill = () => { try { ss.pause() } catch (e) {} ; ss.cancel() }
       kill()
+      setSpeaking(false)
       const ids = [50, 150, 350, 700, 1200].map((d) => setTimeout(kill, d))
       return () => {
         ids.forEach(clearTimeout)
@@ -50,6 +54,9 @@ function PresenterBar() {
       const u = new SpeechSynthesisUtterance(text)
       u.rate = 1.05
       u.pitch = 1.0
+      u.onstart = () => { if (!mutedRef.current) setSpeaking(true) }
+      u.onend   = () => setSpeaking(false)
+      u.onerror = () => setSpeaking(false)
       window.speechSynthesis.speak(u)
     }
     speak(line)
@@ -79,13 +86,13 @@ function PresenterBar() {
     <div className={'pr-presenter' + (muted ? ' is-muted' : ' is-live')}>
       <div className="pr-presenter-avatar" aria-hidden>
         <span className="pr-presenter-glyph">🎙</span>
-        {!muted && <span className="pr-presenter-ring" />}
+        {!muted && speaking && <span className="pr-presenter-ring" />}
       </div>
       <div className="pr-presenter-body">
         <div className="pr-presenter-meta">
           <span className="pr-presenter-name">coachMike</span>
           <span className="pr-presenter-role">· AI presenter</span>
-          {!muted && (
+          {!muted && speaking && (
             <span className="pr-presenter-wave" aria-hidden>
               <i /><i /><i /><i /><i />
             </span>
@@ -96,7 +103,7 @@ function PresenterBar() {
       <button
         type="button"
         className="pr-presenter-mute"
-        onClick={() => setMuted((v) => !v)}
+        onClick={() => setMuted((v) => { const next = !v; persistMuted(next); return next })}
         aria-label={muted ? 'Unmute presenter' : 'Mute presenter'}
         title={muted ? 'Unmute' : 'Mute'}
       >

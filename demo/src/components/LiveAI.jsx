@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { IconVolumeOn, IconVolumeOff } from './Icons.jsx'
 import { acquireVoice, hasVoiceLock } from '../lib/voiceLock.js'
+import { getInitialMuted, persistMuted } from '../lib/mutePref.js'
 
 const AGENTS = {
   stats:   { name: 'Stats Analyst',   tone: 'mint',  desc: 'FBref · xG · H2H · ELO' },
@@ -143,7 +144,8 @@ function AvatarFace({ speaking, agentTone }) {
 export default function LiveAI() {
   const [feed, setFeed] = useState(() => POOL.slice(0, 4).map((p, i) => ({ ...p, id: i, t: fmtMin(58 + i) })))
   const [eventIdx, setEventIdx] = useState(0)
-  const [voiceOn, setVoiceOn] = useState(true) // Coach Mike is on by default
+  // Default: on, unless the user previously muted (preference persists across sessions).
+  const [voiceOn, setVoiceOn] = useState(() => !getInitialMuted())
   const [tab, setTab] = useState('presenter') // 'feed' | 'presenter' — Coach Mike open by default
   const [currentLine, setCurrentLine] = useState(null) // { agent, text } currently being presented
   const [speaking, setSpeaking] = useState(false)
@@ -280,7 +282,7 @@ export default function LiveAI() {
   const toggleVoice = () => {
     setVoiceOn((on) => {
       const next = !on
-      // No confirmation utterance — just flip the switch. The next streaming line plays naturally.
+      persistMuted(!next) // remember the choice for next visit
       if (!next && typeof window !== 'undefined' && window.speechSynthesis) {
         window.speechSynthesis.cancel()
       }
@@ -359,24 +361,25 @@ export default function LiveAI() {
         </>
       ) : (
         <div className="presenter">
-          {/* Mac-style microphone — no avatar character */}
-          <div className={'presenter-mic' + (voiceOn ? ' is-live' : '')}>
+          {/* Mac-style microphone — always animated to signal "Coach Mike is working".
+              Red waves when live, grey waves when muted. */}
+          <div className={'presenter-mic' + (voiceOn ? ' is-live' : ' is-muted')}>
+            {/* Always-on rings: red when actively speaking, grey when muted/idle.
+                Communicates "Coach Mike is still here" without implying audible sound. */}
+            <span className="presenter-mic-ring r1" aria-hidden />
+            <span className="presenter-mic-ring r2" aria-hidden />
+            <span className="presenter-mic-ring r3" aria-hidden />
+
             <svg viewBox="0 0 64 80" width="56" height="70" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-              {/* Capsule */}
               <rect x="22" y="6" width="20" height="36" rx="10" />
-              {/* Grille lines */}
               <line x1="26" y1="14" x2="38" y2="14" />
               <line x1="26" y1="20" x2="38" y2="20" />
               <line x1="26" y1="26" x2="38" y2="26" />
               <line x1="26" y1="32" x2="38" y2="32" />
-              {/* Arc */}
               <path d="M14 36a18 18 0 0 0 36 0" />
-              {/* Stem */}
               <line x1="32" y1="54" x2="32" y2="66" />
-              {/* Base */}
               <line x1="22" y1="66" x2="42" y2="66" />
             </svg>
-            {voiceOn && <span className="presenter-mic-ring" aria-hidden />}
           </div>
 
           <div className="presenter-identity">
@@ -386,7 +389,7 @@ export default function LiveAI() {
 
           <div className="presenter-on-air">
             <span className={'on-air-dot' + (voiceOn ? ' live' : '')} />
-            {voiceOn ? (speaking ? 'Live · commentating now' : 'Live · waiting for the next call') : 'Muted'}
+            {voiceOn ? 'Live' : 'Muted'}
           </div>
 
           <button
