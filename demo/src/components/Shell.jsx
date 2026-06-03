@@ -1,8 +1,28 @@
 import { NavLink, Link, useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
 import LiveAI from './LiveAI.jsx'
 
 export default function Shell({ children, hideChat }) {
   const loc = useLocation()
+
+  // Cancel any speech queued by the previous route. Prevents the table-page
+  // narrator from continuing to talk after the user navigates back home (and vice versa).
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.speechSynthesis) {
+      window.speechSynthesis.cancel()
+    }
+  }, [loc.pathname])
+
+  // Stop speech when the tab/window is hidden — no ghost narrator playing on a backgrounded tab.
+  useEffect(() => {
+    if (typeof document === 'undefined' || !window.speechSynthesis) return
+    const onHide = () => {
+      if (document.visibilityState === 'hidden') window.speechSynthesis.cancel()
+    }
+    document.addEventListener('visibilitychange', onHide)
+    window.addEventListener('pagehide', () => window.speechSynthesis.cancel())
+    return () => document.removeEventListener('visibilitychange', onHide)
+  }, [])
   const ownsRail = loc.pathname.startsWith('/table/') || loc.pathname.startsWith('/fork/')
   const immersive = loc.pathname.startsWith('/table/')
   const showChat = !hideChat && !ownsRail

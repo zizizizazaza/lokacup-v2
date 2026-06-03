@@ -2,10 +2,10 @@ import { useEffect, useRef, useState } from 'react'
 import { IconVolumeOn, IconVolumeOff } from './Icons.jsx'
 
 const AGENTS = {
-  stats:   { name: 'Stats',   tone: 'mint',  desc: 'FBref · xG · H2H · ELO' },
-  odds:    { name: 'Odds',    tone: 'gold',  desc: 'Polymarket · Bet365 · whales' },
-  news:    { name: 'News',    tone: 'coral', desc: 'Lineups · injuries · social' },
-  tactics: { name: 'Tactics', tone: 'cyan',  desc: 'Formations · matchups' },
+  stats:   { name: 'Stats Analyst',   tone: 'mint',  desc: 'FBref · xG · H2H · ELO' },
+  odds:    { name: 'Market Analyst',  tone: 'gold',  desc: 'Polymarket · Bet365 · whales' },
+  news:    { name: 'News Analyst',    tone: 'coral', desc: 'Lineups · injuries · social' },
+  tactics: { name: 'Tactics Analyst', tone: 'cyan',  desc: 'Formations · matchups' },
 }
 
 const POOL = [
@@ -142,8 +142,8 @@ function AvatarFace({ speaking, agentTone }) {
 export default function LiveAI() {
   const [feed, setFeed] = useState(() => POOL.slice(0, 4).map((p, i) => ({ ...p, id: i, t: fmtMin(58 + i) })))
   const [eventIdx, setEventIdx] = useState(0)
-  const [voiceOn, setVoiceOn] = useState(false)
-  const [tab, setTab] = useState('feed') // 'feed' | 'presenter'
+  const [voiceOn, setVoiceOn] = useState(true) // Coach Mike is on by default
+  const [tab, setTab] = useState('presenter') // 'feed' | 'presenter' — Coach Mike open by default
   const [currentLine, setCurrentLine] = useState(null) // { agent, text } currently being presented
   const [speaking, setSpeaking] = useState(false)
 
@@ -237,8 +237,8 @@ export default function LiveAI() {
 
       const pick = POOL[counter.current % POOL.length]
       setFeed((prev) => [...prev.slice(-30), { id: counter.current, ...pick, t: fmtMin(minute.current) }])
-      setCurrentLine({ agent: pick.agent, name: AGENTS[pick.agent].name + ' Agent', text: pick.text })
-      speak(`${AGENTS[pick.agent].name} agent. ${pick.text}`)
+      setCurrentLine({ agent: pick.agent, name: AGENTS[pick.agent].name, text: pick.text })
+      speak(`${AGENTS[pick.agent].name}. ${pick.text}`)
     }, 3200)
     return () => clearInterval(id)
   }, [eventIdx])
@@ -301,7 +301,7 @@ export default function LiveAI() {
           className={'live-tab' + (tab === 'feed' ? ' active' : '')}
           onClick={() => setTab('feed')}
         >
-          Live feed
+          Live Analysis
         </button>
         <button
           className={'live-tab' + (tab === 'presenter' ? ' active' : '')}
@@ -313,15 +313,6 @@ export default function LiveAI() {
 
       {tab === 'feed' ? (
         <>
-          <div className="live-ai-agents">
-            {Object.entries(AGENTS).map(([k, a]) => (
-              <div key={k} className={'agent-chip tone-' + a.tone} title={a.desc}>
-                <span className="agent-dot" />
-                <span>{a.name}</span>
-              </div>
-            ))}
-          </div>
-
           <div className="live-ai-stream" ref={streamRef}>
             {feed.map((m) => m.kind === 'event' ? (
               <div key={m.id} className={'feed-event ' + m.event.kind}>
@@ -346,20 +337,44 @@ export default function LiveAI() {
         </>
       ) : (
         <div className="presenter">
-          <AvatarFace speaking={speaking && voiceOn} agentTone={lineTone} />
+          {/* Mac-style microphone — no avatar character */}
+          <div className={'presenter-mic' + (voiceOn ? ' is-live' : '')}>
+            <svg viewBox="0 0 64 80" width="56" height="70" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+              {/* Capsule */}
+              <rect x="22" y="6" width="20" height="36" rx="10" />
+              {/* Grille lines */}
+              <line x1="26" y1="14" x2="38" y2="14" />
+              <line x1="26" y1="20" x2="38" y2="20" />
+              <line x1="26" y1="26" x2="38" y2="26" />
+              <line x1="26" y1="32" x2="38" y2="32" />
+              {/* Arc */}
+              <path d="M14 36a18 18 0 0 0 36 0" />
+              {/* Stem */}
+              <line x1="32" y1="54" x2="32" y2="66" />
+              {/* Base */}
+              <line x1="22" y1="66" x2="42" y2="66" />
+            </svg>
+            {voiceOn && <span className="presenter-mic-ring" aria-hidden />}
+          </div>
+
+          <div className="presenter-identity">
+            <span className="presenter-identity-name">Coach Mike</span>
+            <span className="presenter-identity-role">AI presenter</span>
+          </div>
 
           <div className="presenter-on-air">
             <span className={'on-air-dot' + (voiceOn ? ' live' : '')} />
-            {voiceOn ? (speaking ? 'On air · commentating live' : 'On air · waiting for the next call') : 'Off air — tap to start'}
+            {voiceOn ? (speaking ? 'Live · commentating now' : 'Live · waiting for the next call') : 'Muted'}
           </div>
 
           <button
             className={'presenter-btn' + (voiceOn ? ' on' : '')}
             onClick={toggleVoice}
             aria-pressed={voiceOn}
+            title={voiceOn ? 'Mute Coach Mike' : 'Unmute Coach Mike'}
           >
             {voiceOn ? <IconVolumeOn width={16} height={16} /> : <IconVolumeOff width={16} height={16} />}
-            <span>{voiceOn ? 'Mute presenter' : 'Start live commentary'}</span>
+            <span>{voiceOn ? 'Mute' : 'Unmute'}</span>
             {voiceOn && <span className="voice-wave"><i /><i /><i /></span>}
           </button>
         </div>

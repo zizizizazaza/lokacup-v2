@@ -24,7 +24,10 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  background-color: var(--bg-base);
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(217,28,28,0.05), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 0% 100%, rgba(168,255,0,0.025), transparent 60%),
+    #0c0c10;
   color: var(--fg-primary);
   font-family: var(--font-ui);
   line-height: 1.55;

@@ -3,8 +3,16 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { getTable, ME_HANDLE } from '../../data/tables'
 import { withFlags, flagSrc } from '../../components/Flag.jsx'
 import { IconSend } from '../../components/Icons.jsx'
+import PredictionRoom from '../../components/PredictionRoom.jsx'
+import MainAnalysisTabs from '../../components/MainAnalysisTabs.jsx'
+import { ANALYSTS } from '../../data/analysts.js'
 
-const AGENT_TONE = { Stats: 'mint', Odds: 'gold', News: 'coral', Tactics: 'cyan' }
+const AGENT_TONE = {
+  'Stats Analyst': 'mint',
+  'Market Analyst': 'gold',
+  'News Analyst': 'coral',
+  'Tactics Analyst': 'cyan',
+}
 
 // Mock live match data (would come from feed)
 const MATCH_EVENTS = [
@@ -56,26 +64,118 @@ function EventBadge({ type }) {
   return <span className={'ev-badge ev-' + type}>{EVENT_LABEL[type] || type}</span>
 }
 
+// Generic placeholder for "Field" / "Yes" / "No" — anything not a country
+function FieldGlobe() {
+  return (
+    <span className="flag flag-placeholder" aria-hidden>
+      <svg viewBox="0 0 24 24" width="100%" height="100%" fill="none" stroke="currentColor" strokeWidth="1.6">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" />
+      </svg>
+    </span>
+  )
+}
+
+// Mini probability chart for the right rail — 3 lines (Brazil/Morocco/Draw)
+function MiniProbChart({ aiA, aiB, pairA, pairB }) {
+  const SERIES = 36
+  const [history, setHistory] = useState(() => {
+    const out = []
+    let a = aiA - 6, b = aiB - 4, d = Math.max(2, 100 - a - b)
+    for (let i = 0; i < SERIES; i++) {
+      a += (Math.random() - 0.5) * 2.2
+      b += (Math.random() - 0.5) * 2
+      d += (Math.random() - 0.5) * 1.4
+      a = Math.max(8, Math.min(82, a))
+      b = Math.max(8, Math.min(82, b))
+      d = Math.max(3, Math.min(30, d))
+      const s = a + b + d
+      out.push({ a: (a / s) * 100, b: (b / s) * 100, d: (d / s) * 100 })
+    }
+    return out
+  })
+  useEffect(() => {
+    const id = setInterval(() => {
+      setHistory((prev) => {
+        const last = prev[prev.length - 1]
+        let a = last.a + (Math.random() - 0.5) * 3
+        let b = last.b + (Math.random() - 0.5) * 2.5
+        let d = last.d + (Math.random() - 0.5) * 1.6
+        a = Math.max(8, Math.min(82, a))
+        b = Math.max(8, Math.min(82, b))
+        d = Math.max(3, Math.min(30, d))
+        const s = a + b + d
+        return [...prev.slice(-(SERIES - 1)), { a: (a / s) * 100, b: (b / s) * 100, d: (d / s) * 100 }]
+      })
+    }, 1500)
+    return () => clearInterval(id)
+  }, [])
+  const w = 320, h = 140, padL = 22, padR = 42, padT = 12, padB = 18
+  const innerW = w - padL - padR
+  const innerH = h - padT - padB
+  const step = innerW / (history.length - 1)
+  const yOf = (v) => padT + innerH - (v / 100) * innerH
+  const ptsA = history.map((p, i) => `${padL + i * step},${yOf(p.a)}`).join(' ')
+  const ptsB = history.map((p, i) => `${padL + i * step},${yOf(p.b)}`).join(' ')
+  const ptsD = history.map((p, i) => `${padL + i * step},${yOf(p.d)}`).join(' ')
+  const last = history[history.length - 1]
+  return (
+    <div className="mpc">
+      <div className="mpc-head">
+        <span>AI win probability · last 36 ticks</span>
+      </div>
+      <svg viewBox={`0 0 ${w} ${h}`} className="mpc-svg" preserveAspectRatio="none">
+        {[25, 50, 75].map((g) => (
+          <g key={g}>
+            <line x1={padL} x2={padL + innerW} y1={yOf(g)} y2={yOf(g)} stroke="rgba(255,255,255,0.05)" strokeDasharray="3 4" />
+            <text x={padL - 4} y={yOf(g) + 3} fontSize="8" textAnchor="end" fill="rgba(255,255,255,0.35)" fontFamily="var(--font-data)">{g}%</text>
+          </g>
+        ))}
+        <polyline points={ptsD} fill="none" stroke="rgba(255,255,255,0.35)" strokeWidth="1.4" />
+        <polyline points={ptsB} fill="none" stroke="var(--accent-blue)" strokeWidth="1.6" />
+        <polyline points={ptsA} fill="none" stroke="var(--accent-red)"  strokeWidth="2" style={{ filter: 'drop-shadow(0 0 4px var(--accent-red))' }} />
+        {/* end dots + labels */}
+        <circle cx={padL + (history.length - 1) * step} cy={yOf(last.a)} r="3" fill="var(--accent-red)" />
+        <circle cx={padL + (history.length - 1) * step} cy={yOf(last.b)} r="2.5" fill="var(--accent-blue)" />
+        <circle cx={padL + (history.length - 1) * step} cy={yOf(last.d)} r="2.5" fill="rgba(255,255,255,0.7)" />
+        <text x={padL + innerW + 6} y={yOf(last.a) + 3} fontSize="10" fill="var(--accent-red)" fontFamily="var(--font-data)" fontWeight="700">{Math.round(last.a)}%</text>
+        <text x={padL + innerW + 6} y={yOf(last.b) + 3} fontSize="10" fill="var(--accent-blue)" fontFamily="var(--font-data)" fontWeight="700">{Math.round(last.b)}%</text>
+        <text x={padL + innerW + 6} y={yOf(last.d) + 3} fontSize="10" fill="rgba(255,255,255,0.7)" fontFamily="var(--font-data)" fontWeight="700">{Math.round(last.d)}%</text>
+      </svg>
+      <div className="mpc-legend">
+        <span className="mpc-leg bra"><i /> {pairA}</span>
+        <span className="mpc-leg draw"><i /> Draw</span>
+        <span className="mpc-leg mar"><i /> {pairB}</span>
+      </div>
+    </div>
+  )
+}
+
 // Pool of "live" AI snippets the agents stream into the conversation
 const AI_POOL = [
-  { agent: 'Stats',   text: 'xG diff after 60′: BRA 1.7 vs MAR 1.1 — pressure cooking centrally.' },
-  { agent: 'Odds',    text: 'Polymarket YES drifted 58 → 61% after 62′ chance. Whale printed $42k.' },
-  { agent: 'News',    text: 'Reuters: Neymar warming up. Lineup leak suggests sub at 70′.' },
-  { agent: 'Tactics', text: 'MAR dropped to a back-five. Wirtz isolated — expect a sub in 8 min.' },
-  { agent: 'Stats',   text: 'H2H in WC knockouts: BRA wins 4/6 over 20y, avg 1.8 goals.' },
-  { agent: 'Odds',    text: 'Bet365 implies 56% BRA vs Polymarket 61% — 5pt edge widening.' },
-  { agent: 'Tactics', text: 'Casemiro shielding back four — killing MAR second balls (8/10 won).' },
+  { agent: 'Stats Analyst',   text: 'xG diff after 60′: BRA 1.7 vs MAR 1.1 — pressure cooking centrally.' },
+  { agent: 'Market Analyst',  text: 'Polymarket YES drifted 58 → 61% after 62′ chance. Whale printed $42k.' },
+  { agent: 'News Analyst',    text: 'Reuters: Neymar warming up. Lineup leak suggests sub at 70′.' },
+  { agent: 'Tactics Analyst', text: 'MAR dropped to a back-five. Wirtz isolated — expect a sub in 8 min.' },
+  { agent: 'Stats Analyst',   text: 'H2H in WC knockouts: BRA wins 4/6 over 20y, avg 1.8 goals.' },
+  { agent: 'Market Analyst',  text: 'Bet365 implies 56% BRA vs Polymarket 61% — 5pt edge widening.' },
+  { agent: 'Tactics Analyst', text: 'Casemiro shielding back four — killing MAR second balls (8/10 won).' },
 ]
 
-// Spectator replies (live chat from viewers)
+// Spectator replies — friendly handles + optional badge (Twitch-style)
 const REPLY_POOL = [
-  { who: '0xA1c3…b27e', text: 'BRA midfield looks shaky after the goal' },
-  { who: '0xB244…1f89', text: 'MAR xG climbing — they could equalize again' },
-  { who: '0x91dd…0f4a', text: 'casemiro near a yellow, watch out' },
-  { who: '0xc8e1…0a22', text: 'ban the ref' },
-  { who: '0x2f01…ee44', text: 'value still on BRA Yes here' },
-  { who: '0x88d9…1bcd', text: 'Vinicius cooking, ngl' },
-  { who: '0xff03…aabb', text: '+EV bot just bought 3k more YES' },
+  { who: 'AlphaBet',       badge: 'sub',  text: 'BRA midfield looks shaky after the goal' },
+  { who: 'MoroccoStan',    badge: null,   text: 'xG climbing — they could equalize again' },
+  { who: 'EdgeHunter22',   badge: 'mod',  text: 'casemiro near a yellow, watch out' },
+  { who: 'RefHaterX',      badge: null,   text: 'ban the ref' },
+  { who: 'PolyDegen',      badge: null,   text: 'value still on BRA Yes here' },
+  { who: 'VinjrBro',       badge: null,   text: 'Vinicius cooking, ngl' },
+  { who: 'BotWatch',       badge: 'bot',  text: '+EV bot just bought 3k more YES' },
+  { who: 'SambaScout',     badge: 'sub',  text: 'they need to slow it down, MAR will sub' },
+  { who: 'lokaWhale',      badge: 'sub',  text: 'I went heavy on Over 2.5, looking good' },
+  { who: 'theTacticGuy',   badge: null,   text: 'BRA wingbacks been roasting them all match' },
+  { who: 'kalshiKween',    badge: null,   text: 'kalshi has it 2pt cheaper btw' },
+  { who: 'midfieldMan',    badge: null,   text: 'second-balls 9/10 last 5min lol' },
 ]
 
 function pickPair(title) {
@@ -111,7 +211,7 @@ function Message({ m }) {
       </div>
       <div className="rc-body">
         <div className="rc-meta">
-          <span className="rc-agent">{m.agent} Agent</span>
+          <span className="rc-agent">{m.agent}</span>
           <span className="rc-time">{m.t || 'now'}</span>
         </div>
         <div className="rc-bubble ai">{m.text}</div>
@@ -127,11 +227,14 @@ export default function TableRoomPage() {
 
   // Seed conversation with the table's history + auto AI feed
   const seed = (t?.messages || []).map((m, i) =>
-    m.role === 'ai' ? { ...m, agent: ['Stats','Odds','News','Tactics'][i % 4] } : m
+    m.role === 'ai'
+      ? { ...m, agent: ['Stats Analyst','Market Analyst','News Analyst','Tactics Analyst'][i % 4] }
+      : m
   )
   const [messages, setMessages] = useState(seed)
   const [input, setInput] = useState('')
   const [replies, setReplies] = useState(REPLY_POOL.slice(0, 5))
+  const [openAnalyst, setOpenAnalyst] = useState(null)
   const counter = useRef(seed.length)
   const streamRef = useRef(null)
 
@@ -178,6 +281,7 @@ export default function TableRoomPage() {
 
   const pair = pickPair(t.market.title)
   const aiA = t.market.aiConsensus
+  const edge = t.market.edge ?? 0
   const aiB = Math.max(0, 100 - aiA)
   const flagA = flagSrc(pair.a)
   const flagB = flagSrc(pair.b)
@@ -192,7 +296,7 @@ export default function TableRoomPage() {
     setTimeout(() => {
       setMessages((p) => [...p, {
         role: 'ai',
-        agent: 'Tactics',
+        agent: 'Tactics Analyst',
         text: 'Re-running 4 agents with your context — give me ~5s.',
         t: 'reply',
       }])
@@ -203,171 +307,163 @@ export default function TableRoomPage() {
     <div className="room">
       <div className="room-head">
         <button className="room-back" onClick={() => navigate('/')}>← Back</button>
-        <h1 className="room-title">{withFlags(t.market.title)}</h1>
+        <h1 className="room-title">
+          <span className="room-title-host">{t.host.handle}:</span>
+          <span className="room-title-q">{t.market.title}?</span>
+          {t.status === 'live' && <span className="room-title-live">Live · 67′</span>}
+        </h1>
         <div className="room-meta">
-          {t.status === 'live' && <span className="room-live">Live · 67′</span>}
+          <button className="room-invite room-share" type="button" title="Share this room">
+            <svg className="room-share-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+              <circle cx="18" cy="5" r="3" />
+              <circle cx="6" cy="12" r="3" />
+              <circle cx="18" cy="19" r="3" />
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+            </svg>
+            Share
+          </button>
           <span className="room-pill">{t.spectatorCount} watching</span>
         </div>
       </div>
 
       <div className="room-body">
-        {/* ── Conversation ───────────────────────── */}
-        <section className="room-conv">
-          <div className="room-card-head">
-            <h3>AI live debate</h3>
-            <span className="room-card-sub">Stats · Odds · News · Tactics — streaming</span>
+        {/* ── Live prediction room: scrollable prediction cards + AI thread ── */}
+        <section className="room-conv scrollable">
+          <div className="room-conv-top">
+            <PredictionRoom />
           </div>
-          <div className="rc-stream" ref={streamRef}>
-            {messages.map((m, i) => <Message key={i} m={m} />)}
-          </div>
-          <div className="rc-input-row">
-            <button className="rc-mic" title="Push to talk" aria-label="Voice">●</button>
-            <input
-              className="rc-input"
-              placeholder={isHostMe ? 'Type or hold mic to talk to the agents…' : 'Only the host can speak — Fork to ask privately.'}
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && send()}
-              disabled={!isHostMe && !t.isOfficial /* allow input during official tables in demo */}
-            />
-            <button className="rc-send" onClick={send} aria-label="Send"><IconSend width={16} height={16} /></button>
-          </div>
+          <MainAnalysisTabs market={t.market} pair={pair} />
         </section>
 
-        {/* ── Right rail: match info + market + spectator replies ── */}
-        <aside className="room-rail">
-
-          <div className="room-card match">
-            <div className="room-card-head"><h3>Match</h3></div>
-            <div className="match-block">
-              <div className="match-team">
-                {flagA && <img className="flag" alt="" src={flagA} />}
-                <div className="match-team-name">{pair.a}</div>
-              </div>
-              <div className="match-score">
-                <div className="ms-vals">2 — 1</div>
-                <div className="ms-time">67′</div>
-              </div>
-              <div className="match-team right">
-                {flagB && <img className="flag" alt="" src={flagB} />}
-                <div className="match-team-name">{pair.b}</div>
+        {/* ── Right rail: match summary + chart on top, chat full below ─ */}
+        <aside className="room-rail rail-chat">
+          <div className="room-card team-card">
+            {/* AI conclusion — one line, no jargon */}
+            <div className="ai-conclusion">
+              <div className="ai-conclusion-label">AI conclusion</div>
+              <div className="ai-conclusion-row">
+                {flagA ? <img className="flag" alt="" src={flagA} /> : <FieldGlobe />}
+                <span className="ai-conclusion-side">{pair.a}</span>
+                <span className="ai-conclusion-verb">to win</span>
+                <span className="ai-conclusion-prob">{aiA}%</span>
               </div>
             </div>
-            <div className="match-prob">
-              <div className="prob-line"><span>{pair.a} win</span><span>{aiA}%</span></div>
-              <div className="vs-bar"><span className="vs-fill" style={{ width: aiA + '%' }} /></div>
-              <div className="prob-line"><span>{pair.b} win</span><span>{aiB}%</span></div>
+
+            {/* Analyst team — compact chips, click for details */}
+            <div className="analyst-team">
+              <div className="analyst-team-head">
+                <span className="analyst-team-title">Analyst team</span>
+                <span className="analyst-team-meta">{ANALYSTS.length} live</span>
+              </div>
+              <div className="analyst-chips">
+                {ANALYSTS.map((a) => (
+                  <button
+                    key={a.key}
+                    type="button"
+                    className="analyst-chip"
+                    onClick={() => setOpenAnalyst(a)}
+                  >
+                    <span className={'analyst-avatar tone-' + a.tone} aria-hidden>
+                      <span className="analyst-glyph">{a.glyph}</span>
+                    </span>
+                    <span className="analyst-chip-name">{a.name}</span>
+                  </button>
+                ))}
+              </div>
             </div>
 
-            <div className="match-stats">
-              {MATCH_STATS.map((s) => {
-                const total = s.a + s.b || 1
+            {/* Friends watching with you — visually distinct from analyst chips */}
+            <div className="friends-bar">
+              <div className="friends-bar-head">
+                <span className="friends-bar-title">Analyzing with you</span>
+                <span className="friends-bar-meta">3 friends</span>
+              </div>
+              <div className="friends-bar-row">
+                <div className="friends-avatars">
+                  <span className="friend-pill is-me" title="You">
+                    <span className="friend-initial">Y</span>
+                    <span className="friend-dot" />
+                  </span>
+                  <span className="friend-pill tone-pink" title="Sarah K.">
+                    <span className="friend-initial">SK</span>
+                    <span className="friend-dot" />
+                  </span>
+                  <span className="friend-pill tone-amber" title="Alex M.">
+                    <span className="friend-initial">AM</span>
+                    <span className="friend-dot" />
+                  </span>
+                  <span className="friend-pill tone-violet" title="Jordan T.">
+                    <span className="friend-initial">JT</span>
+                    <span className="friend-dot" />
+                  </span>
+                </div>
+                <button type="button" className="friends-invite">+ Invite</button>
+              </div>
+            </div>
+          </div>
+
+          <div className="chatpane">
+            <div className="chatpane-head">
+              <h3>Stream chat</h3>
+              <span className="chatpane-meta">{t.spectatorCount} watching</span>
+            </div>
+            <div className="chatpane-stream">
+              {replies.map((r, i) => {
+                // Stable color from username
+                const colors = ['#a8ff00','#ff79c6','#7cf8ff','#facc15','#ffae4d','#d99cff','#3fe5b0','#ff6b6b','#bbd0ff','#fde047']
+                let h = 0; for (let k = 0; k < r.who.length; k++) h = (h * 31 + r.who.charCodeAt(k)) >>> 0
+                const c = colors[h % colors.length]
                 return (
-                  <div key={s.label} className="ms-row">
-                    <span className="ms-a">{s.fixed != null ? s.a.toFixed(s.fixed) : s.a}{s.unit || ''}</span>
-                    <div className="ms-bar">
-                      <span className="ms-bar-a" style={{ width: (s.a / total * 100) + '%' }} />
-                      <span className="ms-bar-b" style={{ width: (s.b / total * 100) + '%' }} />
-                    </div>
-                    <span className="ms-b">{s.fixed != null ? s.b.toFixed(s.fixed) : s.b}{s.unit || ''}</span>
-                    <span className="ms-lbl">{s.label}</span>
+                  <div key={i} className="cp-msg">
+                    {r.badge && <span className={'cp-badge bg-' + r.badge}>{r.badge === 'mod' ? 'MOD' : r.badge === 'sub' ? 'SUB' : r.badge === 'bot' ? 'BOT' : ''}</span>}
+                    <span className="cp-who" style={{ color: c }}>{r.who}</span>
+                    <span className="cp-colon">:</span>
+                    <span className="cp-text">{r.text}</span>
                   </div>
                 )
               })}
             </div>
-
-            <div className="match-events">
-              <div className="me-head">Key events</div>
-              {MATCH_EVENTS.slice().reverse().slice(0, 4).map((e, i) => (
-                <div key={i} className={'me-row team-' + e.team}>
-                  <span className="me-min">{e.min}′</span>
-                  <EventBadge type={e.type} />
-                  <span className="me-who">{e.who}</span>
-                  {e.detail && <span className="me-detail">{e.detail}</span>}
-                </div>
-              ))}
+            <div className="chatpane-input-row">
+              <input className="chatpane-input" placeholder="Say something to the room…" />
+              <button className="chatpane-send">Send</button>
             </div>
-          </div>
-
-          {/* ── Polymarket / Market card ───────────────────── */}
-          <div className="room-card market">
-            <div className="room-card-head">
-              <h3>{t.market.platform.split(' ')[0]} market</h3>
-              <a className="room-card-link" href={t.market.url} target="_blank" rel="noreferrer">Open ↗</a>
-            </div>
-
-            <div className="market-top">
-              <div className="market-price">
-                <div className="mp-current">{t.market.currentPrice}%</div>
-                <div className={'mp-change ' + (t.market.edge > 0 ? 'up' : 'down')}>
-                  {t.market.edge > 0 ? '▲' : '▼'} {Math.abs(t.market.edge)}pt vs AI
-                </div>
-              </div>
-              <Sparkline data={PRICE_HISTORY} />
-            </div>
-
-            <div className="market-stats">
-              <div className="market-stat">
-                <div className="ms-lbl">AI consensus</div>
-                <div className="ms-val ai">{t.market.aiConsensus}%</div>
-              </div>
-              <div className="market-stat">
-                <div className="ms-lbl">24h vol</div>
-                <div className="ms-val">{t.market.volume24h}</div>
-              </div>
-              <div className="market-stat">
-                <div className="ms-lbl">YES depth</div>
-                <div className="ms-val">$118k</div>
-              </div>
-              <div className="market-stat">
-                <div className="ms-lbl">NO depth</div>
-                <div className="ms-val">$74k</div>
-              </div>
-            </div>
-
-            <div className="market-flow">
-              <div className="mf-head">
-                <span>Buy pressure (last hour)</span>
-                <span className="mf-ratio">68/32</span>
-              </div>
-              <div className="mf-bar">
-                <span className="mf-yes" style={{ width: '68%' }}>YES</span>
-                <span className="mf-no" style={{ width: '32%' }}>NO</span>
-              </div>
-            </div>
-
-            <div className="market-trades">
-              <div className="mt-head">Recent trades</div>
-              {RECENT_TRADES.map((tr, i) => (
-                <div key={i} className="mt-row">
-                  <span className={'mt-side ' + (tr.side === 'YES' ? 'yes' : 'no')}>{tr.side}</span>
-                  <span className="mt-size">{tr.size}</span>
-                  <span className="mt-trader">{tr.trader}</span>
-                  <span className="mt-when">{tr.when}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-
-          <div className="room-card replies">
-            <div className="room-card-head">
-              <h3>Spectator replies</h3>
-              <span className="room-card-sub">{t.spectatorCount} watching</span>
-            </div>
-            <div className="rep-stream">
-              {replies.map((r, i) => (
-                <div key={i} className="rep-msg">
-                  <span className="rep-who">{r.who}</span>
-                  <span className="rep-text">{r.text}</span>
-                </div>
-              ))}
-            </div>
-            <div className="rep-note">Spectator chat is read-only — fork the table to discuss privately.</div>
           </div>
 
         </aside>
       </div>
+
+      {openAnalyst && (
+        <div className="analyst-modal-backdrop" onClick={() => setOpenAnalyst(null)}>
+          <div className="analyst-modal" onClick={(e) => e.stopPropagation()}>
+            <button className="analyst-modal-close" onClick={() => setOpenAnalyst(null)} aria-label="Close">×</button>
+            <div className="analyst-modal-head">
+              <span className={'analyst-avatar large tone-' + openAnalyst.tone} aria-hidden>
+                <span className="analyst-glyph">{openAnalyst.glyph}</span>
+              </span>
+              <div>
+                <div className="analyst-modal-name">{openAnalyst.name}</div>
+                <div className="analyst-modal-sub">{openAnalyst.specialty}</div>
+              </div>
+            </div>
+            <div className="analyst-modal-section">
+              <div className="analyst-modal-label">Focus areas</div>
+              <div className="analyst-tags">
+                {openAnalyst.tags.map((t) => <span key={t} className="analyst-tag">{t}</span>)}
+              </div>
+            </div>
+            <div className="analyst-modal-section">
+              <div className="analyst-modal-label">How they reason</div>
+              <p className="analyst-modal-body">
+                {openAnalyst.key === 'stats' && `Runs live xG, possession, and shot-quality models. Recalibrates after every event in the match.`}
+                {openAnalyst.key === 'market' && `Watches Polymarket and Kalshi order flow in real time — surfaces edge when the market lags AI consensus, and flags whale prints.`}
+                {openAnalyst.key === 'news' && `Pulls from lineup leaks, injury wires, ref history, and social signals. Quickest to react when external news drops mid-match.`}
+                {openAnalyst.key === 'tactics' && `Reads formations, pressing intensity, and momentum shifts on the pitch. Predicts substitutions and tactical adjustments.`}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
