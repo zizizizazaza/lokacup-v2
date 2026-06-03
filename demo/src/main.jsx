@@ -13,6 +13,7 @@ import MyForksPage from './pages/v2/MyForksPage.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
+      <div className="bg-grid" />
       <Shell>
         <Routes>
           <Route path="/" element={<TablesListPage />} />

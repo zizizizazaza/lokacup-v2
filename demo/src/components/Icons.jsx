@@ -36,3 +36,16 @@ export const IconCampaign = (p) => (
     <path d="M12 3 13 6 16 6 13.5 8 14.5 11 12 9 9.5 11 10.5 8 8 6 11 6z" />
   </svg>
 )
+export const IconVolumeOn = (p) => (
+  <svg {...base} {...p}>
+    <path d="M4 9v6h4l5 4V5L8 9H4z" />
+    <path d="M16 8a5 5 0 0 1 0 8" />
+    <path d="M19 5a9 9 0 0 1 0 14" />
+  </svg>
+)
+export const IconVolumeOff = (p) => (
+  <svg {...base} {...p}>
+    <path d="M4 9v6h4l5 4V5L8 9H4z" />
+    <path d="M16 9l5 6M21 9l-5 6" />
+  </svg>
+)

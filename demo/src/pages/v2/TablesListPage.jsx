@@ -3,11 +3,10 @@ import { useNavigate, Link } from 'react-router-dom'
 import { TABLES } from '../../data/tables'
 import { IconEye, IconFork } from '../../components/Icons.jsx'
 import { withFlags, flagSrc } from '../../components/Flag.jsx'
-import BannerPitch from '../../components/BannerPitch.jsx'
+import HeroCarousel from '../../components/HeroCarousel.jsx'
 
 const FILTERS = ['All', 'Official', 'User', 'Hot', 'Closing soon']
 
-// Parse "A vs B …" or "X to …" titles into a binary outcome pair
 function pickPair(title) {
   const vs = title.match(/([A-Z][a-z]+)\s+vs\s+([A-Z][a-z]+)/)
   if (vs) return { a: vs[1], b: vs[2] }
@@ -35,11 +34,11 @@ function Ticker({ seed }) {
   }, [])
   const m = TICKER_POOL[i]
   return (
-    <div className="tc-ticker">
-      <span className="tc-ticker-dot" />
-      <div className="tc-ticker-msg" key={i}>
-        <span className="tc-ticker-who">{m.who}</span>
-        <span className="tc-ticker-text">{m.text}</span>
+    <div className="t-ticker">
+      <span className="t-ticker-dot" />
+      <div className="t-ticker-msg" key={i}>
+        <span className="t-ticker-who">{m.who}</span>
+        <span className="t-ticker-text">{m.text}</span>
       </div>
     </div>
   )
@@ -48,7 +47,7 @@ function Ticker({ seed }) {
 function TableCard({ t, idx }) {
   const isArb = t.market.isArb
   const isOff = t.isOfficial
-  const cls = ['table-card', isArb ? 'arb' : isOff ? 'official' : 'user'].join(' ')
+  const cls = ['t-card', isArb ? 'arb' : isOff ? 'official' : 'user'].join(' ')
   const pair = pickPair(t.market.title)
   const aiA = t.market.aiConsensus
   const aiB = Math.max(0, 100 - aiA)
@@ -58,45 +57,45 @@ function TableCard({ t, idx }) {
 
   return (
     <Link to={`/table/${t.id}`} className={cls}>
-      <div className="tc-head">
-        <div className="tc-host">
-          <span className="tc-host-avatar">{t.host.handle.replace(/[^A-Za-z]/g, '').slice(0,2).toUpperCase()}</span>
+      <div className="t-head">
+        <div className="t-host">
+          <span className="t-host-avatar">{t.host.handle.replace(/[^A-Za-z]/g, '').slice(0,2).toUpperCase()}</span>
           <span>{t.host.handle}</span>
-          <span className="tc-host-tag">{isOff ? 'Official' : isArb ? 'Arb' : 'User'}</span>
+          <span className="t-host-tag">{isOff ? 'Official' : isArb ? 'Arb' : 'User'}</span>
         </div>
-        {t.status === 'live' && <span className="tc-live">Live</span>}
+        {t.status === 'live' && <span className="t-live">Live</span>}
       </div>
 
-      <div className="tc-question">{withFlags(t.market.title)}</div>
+      <div className="t-question">{withFlags(t.market.title)}</div>
 
-      <div className="tc-versus">
-        <div className="vs-row">
-          <div className={'vs-side ' + (leading === 'a' ? 'lead' : '')}>
+      <div className="t-versus">
+        <div className="t-vs-row">
+          <div className={'t-vs-side ' + (leading === 'a' ? 'lead' : '')}>
             {flagA && <img className="flag" alt="" src={flagA} />}
-            <span className="vs-name">{pair.a}</span>
+            <span>{pair.a}</span>
           </div>
-          <div className={'vs-side right ' + (leading === 'b' ? 'lead' : '')}>
-            <span className="vs-name">{pair.b}</span>
+          <div className="t-vs-side">
+            <span>{pair.b}</span>
             {flagB && <img className="flag" alt="" src={flagB} />}
           </div>
         </div>
-        <div className="vs-bar">
-          <span className="vs-fill" style={{ width: aiA + '%' }} />
+        <div className="t-vs-bar">
+          <span className="t-vs-fill" style={{ width: aiA + '%' }} />
         </div>
-        <div className="vs-row">
-          <span className={'vs-val ' + (leading === 'a' ? 'lead' : '')}>{aiA}%</span>
-          <span className={'vs-val ' + (leading === 'b' ? 'lead' : '')}>{aiB}%</span>
+        <div className="t-vs-row">
+          <span className={'t-vs-val ' + (leading === 'a' ? 'lead' : '')}>{aiA}%</span>
+          <span className={'t-vs-val ' + (leading === 'b' ? 'lead' : '')}>{aiB}%</span>
         </div>
       </div>
 
       <Ticker seed={idx} />
 
-      <div className="tc-foot">
+      <div className="t-foot">
         <div>
           <span className="stat"><IconEye width={14} height={14} /> {t.spectatorCount}</span>
           <span className="stat"><IconFork width={14} height={14} /> {t.forkCount}</span>
         </div>
-        <span className="tc-watch">Watch →</span>
+        <span className="t-watch">Watch</span>
       </div>
     </Link>
   )
@@ -114,38 +113,14 @@ export default function TablesListPage() {
     return true
   })
 
-  const totalSpec = TABLES.reduce((sum, t) => sum + t.spectatorCount, 0)
-
   return (
     <div>
-      <div className="banner">
-        <span className="halftone-bg" />
-        <div className="banner-content">
-          <div className="banner-eyebrow">World Cup '26 · Featured pot</div>
-          <h1 className="banner-title">
-            Watch AI <span className="grad">predict the cup</span> in real time
-          </h1>
-          <p className="banner-sub">
-            {TABLES.length} live tables. Polymarket and Kalshi markets debated by 4 agents — fork any conversation and run your own.
-          </p>
-          <div className="banner-ctas">
-            <button className="banner-cta" onClick={() => navigate('/open')}>+ Open a table</button>
-            <button className="banner-cta ghost">View leaderboard</button>
-          </div>
-          <div className="banner-stats">
-            <div className="banner-stat"><div className="lbl">Volume tracked</div><div className="val">$42.8M</div></div>
-            <div className="banner-stat"><div className="lbl">AI accuracy</div><div className="val">84.7%</div></div>
-            <div className="banner-stat"><div className="lbl">Watching now</div><div className="val">{totalSpec}</div></div>
-          </div>
-        </div>
-        <div className="banner-pitch-side" aria-hidden />
-        <BannerPitch />
-      </div>
+      <HeroCarousel />
 
-      <section className="tables-section">
+      <section className="section">
         <div className="section-header">
           <h2 className="section-title">Live tables</h2>
-          <span className="section-meta">{filtered.length} matching · sorted by heat</span>
+          <span className="section-meta">{filtered.length} matching · updated 30s ago</span>
         </div>
         <div className="tables-filter-row">
           {FILTERS.map((f) => (
@@ -160,7 +135,6 @@ export default function TablesListPage() {
         </div>
       </section>
 
-      <button className="fab-open" onClick={() => navigate('/open')} title="Open your own table" aria-label="Open">+</button>
     </div>
   )
 }
