@@ -24,3 +24,15 @@ export const IconBot = (p) => (
 export const IconSend = (p) => (
   <svg {...base} {...p}><path d="M3 11.5 21 4l-7.5 18-2.5-8-8-2.5z" /></svg>
 )
+export const IconChat = (p) => (
+  <svg {...base} {...p}><path d="M4 6h16v10H8l-4 4z" /></svg>
+)
+export const IconCampaign = (p) => (
+  /* Podium: 3 blocks (2nd, 1st tallest, 3rd) with a star on top of the 1st */
+  <svg {...base} {...p}>
+    <rect x="3"  y="14" width="6" height="7" />
+    <rect x="9"  y="9"  width="6" height="12" />
+    <rect x="15" y="16" width="6" height="5" />
+    <path d="M12 3 13 6 16 6 13.5 8 14.5 11 12 9 9.5 11 10.5 8 8 6 11 6z" />
+  </svg>
+)
