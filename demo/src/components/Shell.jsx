@@ -41,11 +41,10 @@ export default function Shell({ children, hideChat }) {
                 Live tables
               </NavLink>
               <NavLink to="/campaign" className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')}>
-                Campaign
+                Reward
               </NavLink>
             </div>
             <div className="nav-right">
-              <Link to="/open" className="nav-cta nav-cta-primary">+ Open table</Link>
               <LangPicker />
               <UserMenu />
             </div>

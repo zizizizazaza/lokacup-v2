@@ -24,10 +24,11 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
+  /* Softer dark — clearly a dark grey, not pure black */
   background:
-    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(217,28,28,0.05), transparent 60%),
-    radial-gradient(ellipse 60% 50% at 0% 100%, rgba(168,255,0,0.025), transparent 60%),
-    #0c0c10;
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(217,28,28,0.06), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 0% 100%, rgba(168,255,0,0.03), transparent 60%),
+    #17171c;
   color: var(--fg-primary);
   font-family: var(--font-ui);
   line-height: 1.55;
@@ -73,7 +74,7 @@ input { font-family: inherit; }
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(7, 7, 7, 0.7);
+  background: rgba(23, 23, 28, 0.78);
   backdrop-filter: blur(16px);
 }
 .top-nav-inner {

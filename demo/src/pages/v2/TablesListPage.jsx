@@ -5,7 +5,7 @@ import { IconEye, IconFork } from '../../components/Icons.jsx'
 import { withFlags, flagSrc } from '../../components/Flag.jsx'
 import HeroCarousel from '../../components/HeroCarousel.jsx'
 
-const FILTERS = ['All', 'Live', 'Discussion']
+const FILTERS = ['All', 'Live']
 
 function pickPair(title) {
   const vs = title.match(/([A-Z][a-z]+)\s+vs\s+([A-Z][a-z]+)/)
@@ -232,25 +232,29 @@ export default function TablesListPage() {
       <section className="section">
         <div className="section-header">
           <h2 className="section-title">Live tables</h2>
-          <span className="section-meta">{filtered.length} matching · updated 30s ago</span>
+          <div className="section-header-right">
+            <span className="section-meta">{filtered.length} matching · updated 30s ago</span>
+            <Link to="/open" className="nav-cta nav-cta-primary section-open-cta">+ Open table</Link>
+          </div>
         </div>
         <div className="tables-filter-row">
           {FILTERS.map((f) => (
-            <button key={f} className={'filter-chip' + (filter === f ? ' active' : '')} onClick={() => setFilter(f)}>
+            <button
+              key={f}
+              className={'filter-chip filter-chip-' + f.toLowerCase() + (filter === f && team === 'All' ? ' active' : '')}
+              onClick={() => { setFilter(f); setTeam('All') }}
+            >
+              {f === 'Live' && <span className="filter-live-dot" aria-hidden />}
               {f}
             </button>
           ))}
-        </div>
-
-        <div className="tables-team-row">
-          <span className="team-filter-label">Team</span>
-          {teams.map((tm) => {
-            const flag = tm === 'All' ? null : flagSrc(tm)
+          {teams.filter((tm) => tm !== 'All').map((tm) => {
+            const flag = flagSrc(tm)
             return (
               <button
                 key={tm}
                 className={'team-chip' + (team === tm ? ' active' : '')}
-                onClick={() => setTeam(tm)}
+                onClick={() => setTeam(tm === team ? 'All' : tm)}
               >
                 {flag && <img className="flag" alt="" src={flag} />}
                 <span>{tm}</span>

@@ -247,6 +247,32 @@ function EventBadge({ type }) {
 }
 
 // Generic placeholder for "Field" / "Yes" / "No" — anything not a country
+// Invite button — copies a sharable room link to clipboard with toast feedback.
+function InviteButton({ tableId }) {
+  const [copied, setCopied] = useState(false)
+  const link = typeof window !== 'undefined'
+    ? `${window.location.origin}/table/${tableId}?ref=invite`
+    : ''
+  const onClick = async () => {
+    try {
+      await navigator.clipboard.writeText(link)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 1800)
+    } catch (e) {}
+  }
+  return (
+    <button className="room-invite" type="button" onClick={onClick} title="Invite friends to this room">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+        <circle cx="8.5" cy="7" r="4"/>
+        <line x1="20" y1="8" x2="20" y2="14"/>
+        <line x1="23" y1="11" x2="17" y2="11"/>
+      </svg>
+      {copied ? 'Link copied!' : 'Invite'}
+    </button>
+  )
+}
+
 function FieldGlobe() {
   return (
     <span className="flag flag-placeholder" aria-hidden>
@@ -507,7 +533,8 @@ export default function TableRoomPage() {
           {t.status === 'live' && <span className="room-title-live">Live · 67′</span>}
         </h1>
         <div className="room-meta">
-          <button className="room-invite room-share" type="button" title="Share this room">
+          <InviteButton tableId={t.id} />
+          <button className="room-share" type="button" title="Share this room">
             <svg className="room-share-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
               <circle cx="18" cy="5" r="3" />
               <circle cx="6" cy="12" r="3" />
@@ -636,6 +663,7 @@ export default function TableRoomPage() {
               </div>
             </div>
 
+            <div className="manage-body">
             {/* AI agents — toggle on/off */}
             <div className="manage-section">
               <div className="manage-section-head">
@@ -703,20 +731,22 @@ export default function TableRoomPage() {
                   </div>
                 ))}
               </div>
+
+              <div className="manage-invite">
+                <div className="manage-invite-label">Invite more friends</div>
+                <div className="manage-invite-link">
+                  <code>https://lokacup.app/r/AKOZ-9F2X</code>
+                  <button
+                    className="manage-invite-copy"
+                    type="button"
+                    onClick={() => {
+                      try { navigator.clipboard.writeText('https://lokacup.app/r/AKOZ-9F2X') } catch (e) {}
+                    }}
+                  >Copy</button>
+                </div>
+              </div>
             </div>
 
-            <div className="manage-invite">
-              <div className="manage-invite-label">Invite more friends</div>
-              <div className="manage-invite-link">
-                <code>https://lokacup.app/r/AKOZ-9F2X</code>
-                <button
-                  className="manage-invite-copy"
-                  type="button"
-                  onClick={() => {
-                    try { navigator.clipboard.writeText('https://lokacup.app/r/AKOZ-9F2X') } catch (e) {}
-                  }}
-                >Copy</button>
-              </div>
             </div>
           </div>
         </div>

@@ -18,7 +18,6 @@ import ProfilePage from './pages/v2/ProfilePage.jsx'
 // dev experience we leave it off.
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-    <div className="bg-grid" />
     <Shell>
       <Routes>
         <Route path="/" element={<TablesListPage />} />

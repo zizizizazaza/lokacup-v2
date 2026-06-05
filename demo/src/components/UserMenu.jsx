@@ -38,6 +38,12 @@ export default function UserMenu() {
   }
 
   const displayName = user.name || 'You'
+  // For wallet addresses, show the very compact form: 0x## … #### (10 chars total).
+  // Anything else (real names, @handles, emails) is shown as-is.
+  const isAddress = /^0x[0-9a-fA-F]{6,}$/.test(displayName)
+  const navName = isAddress
+    ? displayName.slice(0, 4) + '…' + displayName.slice(-4)
+    : displayName
   const avatarIsImg = isImageAvatar(user.avatar)
   const avatarChar  = avatarGlyph(user)
 
@@ -53,7 +59,13 @@ export default function UserMenu() {
         <span className={'nav-user-avatar nav-user-avatar-glyph' + (avatarIsImg ? ' nav-user-avatar-img' : '')}>
           {avatarIsImg ? <img src={user.avatar} alt="" /> : avatarChar}
         </span>
-        <span className="nav-user-name">{displayName}</span>
+        <span className="nav-user-name">{navName}</span>
+        <span className="nav-user-points" title={`${(user.points && user.points > 0 ? user.points : 1245).toLocaleString()} points`}>
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+            <path d="M12 2 14.6 8.6 21.5 9.3 16.3 13.9 17.9 20.7 12 17.1 6.1 20.7 7.7 13.9 2.5 9.3 9.4 8.6Z"/>
+          </svg>
+          {(user.points && user.points > 0 ? user.points : 1245).toLocaleString()}
+        </span>
         <svg className={'nav-user-chev' + (openMenu ? ' is-open' : '')} width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
           <polyline points="6 9 12 15 18 9" />
         </svg>
