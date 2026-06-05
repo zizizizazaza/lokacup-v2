@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { flagSrc } from './Flag.jsx'
+import { ANALYSTS } from '../data/analysts.js'
 
-const SLIDES = ['campaign', 'live']
+const SLIDES = ['campaign', 'team', 'live']
 const ROTATE_MS = 7000
 
 function FinalTicket() {
@@ -245,6 +246,93 @@ function LiveSlide({ active, navigate }) {
   )
 }
 
+// Labels positioned in SOURCE pixel space (photo is 1392×736).
+// Both <image> and labels share the same SVG viewBox, so they scale together.
+// Coordinates re-measured from /public/team-banner.jpg.
+const SRC_W = 1392
+const SRC_H = 736
+const TEAM_LABELS = [
+  { x:  362, y: 290, name: 'Tarot Diviner',    tone: 'violet' },
+  { x:  501, y: 245, name: 'News Analyst',     tone: 'coral'  },
+  { x:  613, y: 228, name: 'Tactics Analyst',  tone: 'cyan'   },
+  { x:  814, y: 228, name: 'History Analyst',  tone: 'mint'   },
+  { x:  940, y: 250, name: 'Market Sentiment', tone: 'gold'   },
+  { x: 1058, y: 285, name: 'I Ching Diviner',  tone: 'amber'  },
+]
+const LABEL_W = 230
+const LABEL_H = 56
+const LABEL_GAP = 110 // pixels above the head where the label sits
+
+function TeamSlide({ active, navigate }) {
+  return (
+    <div className={'hc-slide hc-team' + (active ? ' active' : '')}>
+      <div className="hc-team-image-wrap" aria-hidden>
+        {/* Single SVG holds the image AND labels — both share the source pixel space.
+            Cropping is handled by preserveAspectRatio="slice" (equivalent to object-fit: cover);
+            label positions are tied to head pixels and scale identically with the image. */}
+        <svg
+          className="hc-team-svg"
+          viewBox={`0 0 ${SRC_W} ${SRC_H}`}
+          preserveAspectRatio="xMidYMid slice"
+        >
+          <image href="/team-banner.jpg" width={SRC_W} height={SRC_H} />
+
+          {/* Soft spotlight haloes radiating from each figure's head */}
+          {TEAM_LABELS.map((l, i) => (
+            <circle
+              key={'halo-' + l.name}
+              className={'hc-team-halo tone-' + l.tone}
+              cx={l.x}
+              cy={l.y + 10}
+              r="90"
+              style={{ animationDelay: i * 0.35 + 's' }}
+            />
+          ))}
+
+          {/* Role labels */}
+          {TEAM_LABELS.map((l, i) => {
+            const top = l.y - LABEL_GAP
+            return (
+              <foreignObject
+                key={l.name}
+                x={l.x - LABEL_W / 2}
+                y={top}
+                width={LABEL_W}
+                height={LABEL_H}
+                className="hc-team-label-wrap"
+                style={{ animationDelay: i * 0.12 + 's' }}
+              >
+                <div className={'hc-team-label tone-' + l.tone}>{l.name}</div>
+              </foreignObject>
+            )
+          })}
+        </svg>
+      </div>
+      <div className="hc-team-gradient" aria-hidden />
+
+      <div className="hc-team-content">
+        <div className="hc-team-headline">
+          <h1 className="hc-team-title">
+            Predict &amp; analyze<br />
+            with your <span className="accent">AI team</span>
+          </h1>
+          <p className="hc-team-sub">
+            Six specialists debate every match in real time.<br />
+            Pick who joins your Table.
+          </p>
+        </div>
+
+        <div className="hc-team-ctas">
+          <button className="ch-cta ch-cta-primary" onClick={() => navigate('/open')}>
+            <span className="ch-cta-icon">▶</span>
+            Start analysis
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function HeroCarousel() {
   const [idx, setIdx] = useState(0)
   const [paused, setPaused] = useState(false)
@@ -265,19 +353,25 @@ export default function HeroCarousel() {
     >
       <CampaignSlide active={SLIDES[idx] === 'campaign'} navigate={navigate} />
       <LiveSlide     active={SLIDES[idx] === 'live'}     navigate={navigate} />
+      <TeamSlide     active={SLIDES[idx] === 'team'}     navigate={navigate} />
 
       <div className="hc-dots">
-        {SLIDES.map((s, i) => (
-          <button
-            key={s}
-            className={'hc-dot' + (i === idx ? ' active' : '')}
-            onClick={() => setIdx(i)}
-            aria-label={`Show ${s} slide`}
-          >
-            <span className="hc-dot-label">{s === 'campaign' ? 'Campaign' : 'Live broadcast'}</span>
-            <span className={'hc-dot-bar' + (i === idx && !paused ? ' running' : '')} />
-          </button>
-        ))}
+        {SLIDES.map((s, i) => {
+          const label = s === 'campaign' ? 'Campaign'
+                      : s === 'live'     ? 'Live broadcast'
+                      : 'AI team'
+          return (
+            <button
+              key={s}
+              className={'hc-dot' + (i === idx ? ' active' : '')}
+              onClick={() => setIdx(i)}
+              aria-label={`Show ${label} slide`}
+            >
+              <span className="hc-dot-label">{label}</span>
+              <span className={'hc-dot-bar' + (i === idx && !paused ? ' running' : '')} />
+            </button>
+          )
+        })}
       </div>
 
       {paused && <span className="hc-paused">Paused on hover</span>}

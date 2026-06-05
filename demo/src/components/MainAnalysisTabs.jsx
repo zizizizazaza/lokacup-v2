@@ -181,45 +181,13 @@ export default function MainAnalysisTabs({ market, pair }) {
   const rounds = useMemo(() => buildRounds(pair), [pair.a, pair.b])
 
   return (
-    <div className="mac">
-      <div className="mac-tabs" role="tablist">
-        <button role="tab" aria-selected={tab === 'main'}   className={'mac-tab' + (tab === 'main' ? ' is-on' : '')}   onClick={() => setTab('main')}>Main analysis</button>
-        <button role="tab" aria-selected={tab === 'related'} className={'mac-tab' + (tab === 'related' ? ' is-on' : '')} onClick={() => setTab('related')}>Related markets</button>
-      </div>
-
-      {tab === 'main' && (
-        <div className="mac-pane">
-          {/* Hero — question and AI answer share one row. Volume is a small footnote. */}
-          <div className="mac-hero">
-            <div className="mac-hero-row">
-              <div className="mac-hero-q">{market.title}?</div>
-              <div className="mac-hero-answer">
-                <span className="mac-hero-label">AI answer</span>
-                <span className="mac-hero-value">{pair.a}</span>
-                <span className="mac-hero-prob">{aiA}%</span>
-              </div>
-            </div>
-            <div className="mac-hero-footnote">
-              {market.platform} · {market.volume24h} traded in last 24h
-            </div>
-          </div>
-
-          {/* Probability curve */}
-          <div className="mac-section">
-            <div className="mac-section-head">
-              <h4>Probability over time</h4>
-              <span className="mac-section-meta">last 90 ticks · live</span>
-            </div>
-            <MainProbCurve aiA={aiA} aiB={aiB} pairA={pair.a} pairB={pair.b} />
-          </div>
-
-          {/* Debate rounds — newest on top */}
-          <div className="mac-section">
-            <div className="mac-section-head">
-              <h4>Debate rounds</h4>
-              <span className="mac-section-meta">{rounds.length} rounds · live</span>
-            </div>
-            <div className="mac-rounds">
+    <div className="mac mac-rounds-only">
+      <div className="mac-section">
+        <div className="mac-section-head">
+          <h4>AI debate rounds</h4>
+          <span className="mac-section-meta">{rounds.length} rounds · live</span>
+        </div>
+        <div className="mac-rounds">
               {rounds.map((r) => {
                 const isOpen = openRounds.has(r.id)
                 const isDiscussing = r.status === 'discussing'
@@ -336,38 +304,8 @@ export default function MainAnalysisTabs({ market, pair }) {
                   </article>
                 )
               })}
-            </div>
-          </div>
         </div>
-      )}
-
-      {tab === 'related' && (
-        <div className="mac-pane">
-          <div className="mac-section">
-            <div className="mac-section-head">
-              <h4>Hot markets on this match</h4>
-              <span className="mac-section-meta">Polymarket · 24h</span>
-            </div>
-            <div className="mac-mkt-list">
-              {RELATED.map((m, i) => (
-                <a key={i} className="mac-mkt" href="#" onClick={(e) => e.preventDefault()}>
-                  <div className="mac-mkt-title">{m.title}</div>
-                  <div className="mac-mkt-stats">
-                    <div className="mac-mkt-prob">
-                      <span className="mac-mkt-prob-yes">YES <b>{m.yes}%</b></span>
-                      <span className="mac-mkt-prob-no">NO <b>{m.no}%</b></span>
-                    </div>
-                    <div className="mac-mkt-bar">
-                      <span className="mac-mkt-bar-yes" style={{ width: m.yes + '%' }} />
-                    </div>
-                    <div className="mac-mkt-vol">{m.vol}<span> vol</span></div>
-                  </div>
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
+      </div>
     </div>
   )
 }

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { IconVolumeOn, IconVolumeOff } from './Icons.jsx'
 import { acquireVoice, hasVoiceLock } from '../lib/voiceLock.js'
 import { getInitialMuted, persistMuted } from '../lib/mutePref.js'
@@ -214,12 +215,50 @@ export default function LiveAI() {
     return () => { if (window.speechSynthesis) window.speechSynthesis.cancel() }
   }, [])
 
+  // Browser autoplay policy: speechSynthesis.speak() is silently blocked until the
+  // first user gesture. We unlock it by speaking a single space on the first
+  // click / key / touch. After that, all subsequent speak() calls play freely.
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.speechSynthesis) return
+    let unlocked = false
+    const unlock = () => {
+      if (unlocked) return
+      unlocked = true
+      try {
+        const u = new SpeechSynthesisUtterance(' ')
+        u.volume = 0
+        window.speechSynthesis.speak(u)
+      } catch (e) { /* ignore */ }
+      window.removeEventListener('pointerdown', unlock)
+      window.removeEventListener('keydown', unlock)
+    }
+    window.addEventListener('pointerdown', unlock, { once: true })
+    window.addEventListener('keydown', unlock, { once: true })
+    return () => {
+      window.removeEventListener('pointerdown', unlock)
+      window.removeEventListener('keydown', unlock)
+    }
+  }, [])
+
+  // Drive the speaking-animation timer independently of utterance.onstart, since
+  // browsers block autoplay until the first user gesture — onstart never fires, so the
+  // mouth would never animate. We estimate duration from text length so the jaw moves
+  // on schedule whether audio is actually playing or not.
+  const speakTimerRef = useRef(null)
+  const setSpeakingFor = (text) => {
+    if (!voiceOnRef.current) return
+    setSpeaking(true)
+    if (speakTimerRef.current) clearTimeout(speakTimerRef.current)
+    // ~75 chars/sec at rate 1.05 → ~13ms per char; clamp to [1.4s, 6s].
+    const ms = Math.min(6000, Math.max(1400, text.length * 55))
+    speakTimerRef.current = setTimeout(() => setSpeaking(false), ms)
+  }
+
   const speak = (text) => {
     if (!voiceOnRef.current || typeof window === 'undefined' || !window.speechSynthesis) return
-    // Only the lock holder may speak — silences any duplicate instances.
     if (!hasVoiceLock(voiceLockRef.current?.id)) return
-    // Always clear the queue before speaking — otherwise rapid back-to-back lines
-    // pile up and overlap (causes the "two people talking" effect).
+    // Drive the visual animation up front — doesn't depend on audio actually playing.
+    setSpeakingFor(text)
     window.speechSynthesis.cancel()
     const u = new SpeechSynthesisUtterance(text)
     const v = pickVoice()
@@ -227,7 +266,7 @@ export default function LiveAI() {
     u.rate = 1.05
     u.pitch = 0.95
     u.volume = 1
-    u.onstart = () => { if (voiceOnRef.current) setSpeaking(true) }
+    // Still wire onend/onerror to snap the mouth shut if audio finishes early/fails.
     u.onend = () => setSpeaking(false)
     u.onerror = () => setSpeaking(false)
     window.speechSynthesis.speak(u)
@@ -363,23 +402,21 @@ export default function LiveAI() {
         <div className="presenter">
           {/* Mac-style microphone — always animated to signal "Coach Mike is working".
               Red waves when live, grey waves when muted. */}
-          <div className={'presenter-mic' + (voiceOn ? ' is-live' : ' is-muted')}>
-            {/* Always-on rings: red when actively speaking, grey when muted/idle.
-                Communicates "Coach Mike is still here" without implying audible sound. */}
+          <div className={
+            'presenter-mic'
+            + (voiceOn ? ' is-live' : ' is-muted')
+            + (voiceOn && speaking ? ' is-speaking' : '')
+          }>
+            {/* Ambient rings — red live, grey muted */}
             <span className="presenter-mic-ring r1" aria-hidden />
             <span className="presenter-mic-ring r2" aria-hidden />
             <span className="presenter-mic-ring r3" aria-hidden />
 
-            <svg viewBox="0 0 64 80" width="56" height="70" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-              <rect x="22" y="6" width="20" height="36" rx="10" />
-              <line x1="26" y1="14" x2="38" y2="14" />
-              <line x1="26" y1="20" x2="38" y2="20" />
-              <line x1="26" y1="26" x2="38" y2="26" />
-              <line x1="26" y1="32" x2="38" y2="32" />
-              <path d="M14 36a18 18 0 0 0 36 0" />
-              <line x1="32" y1="54" x2="32" y2="66" />
-              <line x1="22" y1="66" x2="42" y2="66" />
-            </svg>
+            {/* Coach Mike — static portrait. No lip sync (would require a multi-layer
+                rigged asset or a D-ID-style pre-rendered MP4 pool to look right). */}
+            <div className="coach-portrait" aria-hidden>
+              <img src="/coach-mike.png" alt="" className="coach-portrait-img" />
+            </div>
           </div>
 
           <div className="presenter-identity">
@@ -392,16 +429,25 @@ export default function LiveAI() {
             {voiceOn ? 'Live' : 'Muted'}
           </div>
 
-          <button
-            className={'presenter-btn' + (voiceOn ? ' on' : '')}
-            onClick={toggleVoice}
-            aria-pressed={voiceOn}
-            title={voiceOn ? 'Mute Coach Mike' : 'Unmute Coach Mike'}
-          >
-            {voiceOn ? <IconVolumeOn width={16} height={16} /> : <IconVolumeOff width={16} height={16} />}
-            <span>{voiceOn ? 'Mute' : 'Unmute'}</span>
-            {voiceOn && <span className="voice-wave"><i /><i /><i /></span>}
-          </button>
+          <div className="presenter-actions">
+            <button
+              className={'presenter-btn presenter-btn-mute' + (voiceOn ? ' on' : '')}
+              onClick={toggleVoice}
+              aria-pressed={voiceOn}
+              title={voiceOn ? 'Mute Coach Mike' : 'Unmute Coach Mike'}
+            >
+              {voiceOn ? <IconVolumeOn width={16} height={16} /> : <IconVolumeOff width={16} height={16} />}
+              <span>{voiceOn ? 'Mute' : 'Unmute'}</span>
+              {voiceOn && <span className="voice-wave"><i /><i /><i /></span>}
+            </button>
+            <Link to="/table/bra-mar-winner" className="presenter-btn presenter-btn-enter">
+              <span>Enter Table</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                <path d="M5 12h14" />
+                <path d="M13 5l7 7-7 7" />
+              </svg>
+            </Link>
+          </div>
         </div>
       )}
     </div>

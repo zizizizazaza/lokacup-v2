@@ -123,7 +123,6 @@ function Ticker({ seed }) {
   const m = TICKER_POOL[i]
   return (
     <div className="t-ticker">
-      <span className="t-ticker-dot" />
       <div className="t-ticker-msg" key={i}>
         <span className="t-ticker-who">{m.who}</span>
         <span className="t-ticker-text">{m.text}</span>
@@ -133,30 +132,22 @@ function Ticker({ seed }) {
 }
 
 function LiveCard({ t, idx, cls, pair, aiA, aiB, flagA, flagB, leading }) {
-  const cover = COVER_POOL[idx % COVER_POOL.length]
   const isLive = t.status === 'live'
   return (
-    <Link to={`/table/${t.id}`} className={cls + (isLive ? ' live' : ' ended')}>
-      <div className="t-cover">
-        <img className="t-cover-img" src={cover.src} alt="" loading="lazy" />
-        <div className="t-cover-gradient" />
-        {isLive && (
-          <div className="t-cover-live">
-            <span className="t-cover-live-dot" />
-            Live
-          </div>
-        )}
-        <div className="t-cover-viewers">
-          <IconEye width={12} height={12} />
-          {t.spectatorCount.toLocaleString()}
-        </div>
-      </div>
+    <Link to={`/table/${t.id}`} className={cls + (isLive ? ' live' : ' ended') + ' no-cover'}>
+      {/* Cover image hidden — see also .t-card.no-cover in v2.css. Reduce noise on the list. */}
 
       <div className="t-head">
         <div className="t-host">
           <span className="t-host-avatar">{t.host.handle.replace(/[^A-Za-z]/g, '').slice(0,2).toUpperCase()}</span>
           <span>{t.host.handle}</span>
         </div>
+        {isLive && (
+          <span className="t-head-live">
+            <span className="t-head-live-dot" />
+            Live
+          </span>
+        )}
       </div>
 
       <div className="t-question">{t.market.title}</div>

@@ -75,7 +75,6 @@ input { font-family: inherit; }
   z-index: 50;
   background: rgba(7, 7, 7, 0.7);
   backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border-light);
 }
 .top-nav-inner {
   max-width: 1440px;
@@ -131,7 +130,7 @@ input { font-family: inherit; }
   color: var(--fg-secondary);
   border: 1px solid var(--border-medium);
   padding: 0.45rem 1.1rem;
-  border-radius: var(--radius-md);
+  border-radius: 999px;
   cursor: pointer;
   transition: border-color 0.2s, color 0.2s;
 }

@@ -4,7 +4,7 @@ import { getTable, ME_HANDLE } from '../../data/tables'
 import { withFlags, flagSrc } from '../../components/Flag.jsx'
 import { IconSend } from '../../components/Icons.jsx'
 import PredictionRoom from '../../components/PredictionRoom.jsx'
-import MainAnalysisTabs from '../../components/MainAnalysisTabs.jsx'
+import BasicDataTabs from '../../components/BasicDataTabs.jsx'
 import { ANALYSTS } from '../../data/analysts.js'
 
 const AGENT_TONE = {
@@ -56,6 +56,152 @@ function Sparkline({ data, color = 'var(--accent-mint)' }) {
         <circle key={i} cx={pad + i * step} cy={pad + (h - pad * 2) - ((v - min) / span) * (h - pad * 2)} r="3.5" fill={color} stroke="var(--ink)" strokeWidth="1.5" />
       ))}
     </svg>
+  )
+}
+
+// Compact probability curve for the right-rail "who wins" view.
+// Same data shape as the bigger MainProbCurve but smaller and tuned for the narrow rail.
+function RailProbCurve({ aiA, aiB, pairA, pairB }) {
+  const SERIES = 56
+  const [hist, setHist] = useState(() => {
+    const out = []
+    let a = aiA - 6, b = aiB - 4, d = Math.max(2, 100 - a - b)
+    for (let i = 0; i < SERIES; i++) {
+      a += (Math.random() - 0.5) * 2.2
+      b += (Math.random() - 0.5) * 2
+      d += (Math.random() - 0.5) * 1.2
+      a = Math.max(6, Math.min(86, a))
+      b = Math.max(6, Math.min(86, b))
+      d = Math.max(2, Math.min(28, d))
+      const s = a + b + d
+      out.push({ a: (a / s) * 100, b: (b / s) * 100, d: (d / s) * 100 })
+    }
+    return out
+  })
+  useEffect(() => {
+    const id = setInterval(() => {
+      setHist((prev) => {
+        const last = prev[prev.length - 1]
+        let a = last.a + (Math.random() - 0.5) * 2.6
+        let b = last.b + (Math.random() - 0.5) * 2.2
+        let d = last.d + (Math.random() - 0.5) * 1.4
+        a = Math.max(6, Math.min(86, a)); b = Math.max(6, Math.min(86, b)); d = Math.max(2, Math.min(28, d))
+        const s = a + b + d
+        return [...prev.slice(-(SERIES - 1)), { a: (a / s) * 100, b: (b / s) * 100, d: (d / s) * 100 }]
+      })
+    }, 2200)
+    return () => clearInterval(id)
+  }, [])
+
+  const w = 320, h = 90, padL = 26, padR = 44, padT = 8, padB = 16
+  const innerW = w - padL - padR
+  const innerH = h - padT - padB
+  const step = innerW / (hist.length - 1)
+  const yOf = (v) => padT + innerH - (v / 100) * innerH
+  const ptsA = hist.map((p, i) => `${padL + i * step},${yOf(p.a)}`).join(' ')
+  const ptsB = hist.map((p, i) => `${padL + i * step},${yOf(p.b)}`).join(' ')
+  const ptsD = hist.map((p, i) => `${padL + i * step},${yOf(p.d)}`).join(' ')
+  const last = hist[hist.length - 1]
+
+  return (
+    <div className="rail-curve">
+      <div className="rail-curve-head">
+        <span>Win probability · last 56 ticks</span>
+      </div>
+      <svg viewBox={`0 0 ${w} ${h}`} className="rail-curve-svg" preserveAspectRatio="none">
+        {[25, 50, 75].map((g) => (
+          <g key={g}>
+            <line x1={padL} x2={padL + innerW} y1={yOf(g)} y2={yOf(g)} stroke="rgba(255,255,255,0.06)" strokeDasharray="3 4" />
+            <text x={padL - 5} y={yOf(g) + 3} fontSize="7" textAnchor="end" fill="rgba(255,255,255,0.36)" fontFamily="var(--font-data)">{g}%</text>
+          </g>
+        ))}
+        <polyline points={ptsD} fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="1.2" />
+        <polyline points={ptsB} fill="none" stroke="var(--accent-blue)" strokeWidth="1.5" />
+        <polyline points={ptsA} fill="none" stroke="var(--accent-red)"  strokeWidth="1.8" style={{ filter: 'drop-shadow(0 0 4px rgba(217,28,28,0.45))' }} />
+        <circle cx={padL + (hist.length - 1) * step} cy={yOf(last.a)} r="2.5" fill="var(--accent-red)" />
+        <circle cx={padL + (hist.length - 1) * step} cy={yOf(last.b)} r="2.2" fill="var(--accent-blue)" />
+        <circle cx={padL + (hist.length - 1) * step} cy={yOf(last.d)} r="2.2" fill="rgba(255,255,255,0.7)" />
+        <text x={padL + innerW + 6} y={yOf(last.a) + 3} fontSize="9" fill="var(--accent-red)" fontFamily="var(--font-data)" fontWeight="700">{Math.round(last.a)}%</text>
+        <text x={padL + innerW + 6} y={yOf(last.b) + 3} fontSize="9" fill="var(--accent-blue)" fontFamily="var(--font-data)" fontWeight="700">{Math.round(last.b)}%</text>
+        <text x={padL + innerW + 6} y={yOf(last.d) + 3} fontSize="9" fill="rgba(255,255,255,0.7)" fontFamily="var(--font-data)" fontWeight="700">{Math.round(last.d)}%</text>
+      </svg>
+      <div className="rail-curve-legend">
+        <span><i style={{ background: 'var(--accent-red)' }} /> {pairA}</span>
+        <span><i style={{ background: 'rgba(255,255,255,0.5)' }} /> Draw</span>
+        <span><i style={{ background: 'var(--accent-blue)' }} /> {pairB}</span>
+      </div>
+    </div>
+  )
+}
+
+// Polymarket-style two-side vote / bet panel. Users pick a side and lock a prediction;
+// the points reward is calculated per docs/points-system.md §2.1 (25 × difficulty × time).
+function VotePanel({ pair, aiA, aiB, flagA, flagB, FieldGlobe }) {
+  const [pick, setPick] = useState(null)
+  const [locked, setLocked] = useState(false)
+  const pointsFor = (prob) => {
+    // Difficulty multiplier per probability band
+    const mult = prob > 65 ? 1.0 : prob > 40 ? 2.0 : prob > 20 ? 2.5 : 3.0
+    // Time multiplier: assume mid-match for the live demo (1.0)
+    return Math.round(25 * mult * 1.0)
+  }
+  const submit = () => {
+    if (!pick) return
+    setLocked(true)
+  }
+  return (
+    <div className="vp">
+      <div className="vp-head">
+        <span className="vp-title">Place your prediction</span>
+        <span className="vp-sub">Pick a side · lock in before resolution</span>
+      </div>
+      <div className="vp-options">
+        <button
+          type="button"
+          className={'vp-option vp-a' + (pick === 'a' ? ' is-selected' : '') + (locked ? ' is-locked' : '')}
+          disabled={locked}
+          onClick={() => !locked && setPick('a')}
+        >
+          <div className="vp-option-top">
+            {flagA ? <img className="flag" alt="" src={flagA} /> : <FieldGlobe />}
+            <span className="vp-option-name">{pair.a}</span>
+            <span className="vp-option-prob">{aiA}%</span>
+          </div>
+          <div className="vp-option-reward">+{pointsFor(aiA)} pts if correct</div>
+        </button>
+        <button
+          type="button"
+          className={'vp-option vp-b' + (pick === 'b' ? ' is-selected' : '') + (locked ? ' is-locked' : '')}
+          disabled={locked}
+          onClick={() => !locked && setPick('b')}
+        >
+          <div className="vp-option-top">
+            {flagB ? <img className="flag" alt="" src={flagB} /> : <FieldGlobe />}
+            <span className="vp-option-name">{pair.b}</span>
+            <span className="vp-option-prob">{aiB}%</span>
+          </div>
+          <div className="vp-option-reward">+{pointsFor(aiB)} pts if correct</div>
+        </button>
+      </div>
+
+      {!locked ? (
+        <button
+          type="button"
+          className={'vp-submit' + (pick ? ' is-ready' : '')}
+          disabled={!pick}
+          onClick={submit}
+        >
+          {pick ? `Lock in: ${pick === 'a' ? pair.a : pair.b}` : 'Select a side'}
+        </button>
+      ) : (
+        <div className="vp-locked">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+            <path d="M20 6 L9 17 L4 12" />
+          </svg>
+          Locked in <b>{pick === 'a' ? pair.a : pair.b}</b> · pending resolution
+        </div>
+      )}
+    </div>
   )
 }
 
@@ -235,6 +381,18 @@ export default function TableRoomPage() {
   const [input, setInput] = useState('')
   const [replies, setReplies] = useState(REPLY_POOL.slice(0, 5))
   const [openAnalyst, setOpenAnalyst] = useState(null)
+  const [openManage, setOpenManage] = useState(false)
+  // Active analyst agents on this Table — host can add/remove from the Manage modal
+  const [activeAgentKeys, setActiveAgentKeys] = useState(
+    () => new Set(ANALYSTS.filter((a) => a.defaultActive).map((a) => a.key))
+  )
+  const toggleAgent = (key) =>
+    setActiveAgentKeys((prev) => {
+      const next = new Set(prev)
+      if (next.has(key)) next.delete(key); else next.add(key)
+      return next
+    })
+  const activeAnalysts = ANALYSTS.filter((a) => activeAgentKeys.has(a.key))
   const counter = useRef(seed.length)
   const streamRef = useRef(null)
 
@@ -331,86 +489,45 @@ export default function TableRoomPage() {
         {/* ── Live prediction room: scrollable prediction cards + AI thread ── */}
         <section className="room-conv scrollable">
           <div className="room-conv-top">
-            <PredictionRoom />
+            <PredictionRoom
+              activeAnalysts={activeAnalysts}
+              onOpenAnalyst={(a) => setOpenAnalyst(a)}
+              onOpenManage={() => setOpenManage(true)}
+            />
           </div>
-          <MainAnalysisTabs market={t.market} pair={pair} />
+          {/* Basic data analysis — pitch / match stats / market flow / related markets */}
+          <BasicDataTabs market={t.market} pair={pair} />
         </section>
 
         {/* ── Right rail: match summary + chart on top, chat full below ─ */}
         <aside className="room-rail rail-chat">
-          <div className="room-card team-card">
-            {/* AI conclusion — one line, no jargon */}
-            <div className="ai-conclusion">
-              <div className="ai-conclusion-label">AI conclusion</div>
-              <div className="ai-conclusion-row">
+          {/* Right rail — single card: AI Conclusion + win-prob curve + vote panel. */}
+          <div className="room-card insight-card">
+            <div className="ai-conclusion-hero">
+              <span className="ai-conclusion-pill-label">AI conclusion</span>
+              <div className="ai-conclusion-hero-row">
                 {flagA ? <img className="flag" alt="" src={flagA} /> : <FieldGlobe />}
-                <span className="ai-conclusion-side">{pair.a}</span>
-                <span className="ai-conclusion-verb">to win</span>
-                <span className="ai-conclusion-prob">{aiA}%</span>
+                <span className="ai-conclusion-hero-side">{pair.a}</span>
+                <span className="ai-conclusion-hero-verb">to win</span>
+                <span className="ai-conclusion-hero-prob">{aiA}%</span>
               </div>
+              <RailProbCurve aiA={aiA} aiB={aiB} pairA={pair.a} pairB={pair.b} />
             </div>
 
-            {/* Analyst team — compact chips, click for details */}
-            <div className="analyst-team">
-              <div className="analyst-team-head">
-                <span className="analyst-team-title">Analyst team</span>
-                <span className="analyst-team-meta">{ANALYSTS.length} live</span>
-              </div>
-              <div className="analyst-chips">
-                {ANALYSTS.map((a) => (
-                  <button
-                    key={a.key}
-                    type="button"
-                    className="analyst-chip"
-                    onClick={() => setOpenAnalyst(a)}
-                  >
-                    <span className={'analyst-avatar tone-' + a.tone} aria-hidden>
-                      <span className="analyst-glyph">{a.glyph}</span>
-                    </span>
-                    <span className="analyst-chip-name">{a.name}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Friends watching with you — visually distinct from analyst chips */}
-            <div className="friends-bar">
-              <div className="friends-bar-head">
-                <span className="friends-bar-title">Analyzing with you</span>
-                <span className="friends-bar-meta">3 friends</span>
-              </div>
-              <div className="friends-bar-row">
-                <div className="friends-avatars">
-                  <span className="friend-pill is-me" title="You">
-                    <span className="friend-initial">Y</span>
-                    <span className="friend-dot" />
-                  </span>
-                  <span className="friend-pill tone-pink" title="Sarah K.">
-                    <span className="friend-initial">SK</span>
-                    <span className="friend-dot" />
-                  </span>
-                  <span className="friend-pill tone-amber" title="Alex M.">
-                    <span className="friend-initial">AM</span>
-                    <span className="friend-dot" />
-                  </span>
-                  <span className="friend-pill tone-violet" title="Jordan T.">
-                    <span className="friend-initial">JT</span>
-                    <span className="friend-dot" />
-                  </span>
-                </div>
-                <button type="button" className="friends-invite">+ Invite</button>
-              </div>
-            </div>
+            <VotePanel
+              pair={pair}
+              aiA={aiA}
+              aiB={aiB}
+              flagA={flagA}
+              flagB={flagB}
+              FieldGlobe={FieldGlobe}
+            />
           </div>
 
-          <div className="chatpane">
-            <div className="chatpane-head">
-              <h3>Stream chat</h3>
-              <span className="chatpane-meta">{t.spectatorCount} watching</span>
-            </div>
-            <div className="chatpane-stream">
-              {replies.map((r, i) => {
-                // Stable color from username
+          {/* Bare-bones stream chat — no card wrapper, no header. */}
+          <div className="scc-bare">
+            <div className="scc-stream">
+              {replies.slice(-8).map((r, i) => {
                 const colors = ['#a8ff00','#ff79c6','#7cf8ff','#facc15','#ffae4d','#d99cff','#3fe5b0','#ff6b6b','#bbd0ff','#fde047']
                 let h = 0; for (let k = 0; k < r.who.length; k++) h = (h * 31 + r.who.charCodeAt(k)) >>> 0
                 const c = colors[h % colors.length]
@@ -424,9 +541,9 @@ export default function TableRoomPage() {
                 )
               })}
             </div>
-            <div className="chatpane-input-row">
-              <input className="chatpane-input" placeholder="Say something to the room…" />
-              <button className="chatpane-send">Send</button>
+            <div className="scc-input-row">
+              <input className="scc-input" placeholder="Say something…" />
+              <button className="scc-send">Send</button>
             </div>
           </div>
 
@@ -438,8 +555,10 @@ export default function TableRoomPage() {
           <div className="analyst-modal" onClick={(e) => e.stopPropagation()}>
             <button className="analyst-modal-close" onClick={() => setOpenAnalyst(null)} aria-label="Close">×</button>
             <div className="analyst-modal-head">
-              <span className={'analyst-avatar large tone-' + openAnalyst.tone} aria-hidden>
-                <span className="analyst-glyph">{openAnalyst.glyph}</span>
+              <span className={'analyst-avatar large tone-' + openAnalyst.tone} data-key={openAnalyst.key} aria-hidden>
+                {openAnalyst.image
+                  ? <img className="analyst-avatar-img" src={openAnalyst.image} alt="" />
+                  : <span className="analyst-glyph">{openAnalyst.glyph}</span>}
               </span>
               <div>
                 <div className="analyst-modal-name">{openAnalyst.name}</div>
@@ -455,11 +574,112 @@ export default function TableRoomPage() {
             <div className="analyst-modal-section">
               <div className="analyst-modal-label">How they reason</div>
               <p className="analyst-modal-body">
-                {openAnalyst.key === 'stats' && `Runs live xG, possession, and shot-quality models. Recalibrates after every event in the match.`}
+                {openAnalyst.key === 'history' && `Pulls H2H records, season form, ELO ratings, and trend lines. Recalibrates the priors after every match outcome.`}
                 {openAnalyst.key === 'market' && `Watches Polymarket and Kalshi order flow in real time — surfaces edge when the market lags AI consensus, and flags whale prints.`}
                 {openAnalyst.key === 'news' && `Pulls from lineup leaks, injury wires, ref history, and social signals. Quickest to react when external news drops mid-match.`}
                 {openAnalyst.key === 'tactics' && `Reads formations, pressing intensity, and momentum shifts on the pitch. Predicts substitutions and tactical adjustments.`}
+                {openAnalyst.key === 'diviner' && `Casts hexagrams from the I Ching to read the match — eight trigrams, sixty-four outcomes. Often wrong, occasionally inexplicably right; keeps the table honest about uncertainty.`}
+                {openAnalyst.key === 'crowd' && `Aggregates Twitter, Reddit, and Discord chatter — surfaces fan sentiment swings and detects manipulation campaigns.`}
               </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {openManage && (
+        <div className="analyst-modal-backdrop" onClick={() => setOpenManage(false)}>
+          <div className="analyst-modal manage-modal" onClick={(e) => e.stopPropagation()}>
+            <button className="analyst-modal-close" onClick={() => setOpenManage(false)} aria-label="Close">×</button>
+            <div className="analyst-modal-head">
+              <div>
+                <div className="analyst-modal-name">Manage participants</div>
+                <div className="analyst-modal-sub">
+                  {activeAnalysts.length} agents · 3 friends · 1 you
+                </div>
+              </div>
+            </div>
+
+            {/* AI agents — toggle on/off */}
+            <div className="manage-section">
+              <div className="manage-section-head">
+                <div>
+                  <div className="manage-section-title">AI agents</div>
+                  <div className="manage-section-sub">Pick which analysts join your debate team</div>
+                </div>
+                <span className="manage-section-count">{activeAnalysts.length} / {ANALYSTS.length} active</span>
+              </div>
+              <div className="manage-list">
+                {ANALYSTS.map((a) => {
+                  const active = activeAgentKeys.has(a.key)
+                  return (
+                    <div key={a.key} className={'manage-row manage-agent-row' + (active ? ' is-active' : '')}>
+                      <span className={'analyst-avatar tone-' + a.tone} data-key={a.key}>
+                        {a.image
+                          ? <img className="analyst-avatar-img" src={a.image} alt="" />
+                          : <span className="analyst-glyph">{a.glyph}</span>}
+                      </span>
+                      <div className="manage-row-body">
+                        <div className="manage-row-name">{a.name}</div>
+                        <div className="manage-row-sub">{a.specialty}</div>
+                      </div>
+                      <button
+                        className={'manage-toggle' + (active ? ' is-on' : '')}
+                        type="button"
+                        onClick={() => toggleAgent(a.key)}
+                        aria-pressed={active}
+                      >
+                        <span className="manage-toggle-knob" />
+                      </button>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+
+            {/* Friends — invite or remove */}
+            <div className="manage-section">
+              <div className="manage-section-head">
+                <div>
+                  <div className="manage-section-title">Friends</div>
+                  <div className="manage-section-sub">Members of this Table</div>
+                </div>
+              </div>
+              <div className="manage-list">
+                {[
+                  { initial: 'Y',  label: 'You',       sub: 'Host',          tone: 'me',     removable: false },
+                  { initial: 'SK', label: 'Sarah K.',  sub: 'Online · 14m',  tone: 'pink',   removable: true  },
+                  { initial: 'AM', label: 'Alex M.',   sub: 'Online · 8m',   tone: 'amber',  removable: true  },
+                  { initial: 'JT', label: 'Jordan T.', sub: 'Online · 2m',   tone: 'violet', removable: true  },
+                ].map((m) => (
+                  <div key={m.label} className={'manage-row tone-' + m.tone + (m.removable ? '' : ' is-host')}>
+                    <span className={'friend-pill tone-' + m.tone + (m.tone === 'me' ? ' is-me' : '')}>
+                      <span className="friend-initial">{m.initial}</span>
+                      <span className="friend-dot" />
+                    </span>
+                    <div className="manage-row-body">
+                      <div className="manage-row-name">{m.label}</div>
+                      <div className="manage-row-sub">{m.sub}</div>
+                    </div>
+                    {m.removable && (
+                      <button className="manage-remove" type="button">Remove</button>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="manage-invite">
+              <div className="manage-invite-label">Invite more friends</div>
+              <div className="manage-invite-link">
+                <code>https://lokacup.app/r/AKOZ-9F2X</code>
+                <button
+                  className="manage-invite-copy"
+                  type="button"
+                  onClick={() => {
+                    try { navigator.clipboard.writeText('https://lokacup.app/r/AKOZ-9F2X') } catch (e) {}
+                  }}
+                >Copy</button>
+              </div>
             </div>
           </div>
         </div>

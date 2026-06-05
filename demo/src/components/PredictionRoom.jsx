@@ -1,8 +1,72 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { acquireVoice, hasVoiceLock } from '../lib/voiceLock.js'
 import { getInitialMuted, persistMuted } from '../lib/mutePref.js'
+import { ANALYSTS, ANALYST_BY_NAME } from '../data/analysts.js'
 
-const AGENT_TONE = { 'Stats Analyst': 'mint', 'Market Analyst': 'gold', 'News Analyst': 'coral', 'Tactics Analyst': 'cyan' }
+// Top-of-room participant strip: 4 AI analysts on the left, human members on the right,
+// + a "Manage" entry that opens the members modal.
+function MembersBar({ onOpenManage, onOpenAnalyst }) {
+  const friends = [
+    { id: 'me',  initial: 'Y',  label: 'You',      tone: 'me' },
+    { id: 'sk',  initial: 'SK', label: 'Sarah K.', tone: 'pink' },
+    { id: 'am',  initial: 'AM', label: 'Alex M.',  tone: 'amber' },
+    { id: 'jt',  initial: 'JT', label: 'Jordan T.', tone: 'violet' },
+  ]
+  return (
+    <div className="pr-members">
+      <span className="pr-members-label">Analysis team</span>
+      <div className="pr-members-stack">
+        {ANALYSTS.map((a) => (
+          <button
+            key={a.key}
+            type="button"
+            className={'pr-member-chip pr-analyst tone-' + a.tone}
+            title={a.name}
+            onClick={() => onOpenAnalyst?.(a)}
+            aria-label={a.name}
+          >
+            <span className="pr-member-glyph">{a.glyph}</span>
+          </button>
+        ))}
+        {friends.map((f) => (
+          <span
+            key={f.id}
+            className={'pr-friend-pill tone-' + f.tone + (f.tone === 'me' ? ' is-me' : '')}
+            title={f.label}
+          >
+            {f.initial}
+            <span className="pr-friend-online" />
+          </span>
+        ))}
+        <button type="button" className="pr-manage-btn" onClick={() => onOpenManage?.()}>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+            <circle cx="12" cy="12" r="3" />
+            <line x1="12" y1="3" x2="12" y2="6" />
+            <line x1="12" y1="18" x2="12" y2="21" />
+            <line x1="3" y1="12" x2="6" y2="12" />
+            <line x1="18" y1="12" x2="21" y2="12" />
+            <line x1="5.6" y1="5.6" x2="7.7" y2="7.7" />
+            <line x1="16.3" y1="16.3" x2="18.4" y2="18.4" />
+            <line x1="5.6" y1="18.4" x2="7.7" y2="16.3" />
+            <line x1="16.3" y1="7.7" x2="18.4" y2="5.6" />
+          </svg>
+          Manage
+        </button>
+      </div>
+    </div>
+  )
+}
+
+const AGENT_TONE = {
+  'History Analyst': 'mint',
+  'Market Analyst':  'gold',
+  'News Analyst':    'coral',
+  'Tactics Analyst': 'cyan',
+  'Oracle Agent':    'violet',
+  'Crowd Sentiment': 'amber',
+  // Legacy alias
+  'Stats Analyst':   'mint',
+}
 
 // Lines the AI presenter cycles through while live. Spoken via the Web Speech API when unmuted.
 const PRESENTER_LINES = [
@@ -13,7 +77,7 @@ const PRESENTER_LINES = [
   "Latest debate round closed at 73 percent Brazil. Let's see how the next event moves it.",
 ]
 
-function PresenterBar() {
+function PresenterBar({ onOpenManage, onOpenAnalyst, activeAnalysts }) {
   // Read persisted preference — if the user muted last session, start muted.
   const [muted, setMuted] = useState(() => getInitialMuted())
   const [line, setLine] = useState(PRESENTER_LINES[0])
@@ -51,10 +115,14 @@ function PresenterBar() {
       // Only the lock holder speaks — kills any phantom duplicate instance.
       if (!hasVoiceLock(voiceLockRef.current?.id)) return
       window.speechSynthesis.cancel()
+      // Visual animation: drive `speaking` from a text-length timer so the
+      // mouth/wave animates even if the browser blocks audio (pre-gesture).
+      setSpeaking(true)
+      const ms = Math.min(6000, Math.max(1400, text.length * 55))
+      setTimeout(() => setSpeaking(false), ms)
       const u = new SpeechSynthesisUtterance(text)
       u.rate = 1.05
       u.pitch = 1.0
-      u.onstart = () => { if (!mutedRef.current) setSpeaking(true) }
       u.onend   = () => setSpeaking(false)
       u.onerror = () => setSpeaking(false)
       window.speechSynthesis.speak(u)
@@ -82,45 +150,116 @@ function PresenterBar() {
     }
   }, [])
 
+  const toggleMute = () => setMuted((v) => { const next = !v; persistMuted(next); return next })
+
+  // Combined member list — analysts + members (You + friends).
+  const friends = [
+    { id: 'me',  initial: 'Y',  label: 'You',       tone: 'me' },
+    { id: 'sk',  initial: 'SK', label: 'Sarah K.',  tone: 'pink' },
+    { id: 'am',  initial: 'AM', label: 'Alex M.',   tone: 'amber' },
+    { id: 'jt',  initial: 'JT', label: 'Jordan T.', tone: 'violet' },
+  ]
+  const MAX_VISIBLE = 6
+  const allChips = [
+    ...(activeAnalysts || ANALYSTS).map((a) => ({ kind: 'analyst', ...a })),
+    ...friends.map((f) => ({ kind: 'friend', ...f })),
+  ]
+  const visibleChips = allChips.slice(0, MAX_VISIBLE)
+  const overflow = allChips.length - visibleChips.length
+
   return (
     <div className={'pr-presenter' + (muted ? ' is-muted' : ' is-live')}>
-      <div className="pr-presenter-avatar" aria-hidden>
-        <span className="pr-presenter-glyph">🎙</span>
-        {!muted && speaking && <span className="pr-presenter-ring" />}
-      </div>
-      <div className="pr-presenter-body">
-        <div className="pr-presenter-meta">
-          <span className="pr-presenter-name">coachMike</span>
-          <span className="pr-presenter-role">· AI presenter</span>
-          {!muted && speaking && (
-            <span className="pr-presenter-wave" aria-hidden>
-              <i /><i /><i /><i /><i />
-            </span>
-          )}
-        </div>
-        <div className="pr-presenter-line">{muted ? 'Muted — tap to unmute' : line}</div>
-      </div>
+      {/* Coach avatar = portrait + mute toggle on the avatar itself */}
       <button
         type="button"
-        className="pr-presenter-mute"
-        onClick={() => setMuted((v) => { const next = !v; persistMuted(next); return next })}
-        aria-label={muted ? 'Unmute presenter' : 'Mute presenter'}
-        title={muted ? 'Unmute' : 'Mute'}
+        className="pr-presenter-avatar"
+        onClick={toggleMute}
+        title={muted ? 'Unmute Coach Mike' : 'Mute Coach Mike'}
+        aria-label={muted ? 'Unmute Coach Mike' : 'Mute Coach Mike'}
+        aria-pressed={!muted}
       >
-        {muted ? (
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-            <path d="M11 5L6 9H3v6h3l5 4V5z" />
-            <line x1="22" y1="9" x2="16" y2="15" />
-            <line x1="16" y1="9" x2="22" y2="15" />
-          </svg>
-        ) : (
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-            <path d="M11 5L6 9H3v6h3l5 4V5z" />
-            <path d="M15.5 8.5a5 5 0 0 1 0 7" />
-            <path d="M18.5 5.5a9 9 0 0 1 0 13" />
-          </svg>
-        )}
+        <img src="/coach-mike.png" alt="" className="pr-presenter-img" />
+        {!muted && <span className={'pr-presenter-ring' + (speaking ? ' is-speaking' : '')} />}
+        <span className="pr-presenter-mute-badge" aria-hidden>
+          {muted ? (
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M11 5L6 9H3v6h3l5 4V5z" />
+              <line x1="22" y1="9" x2="16" y2="15" />
+              <line x1="16" y1="9" x2="22" y2="15" />
+            </svg>
+          ) : (
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M11 5L6 9H3v6h3l5 4V5z" />
+              <path d="M15.5 8.5a5 5 0 0 1 0 7" />
+            </svg>
+          )}
+        </span>
       </button>
+
+      {/* Name + waveform (no caption line) */}
+      <div className="pr-presenter-body">
+        <span className="pr-presenter-name">Coach Mike</span>
+        <span className="pr-presenter-role">AI presenter</span>
+        {!muted && (
+          <span className={'pr-presenter-wave' + (speaking ? ' is-speaking' : '')} aria-hidden>
+            <i /><i /><i /><i /><i />
+          </span>
+        )}
+      </div>
+
+      {/* Members stack pushed to the right */}
+      <div className="pr-presenter-members">
+        {visibleChips.map((c) =>
+          c.kind === 'analyst' ? (
+            <button
+              key={c.key}
+              type="button"
+              className={'pr-member-chip pr-analyst tone-' + c.tone}
+              data-key={c.key}
+              title={c.name}
+              onClick={() => onOpenAnalyst?.(c)}
+              aria-label={c.name}
+            >
+              {c.image
+                ? <img className="pr-member-img" src={c.image} alt="" />
+                : <span className="pr-member-glyph">{c.glyph}</span>}
+            </button>
+          ) : (
+            <span
+              key={c.id}
+              className={'pr-friend-pill tone-' + c.tone + (c.tone === 'me' ? ' is-me' : '')}
+              title={c.label}
+            >
+              {c.initial}
+              <span className="pr-friend-online" />
+            </span>
+          )
+        )}
+        {overflow > 0 && (
+          <button
+            type="button"
+            className="pr-members-more"
+            onClick={() => onOpenManage?.()}
+            title="View all members"
+          >
+            +{overflow}
+          </button>
+        )}
+        <button type="button" className="pr-manage-btn" onClick={() => onOpenManage?.()}>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+            <circle cx="12" cy="12" r="3" />
+            <line x1="12" y1="3" x2="12" y2="6" />
+            <line x1="12" y1="18" x2="12" y2="21" />
+            <line x1="3" y1="12" x2="6" y2="12" />
+            <line x1="18" y1="12" x2="21" y2="12" />
+            <line x1="5.6" y1="5.6" x2="7.7" y2="7.7" />
+            <line x1="16.3" y1="16.3" x2="18.4" y2="18.4" />
+            <line x1="5.6" y1="18.4" x2="7.7" y2="16.3" />
+            <line x1="16.3" y1="7.7" x2="18.4" y2="5.6" />
+          </svg>
+          Manage
+        </button>
+      </div>
     </div>
   )
 }
@@ -133,6 +272,14 @@ function wallClock(min) {
   const h = KICKOFF_HOURS + Math.floor(min / 60)
   const m = min % 60
   return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`
+}
+// Chat timestamp — HH:MM:SS. Seconds spread deterministically per message slot.
+function chatStamp(min, slot = 0) {
+  const total = min * 60 + (slot * 17 % 60)
+  const h = KICKOFF_HOURS + Math.floor(total / 3600)
+  const m = Math.floor((total % 3600) / 60)
+  const s = total % 60
+  return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`
 }
 
 // Predefined "predictions" the host opened for this match.
@@ -311,12 +458,58 @@ function PredictionStripCard({ p, active, onClick }) {
 
 function fmtMin(m) { return `${m}′` }
 
-export default function PredictionRoom() {
+export default function PredictionRoom({ onOpenManage, onOpenAnalyst, activeAnalysts }) {
   const [predictions, setPredictions] = useState(INITIAL_PREDICTIONS)
   const [selectedId, setSelectedId] = useState('winner')
   const [input, setInput] = useState('')
+  const [listening, setListening] = useState(false)
+  const recognitionRef = useRef(null)
+  const baseTextRef = useRef('') // text in the input when recording started
   const minute = useRef(67)
   const streamRef = useRef(null)
+
+  // Web Speech API: prefer the unprefixed name, fall back to webkit
+  const SpeechRecognition = typeof window !== 'undefined'
+    ? (window.SpeechRecognition || window.webkitSpeechRecognition)
+    : null
+  const sttSupported = !!SpeechRecognition
+
+  // Start/stop voice input.
+  const toggleListening = () => {
+    if (!sttSupported) return
+    if (listening) {
+      recognitionRef.current?.stop()
+      return
+    }
+    const rec = new SpeechRecognition()
+    rec.continuous = false
+    rec.interimResults = true
+    rec.lang = 'en-US'
+    rec.maxAlternatives = 1
+    baseTextRef.current = input ? input + ' ' : ''
+    rec.onstart = () => setListening(true)
+    rec.onresult = (e) => {
+      let interim = ''
+      let final = ''
+      for (let i = e.resultIndex; i < e.results.length; i++) {
+        const r = e.results[i]
+        if (r.isFinal) final += r[0].transcript
+        else interim += r[0].transcript
+      }
+      setInput(baseTextRef.current + final + interim)
+      if (final) baseTextRef.current += final
+    }
+    rec.onerror = () => setListening(false)
+    rec.onend = () => {
+      setListening(false)
+      recognitionRef.current = null
+    }
+    recognitionRef.current = rec
+    try { rec.start() } catch (e) { setListening(false) }
+  }
+
+  // Stop recognition on unmount.
+  useEffect(() => () => recognitionRef.current?.stop?.(), [])
 
   // Live stream: every ~3.5s, push a new agent line into one of the predictions
   useEffect(() => {
@@ -338,7 +531,7 @@ export default function PredictionRoom() {
           deltaPrimMin: minute.current,
           comments: p.comments + (Math.random() < 0.4 ? 1 : 0),
           thread: [...p.thread.slice(-30), {
-            ts: fmtMin(minute.current),
+            ts: chatStamp(minute.current),
             agent: line.agent,
             text: line.text,
           }],
@@ -409,7 +602,7 @@ export default function PredictionRoom() {
     setPredictions((prev) => prev.map((p) =>
       p.id !== selectedId ? p : {
         ...p,
-        thread: [...p.thread, { ts: fmtMin(minute.current), agent: 'host', text: v }],
+        thread: [...p.thread, { ts: chatStamp(minute.current), agent: 'host', text: v }],
         comments: p.comments + 1,
       }
     ))
@@ -420,7 +613,7 @@ export default function PredictionRoom() {
         p.id !== selectedId ? p : {
           ...p,
           thread: [...p.thread, {
-            ts: fmtMin(minute.current),
+            ts: chatStamp(minute.current),
             agent: 'Stats Analyst',
             text: 'Re-running 4 agents with your context — give me 5s.',
           }],
@@ -431,8 +624,12 @@ export default function PredictionRoom() {
 
   return (
     <div className="pr-card">
-      {/* AI Presenter bar — narrator avatar + waveform + mute toggle */}
-      <PresenterBar />
+      {/* AI Presenter bar — narrator avatar + name + analyst/member chips + manage */}
+      <PresenterBar
+        onOpenManage={onOpenManage}
+        onOpenAnalyst={onOpenAnalyst}
+        activeAnalysts={activeAnalysts}
+      />
 
       {/* HIDDEN: sub-prediction picker + hover timeline.
           Kept commented to make it easy to bring back later — just unwrap this block.
@@ -480,9 +677,10 @@ export default function PredictionRoom() {
       </div>
       */}
 
-      {/* One merged chronological thread; tip cards anchor each prediction. */}
+      {/* One merged chronological thread. Tip anchor cards are hidden — the
+          prediction sub-questions have moved out of the chat surface. */}
       <div className="pr-thread" ref={streamRef}>
-        {flatThread.map((m, i) => {
+        {flatThread.filter((m) => m.kind !== 'tip').map((m, i) => {
           if (m.kind === 'tip') {
             const finalAns = m.resolved ? m.consensus.replace(' — RESOLVED', '') : null
             return (
@@ -519,15 +717,27 @@ export default function PredictionRoom() {
           }
           const isHost = m.agent === 'host'
           const tone = AGENT_TONE[m.agent] || 'mint'
+          // Normalise legacy minute-marker timestamps ("62′") to wall-clock HH:MM:SS.
+          const rawTs = m.ts || ''
+          const minMatch = rawTs.match(/^(\d+)\s*[′']$/)
+          const displayTs = minMatch ? chatStamp(parseInt(minMatch[1], 10), i) : rawTs
+          const meta = ANALYST_BY_NAME[m.agent]
           return (
             <div key={i} className={'pr-msg ' + (isHost ? 'host' : 'ai')}>
-              <div className={'pr-msg-avatar tone-' + (isHost ? 'host' : tone)}>
-                {isHost ? 'H' : m.agent.slice(0, 1)}
+              <div
+                className={'pr-msg-avatar tone-' + (isHost ? 'host' : tone)}
+                data-key={meta?.key}
+              >
+                {isHost
+                  ? 'H'
+                  : meta?.image
+                  ? <img className="pr-msg-avatar-img" src={meta.image} alt="" />
+                  : m.agent.slice(0, 1)}
               </div>
               <div className="pr-msg-body">
                 <div className="pr-msg-meta">
                   <span className="pr-msg-agent">{isHost ? 'Host' : m.agent}</span>
-                  <span className="pr-msg-ts">{m.ts}</span>
+                  <span className="pr-msg-ts">{displayTs}</span>
                 </div>
                 <div className={'pr-msg-bubble ' + (isHost ? 'host' : 'ai')}>{m.text}</div>
               </div>
@@ -537,13 +747,45 @@ export default function PredictionRoom() {
       </div>
 
       {/* Composer — only enabled on the current (newest) question */}
-      <div className="pr-input-row">
-        <button className="pr-mic" aria-label="Voice" title="Push to talk" disabled={isViewingHistory}>●</button>
+      <div className={'pr-input-row' + (listening ? ' is-listening' : '')}>
+        <button
+          type="button"
+          className={'pr-mic' + (listening ? ' is-listening' : '')}
+          aria-label={listening ? 'Stop voice input' : 'Start voice input'}
+          aria-pressed={listening}
+          title={
+            !sttSupported ? 'Voice input not supported in this browser'
+            : listening ? 'Listening… click to stop'
+            : 'Click to speak'
+          }
+          disabled={isViewingHistory || !sttSupported}
+          onClick={toggleListening}
+        >
+          {listening ? (
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden>
+              <rect x="6" y="6" width="12" height="12" rx="2" />
+            </svg>
+          ) : (
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+              <rect x="9" y="3" width="6" height="11" rx="3" />
+              <path d="M5 11a7 7 0 0 0 14 0" />
+              <line x1="12" y1="18" x2="12" y2="22" />
+              <line x1="8" y1="22" x2="16" y2="22" />
+            </svg>
+          )}
+        </button>
+        {listening && (
+          <span className="pr-mic-wave" aria-hidden>
+            <i /><i /><i /><i />
+          </span>
+        )}
         <input
           className="pr-input"
-          placeholder={isViewingHistory
-            ? 'Viewing past question — switch back to the latest to chat.'
-            : `Ask the agents about: ${selected.title.toLowerCase()}`}
+          placeholder={
+            isViewingHistory ? 'Viewing past question — switch back to the latest to chat.'
+            : listening ? 'Listening…'
+            : `Ask the agents about: ${selected.title.toLowerCase()}`
+          }
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && send()}
