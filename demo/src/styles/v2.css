@@ -4536,15 +4536,14 @@
 .t-head-live {
   display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
-  padding: 0.15rem 0.45rem;
+  gap: 0.35rem;
+  padding: 0.22rem 0.55rem;
   border-radius: 999px;
   background: rgba(217,28,28,0.12);
   color: var(--accent-red);
   font-weight: 700;
-  letter-spacing: 0.06em;
-  font-size: 0.65rem;
-  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  font-size: 0.74rem;
 }
 .t-head-live-dot {
   width: 6px;
@@ -7736,6 +7735,8 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 0.8rem;
+  align-items: stretch;
+  grid-auto-rows: 1fr;  /* equal-height rows */
 }
 
 /* ─── Prediction card ─── */
@@ -8192,6 +8193,11 @@
 
 /* ─── Prediction card — softer, less wireframe-y ─── */
 .pv-pred {
+  /* Equal-height cards across the grid row */
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  height: 100%;
   padding: 1.1rem 1.15rem 1rem;
   border-radius: 16px;
   background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.015));
@@ -8201,6 +8207,19 @@
     0 12px 32px rgba(0,0,0,0.25);
   transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s, background 0.2s;
 }
+/* Cap the title to 2 lines so cards with longer / shorter titles match */
+.pv-pred-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 2.45em;
+}
+/* Outcome list takes the flex middle, pushing foot + share to the bottom */
+.pv-pred-outcomes { flex: 1 1 auto; }
+/* Foot pins above share */
+.pv-pred-foot { margin-top: auto; }
+.pv-pred-share-btn { margin-top: 0.55rem; }
 .pv-pred:hover {
   background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.025));
   border-color: rgba(255,255,255,0.16);
@@ -9281,10 +9300,9 @@
   padding: 0.22rem 0.55rem;
   border-radius: 999px;
   font-family: var(--font-ui);
-  font-size: 0.7rem;
+  font-size: 0.74rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  letter-spacing: 0.01em;
 }
 .t-head-upcoming {
   background: rgba(245,180,0,0.12);
@@ -9321,13 +9339,12 @@
   align-items: center;
   gap: 0.3rem;
   margin-left: 0.55rem;
-  padding: 0.18rem 0.55rem;
+  padding: 0.22rem 0.55rem;
   border-radius: 999px;
   font-family: var(--font-ui);
-  font-size: 0.74rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  letter-spacing: 0.01em;
 }
 .room-title-upcoming {
   background: rgba(245,180,0,0.14);
@@ -9444,3 +9461,678 @@
 }
 .settled-mypick-pts.is-won  { color: var(--accent-green); }
 .settled-mypick-pts.is-lost { color: #ff6e6e; }
+
+/* ─── VotePanel · settled mode (Finished tables) ─── */
+.vp-settled .vp-head .vp-title { color: var(--fg-primary); }
+
+.vp-row-settled {
+  grid-template-columns: 12px 22px minmax(80px, 1.4fr) minmax(36px, 1fr) auto auto;
+  cursor: default;
+}
+.vp-row-settled:hover { background: rgba(255,255,255,0.02); border-color: transparent; }
+
+.vp-row-settled.is-winner {
+  background: rgba(168,255,0,0.08);
+  box-shadow: inset 0 0 0 1.5px rgba(168,255,0,0.55);
+}
+.vp-row-settled.is-winner .vp-row-bar-fill { background: var(--accent-green); opacity: 1; }
+.vp-row-settled.is-winner .vp-row-dot { background: var(--accent-green); box-shadow: 0 0 0 3px rgba(168,255,0,0.2); }
+
+.vp-row-settled.is-mine-lost {
+  background: rgba(217,28,28,0.06);
+  box-shadow: inset 0 0 0 1.5px rgba(217,28,28,0.4);
+}
+.vp-row-settled.is-mine-lost .vp-row-bar-fill { background: var(--accent-red); opacity: 1; }
+.vp-row-settled.is-mine-lost .vp-row-dot { background: var(--accent-red); }
+
+.vp-option-settled {
+  position: relative;
+  cursor: default;
+  border: 1.5px solid var(--border-light);
+}
+.vp-option-settled.is-winner {
+  border-color: var(--accent-green);
+  background: rgba(168,255,0,0.08);
+  box-shadow: 0 0 0 1px rgba(168,255,0,0.35);
+}
+.vp-option-settled.is-mine-lost {
+  border-color: var(--accent-red);
+  background: rgba(217,28,28,0.06);
+}
+
+.vp-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.22rem 0.55rem;
+  border-radius: 999px;
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+.vp-mark.is-win { background: var(--accent-green); color: #0a0a10; }
+.vp-mark.is-correct { background: rgba(168,255,0,0.18); color: var(--accent-green); border: 1px solid rgba(168,255,0,0.5); }
+.vp-mark.is-mine-lost { background: rgba(217,28,28,0.16); color: #ff6e6e; border: 1px solid rgba(217,28,28,0.5); }
+.vp-mark-tick {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.18);
+  font-size: 0.65rem;
+  font-weight: 800;
+}
+.vp-mark.is-win .vp-mark-tick { background: rgba(0,0,0,0.25); color: #0a0a10; }
+
+.vp-option-settled .vp-mark-large {
+  position: absolute;
+  bottom: 0.55rem;
+  right: 0.6rem;
+}
+
+.vp-share-btn {
+  margin-top: 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.65rem 0.9rem;
+  border-radius: 10px;
+  background: rgba(168,255,0,0.08);
+  border: 1px solid rgba(168,255,0,0.32);
+  color: var(--accent-green);
+  font-family: var(--font-ui);
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.1s;
+}
+.vp-share-btn:hover {
+  background: rgba(168,255,0,0.16);
+  border-color: var(--accent-green);
+}
+.vp-share-btn:active { transform: scale(0.985); }
+
+.vp-share-btn.is-win {
+  background: var(--accent-green);
+  border-color: var(--accent-green);
+  color: #0a0a10;
+  box-shadow: 0 6px 18px rgba(168,255,0,0.25);
+}
+.vp-share-btn.is-win:hover { background: #b9ff33; border-color: #b9ff33; }
+
+.vp-share-btn.is-flash {
+  background: var(--accent-green);
+  border-color: var(--accent-green);
+  color: #0a0a10;
+}
+
+/* Settlement summary line above the Share button */
+.vp-settle-line {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 0.75rem;
+  padding: 0.6rem 0.85rem;
+  border-radius: 10px;
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.vp-settle-line.is-won  { background: rgba(168,255,0,0.1);  border: 1px solid rgba(168,255,0,0.42); color: var(--fg-primary); }
+.vp-settle-line.is-lost { background: rgba(217,28,28,0.08); border: 1px solid rgba(217,28,28,0.4);  color: var(--fg-primary); }
+.vp-settle-line.is-none { background: rgba(255,255,255,0.04); border: 1px solid var(--border-light); color: var(--fg-secondary); }
+.vp-settle-tick {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 0.78rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.is-won  .vp-settle-tick { background: var(--accent-green); color: #0a0a10; }
+.is-lost .vp-settle-tick { background: var(--accent-red); color: #fff; }
+.is-none .vp-settle-tick { background: rgba(255,255,255,0.1); color: var(--fg-tertiary); }
+.vp-settle-text { flex: 1; min-width: 0; }
+.vp-settle-text strong { font-weight: 800; }
+.vp-settle-pts {
+  font-family: var(--font-data);
+  font-weight: 800;
+  font-size: 0.92rem;
+  flex-shrink: 0;
+}
+.is-won  .vp-settle-pts { color: var(--accent-green); }
+.is-lost .vp-settle-pts { color: #ff6e6e; }
+
+/* ═══════════════════════════════════════════════════════════════
+   Win celebration · confetti + poster modal
+   ═══════════════════════════════════════════════════════════════ */
+.win-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  background: rgba(6,6,10,0.82);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  animation: ow-fade-in 0.18s ease-out;
+  overflow: hidden;
+}
+
+/* ─── Confetti ─── */
+.win-confetti {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.win-confetti-piece {
+  position: absolute;
+  top: -30px;
+  border-radius: 1px;
+  opacity: 0.95;
+  animation: confetti-fall linear forwards;
+}
+@keyframes confetti-fall {
+  0%   { transform: translateY(-30px) rotate(0deg); opacity: 0; }
+  10%  { opacity: 1; }
+  100% { transform: translateY(105vh) rotate(720deg); opacity: 1; }
+}
+
+/* ─── Modal shell ─── */
+.win-modal {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 460px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  animation: ow-modal-in 0.32s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.win-close {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  z-index: 3;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(10,10,14,0.9);
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.1rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.win-close:hover { background: rgba(255,255,255,0.15); }
+
+/* ─── Poster card (4:5 shareable artwork) ─── */
+.win-poster {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 1.5rem 1.5rem 1.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  background: linear-gradient(135deg, #0d1f08 0%, #16261a 35%, #1f1410 75%, #2a0e0e 100%);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+  isolation: isolate;
+}
+.win-poster.is-loss {
+  background: linear-gradient(135deg, #1a1a20 0%, #1f1014 60%, #2a0e0e 100%);
+}
+.win-poster-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+}
+.win-poster-glow {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(360px 240px at 20% 0%, rgba(168,255,0,0.28), transparent 70%),
+    radial-gradient(420px 320px at 100% 100%, rgba(217,28,28,0.22), transparent 70%);
+  pointer-events: none;
+}
+.win-poster.is-loss .win-poster-glow {
+  background:
+    radial-gradient(420px 320px at 100% 100%, rgba(217,28,28,0.3), transparent 70%);
+}
+.win-poster > *:not(.win-poster-grid):not(.win-poster-glow) { position: relative; z-index: 1; }
+
+/* Header — brand + badge */
+.win-poster-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.win-poster-brand {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  letter-spacing: 0.08em;
+  color: var(--accent-green);
+  text-transform: uppercase;
+}
+.win-poster-badge {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(168,255,0,0.18);
+  color: var(--accent-green);
+  border: 1px solid rgba(168,255,0,0.5);
+}
+.win-poster.is-loss .win-poster-badge {
+  background: rgba(255,255,255,0.06);
+  color: var(--fg-secondary);
+  border-color: rgba(255,255,255,0.18);
+}
+
+/* Big quote in the middle */
+.win-poster-quote {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  line-height: 1.05;
+  color: #fff;
+  letter-spacing: -0.005em;
+  margin-top: 0.4rem;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+/* Mid row — flag + result */
+.win-poster-mid {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid rgba(255,255,255,0.12);
+}
+.win-poster-flag {
+  width: 56px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.win-poster-mid-text { min-width: 0; }
+.win-poster-result {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  color: var(--accent-green);
+  letter-spacing: 0.01em;
+  line-height: 1.05;
+  text-shadow: 0 0 24px rgba(168,255,0,0.4);
+}
+.win-poster.is-loss .win-poster-result { color: #fff; text-shadow: none; }
+.win-poster-q {
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.7);
+  margin-top: 0.25rem;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Stats triple */
+.win-poster-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.7rem;
+}
+.win-poster-stat { text-align: left; }
+.win-poster-stat-val {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: #fff;
+  line-height: 1.05;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.win-poster-stat:first-child .win-poster-stat-val { color: var(--accent-green); }
+.win-poster.is-loss .win-poster-stat:first-child .win-poster-stat-val { color: #fff; }
+.win-poster-stat-lbl {
+  font-family: var(--font-ui);
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.5);
+  margin-top: 0.18rem;
+}
+
+/* AI team avatars at the bottom */
+.win-poster-agents {
+  display: flex;
+  gap: -0.4rem;
+  margin-top: auto;
+  padding-top: 0.4rem;
+}
+.win-poster-agent {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid rgba(0,0,0,0.5);
+  background: #0a0a10;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -0.4rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+.win-poster-agent:first-child { margin-left: 0; }
+.win-poster-agent img { width: 100%; height: 100%; object-fit: cover; }
+.win-poster-agent-glyph { font-size: 1rem; color: #fff; }
+
+.win-poster-foot {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.02em;
+}
+.win-poster-hashtag { color: var(--accent-green); font-weight: 700; }
+.win-poster.is-loss .win-poster-hashtag { color: rgba(255,255,255,0.7); }
+
+/* ─── Action buttons below the poster ─── */
+.win-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.5rem;
+}
+.win-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.65rem 0.7rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-light);
+  background: rgba(255,255,255,0.04);
+  color: var(--fg-primary);
+  font-family: var(--font-ui);
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s, border-color 0.15s, transform 0.1s;
+}
+.win-action:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.22); }
+.win-action:active { transform: scale(0.97); }
+.win-action-x {
+  background: rgba(168,255,0,0.1);
+  border-color: rgba(168,255,0,0.35);
+  color: var(--accent-green);
+}
+.win-action-x:hover { background: rgba(168,255,0,0.18); border-color: var(--accent-green); }
+
+/* ─── Win poster · enlarge stats + center agents + user credit ─── */
+
+/* Bigger stat numbers */
+.win-poster-stats { gap: 0.5rem; }
+.win-poster-stat-val { font-size: 1.85rem; line-height: 1; }
+.win-poster-stat-lbl { font-size: 0.7rem; margin-top: 0.3rem; }
+
+/* User credit row above AI agents */
+.win-poster-credit {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 0.75rem;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 12px;
+  margin-top: 0.3rem;
+}
+.win-poster-user-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #a8ff00, #6dd400);
+  color: #0a0a10;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.win-poster-user-avatar.is-img { background: #0a0a10; }
+.win-poster-user-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.win-poster-credit-text { min-width: 0; flex: 1; }
+.win-poster-credit-name {
+  font-family: var(--font-ui);
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.win-poster-credit-handle {
+  font-family: var(--font-data);
+  font-size: 0.74rem;
+  color: rgba(255,255,255,0.55);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.win-poster-credit-with {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--accent-green);
+  text-transform: uppercase;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.win-poster.is-loss .win-poster-credit-with { color: rgba(255,255,255,0.55); }
+
+/* AI agents: bigger, centered */
+.win-poster-agents {
+  display: flex;
+  justify-content: center;
+  margin-top: 0;
+  padding-top: 0.2rem;
+}
+.win-poster-agent {
+  width: 46px;
+  height: 46px;
+  border: 2.5px solid rgba(0,0,0,0.6);
+  margin-left: -0.55rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+}
+.win-poster-agent-glyph { font-size: 1.2rem; }
+
+/* Make agent row pop visually with subtle ring */
+.win-poster-agent:first-child { margin-left: 0; }
+.win-poster.is-win .win-poster-agent { border-color: rgba(168,255,0,0.35); }
+
+/* Actions: drop to 2 columns now that Copy link is gone */
+.win-actions-2 { grid-template-columns: 1fr 1fr; }
+
+/* ─── Profile prediction card · big Share button ─── */
+.pv-pred-share-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  width: 100%;
+  margin-top: 0.55rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: 10px;
+  background: rgba(168,255,0,0.08);
+  border: 1px solid rgba(168,255,0,0.32);
+  color: var(--accent-green);
+  font-family: var(--font-ui);
+  font-size: 0.86rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, transform 0.1s;
+}
+.pv-pred-share-btn:hover {
+  background: rgba(168,255,0,0.16);
+  border-color: var(--accent-green);
+}
+.pv-pred-share-btn:active { transform: scale(0.985); }
+
+/* Pending poster: amber tones */
+.win-poster.is-pending {
+  background: linear-gradient(135deg, #131614 0%, #1c2018 40%, #221a0b 100%);
+}
+.win-poster.is-pending .win-poster-glow {
+  background: radial-gradient(420px 320px at 100% 100%, rgba(245,180,0,0.25), transparent 70%);
+}
+.win-poster.is-pending .win-poster-badge {
+  background: rgba(245,180,0,0.16);
+  color: #f5b400;
+  border: 1px solid rgba(245,180,0,0.45);
+}
+.win-poster.is-pending .win-poster-result {
+  color: #f5b400;
+  text-shadow: 0 0 24px rgba(245,180,0,0.35);
+}
+.win-poster.is-pending .win-poster-stat:first-child .win-poster-stat-val { color: #f5b400; }
+.win-poster.is-pending .win-poster-credit-with { color: #f5b400; }
+.win-poster.is-pending .win-poster-agent { border-color: rgba(245,180,0,0.35); }
+.win-poster.is-pending .win-poster-hashtag { color: #f5b400; }
+
+/* My Tables tile — TableCard + bottom share button, flex column for equal-height rows */
+.pv-table-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  height: 100%;
+}
+.pv-table-tile .t-card { flex: 1 1 auto; }
+.pv-table-share-btn { margin-top: 0; }
+
+/* Hide the old absolute-positioned share overlay if it ever renders */
+.pv-table-share { display: none; }
+
+/* ═══════════════════════════════════════════════════════════════
+   Profile · de-wireframe pass — reduce nested borders + chips
+   ═══════════════════════════════════════════════════════════════ */
+
+/* — Filter chips · cleaner, no double-rim look — */
+.pv-chip {
+  background: transparent;
+  border: 1px solid transparent;
+}
+.pv-chip:hover { background: rgba(255,255,255,0.04); }
+.pv-chip.is-active.pv-chip-all     { background: rgba(255,255,255,0.07); border-color: transparent; color: #fff; }
+.pv-chip.is-active.pv-chip-pending { background: rgba(255,255,255,0.05); border-color: transparent; color: #fff; }
+.pv-chip.is-active.pv-chip-won     { background: rgba(168,255,0,0.1);  border-color: transparent; color: var(--accent-green); }
+.pv-chip.is-active.pv-chip-lost    { background: rgba(217,28,28,0.1);  border-color: transparent; color: #ff6e6e; }
+.pv-chip-count { background: rgba(0,0,0,0.18); }
+
+/* — Prediction card border softer — */
+.pv-pred {
+  border: 1px solid rgba(255,255,255,0.05);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.03) inset,
+    0 8px 22px rgba(0,0,0,0.22);
+}
+.pv-pred:hover { border-color: rgba(255,255,255,0.1); }
+.pv-pred-won  { border-color: rgba(168,255,0,0.18); }
+.pv-pred-lost { border-color: rgba(217,28,28,0.18); }
+
+/* — Outcome rows: no per-row chip backgrounds, just bar + label — */
+.pv-pred-out {
+  background: transparent;
+  border: none;
+  padding: 0.32rem 0.1rem;
+}
+.pv-pred-out.is-picked,
+.pv-pred-out.is-picked-pending,
+.pv-pred-out.is-picked-won,
+.pv-pred-out.is-picked-lost {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  padding: 0.32rem 0.1rem;
+}
+
+/* The "picked" treatment lives entirely on the row's bar + check mark — no chrome chip */
+.pv-pred-out:not(.is-picked) .pv-pred-out-mark::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+}
+/* Picked rows: small filled circle mark with status color (no badge / no border) */
+.pv-pred-out.is-picked-pending .pv-pred-out-mark,
+.pv-pred-out.is-picked-won     .pv-pred-out-mark { background: var(--accent-green); color: #0a0a10; }
+.pv-pred-out.is-picked-lost    .pv-pred-out-mark { background: var(--accent-red); color: #fff; }
+.pv-pred-out.is-picked .pv-pred-out-label { color: var(--fg-primary); font-weight: 700; }
+
+/* — Status badge: less framing, more like a label — */
+.pv-pred-badge {
+  border: none;
+  background: transparent;
+  padding: 0.18rem 0.1rem;
+  font-size: 0.72rem;
+}
+.pv-pred-badge-pending { background: transparent; color: var(--fg-tertiary); }
+.pv-pred-badge-won     { background: transparent; color: var(--accent-green); }
+.pv-pred-badge-lost    { background: transparent; color: #ff6e6e; }
+.pv-pred-badge-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* — Share button: green outline pill, sized comfortably — */
+.pv-pred-share-btn {
+  width: 100%;
+  margin-top: 0.55rem;
+  padding: 0.75rem 1rem;
+  background: rgba(168,255,0,0.08);
+  border: 1px solid rgba(168,255,0,0.32);
+  border-radius: 999px;
+  color: var(--accent-green);
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  font-weight: 700;
+  gap: 0.5rem;
+}
+.pv-pred-share-btn svg { width: 16px; height: 16px; }
+.pv-pred-share-btn:hover {
+  background: rgba(168,255,0,0.16);
+  border-color: var(--accent-green);
+}
+.pv-pred-share-btn:active { transform: scale(0.985); }
+
+/* — Hero stats top border softer — */
+.pv-stats { border-top-color: rgba(255,255,255,0.06); }
+
+/* — Pane / section background quieter — */
+.profilev2 .pv-pane { padding-top: 0.5rem; }

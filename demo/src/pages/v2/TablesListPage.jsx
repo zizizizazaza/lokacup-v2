@@ -5,7 +5,7 @@ import { IconEye } from '../../components/Icons.jsx'
 import { withFlags, flagSrc } from '../../components/Flag.jsx'
 import HeroCarousel from '../../components/HeroCarousel.jsx'
 
-const FILTERS = ['All', 'Live']
+const FILTERS = ['All', 'Live', 'Upcoming']
 
 function pickPair(title) {
   const vs = title.match(/([A-Z][a-z]+)\s+vs\s+([A-Z][a-z]+)/)
@@ -161,7 +161,7 @@ function LiveCard({ t, idx, cls, pair, aiA, aiB, flagA, flagB, leading }) {
             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
               <polyline points="20 6 9 17 4 12"/>
             </svg>
-            Final
+            Ended
           </span>
         )}
       </div>
@@ -233,10 +233,20 @@ export default function TablesListPage() {
     return ['All', ...Array.from(set).sort()]
   })()
 
+  // Sort priority: live → upcoming (soonest first) → finished
+  const STATUS_ORDER = { live: 0, upcoming: 1, finished: 2 }
+  const kickoffMinutes = (s) => {
+    if (!s) return Infinity
+    const d = /(\d+)\s*d/.exec(s)
+    const h = /(\d+)\s*h/.exec(s)
+    const m = /(\d+)\s*m/.exec(s)
+    return (d ? +d[1] * 24 * 60 : 0) + (h ? +h[1] * 60 : 0) + (m ? +m[1] : 0)
+  }
+
   const filtered = TABLES
     .filter((t) => {
       if (filter === 'Live' && t.status !== 'live') return false
-      if (filter === 'Discussion' && t.status !== 'discussion') return false
+      if (filter === 'Upcoming' && t.status !== 'upcoming') return false
       if (team !== 'All') {
         const p = pickPair(t.market.title)
         if (p.a !== team && p.b !== team) return false
@@ -244,7 +254,14 @@ export default function TablesListPage() {
       return true
     })
     .slice()
-    .sort((a, b) => (b.status === 'live') - (a.status === 'live'))
+    .sort((a, b) => {
+      const sa = STATUS_ORDER[a.status] ?? 99
+      const sb = STATUS_ORDER[b.status] ?? 99
+      if (sa !== sb) return sa - sb
+      // Within upcoming, soonest kickoff first
+      if (a.status === 'upcoming') return kickoffMinutes(a.kickoffIn) - kickoffMinutes(b.kickoffIn)
+      return 0
+    })
 
   return (
     <div>

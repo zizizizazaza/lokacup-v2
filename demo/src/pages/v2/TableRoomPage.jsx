@@ -7,6 +7,7 @@ import { IconSend } from '../../components/Icons.jsx'
 import PredictionRoom from '../../components/PredictionRoom.jsx'
 import BasicDataTabs from '../../components/BasicDataTabs.jsx'
 import { ANALYSTS } from '../../data/analysts.js'
+import WinShareModal from '../../components/WinShareModal.jsx'
 
 const AGENT_TONE = {
   'Stats Analyst': 'mint',
@@ -145,30 +146,31 @@ function RailProbCurve({ aiA, aiB, pairA, pairB, flatten = false }) {
 //  • 3-4 outcomes → row list with probability bar
 //  • 5+        → row list w/ internal scroll
 // Points: 25 × difficulty × time per docs/points-system.md §2.1
-// Settled rail — replaces AI Conclusion + Vote panel when a Table has finished.
-// 3 segments per spec §3.4: Final hero, frozen curve, my prediction settlement.
+// Settled rail — keeps the full question + all outcomes from the vote panel,
+// but in a read-only "results" mode. Marks the winning outcome and the user's
+// pick. Includes a share button so winners can brag.
 function SettledRail({ table, pair, aiA, aiB, flagA, flagB, FieldGlobe }) {
-  // Derive winning side from the binary outcome (a/b) or explicit outcomes list
   const outcomes = table.market.outcomes
+    ? table.market.outcomes.map((o) => ({ ...o, prob: table.market.probs?.[o.id] ?? 0 }))
+    : [
+        { id: 'a', label: pair.a, tone: 'a', prob: aiA, flagSrc: flagA },
+        { id: 'b', label: pair.b, tone: 'b', prob: aiB, flagSrc: flagB },
+      ]
+  const isMulti = outcomes.length >= 3
   const winningId = table.winningOutcomeId
-  const winningSide = outcomes
-    ? outcomes.find((o) => o.id === winningId)
-    : { id: winningId, label: winningId === 'a' ? pair.a : pair.b }
+  const winning = outcomes.find((o) => o.id === winningId)
 
-  // Mock "my pick" for the demo — alternate per table id so we get both win and lose states
+  // Mock "my pick" — even-named tables = picked option A (mostly loses), odd = picked winner
   const myPickId = (table.id.charCodeAt(0) % 2 === 0) ? 'a' : winningId
-  const myPickWon = myPickId === winningId
   const hadPick = !!myPickId
-  const myLabel = outcomes
-    ? outcomes.find((o) => o.id === myPickId)?.label
-    : (myPickId === 'a' ? pair.a : pair.b)
+  const myPickWon = hadPick && myPickId === winningId
 
-  // Reuse points formula from VotePanel
-  const probForMyPick = outcomes
-    ? (table.market.probs?.[myPickId] ?? aiA)
-    : (myPickId === 'a' ? aiA : aiB)
-  const mult = probForMyPick > 65 ? 1.0 : probForMyPick > 40 ? 2.0 : probForMyPick > 20 ? 2.5 : 3.0
+  const myProb = outcomes.find((o) => o.id === myPickId)?.prob ?? 50
+  const mult = myProb > 65 ? 1.0 : myProb > 40 ? 2.0 : myProb > 20 ? 2.5 : 3.0
   const pts = Math.round(25 * mult * 1.0)
+
+  const [shareOpen, setShareOpen] = useState(false)
+  const share = () => setShareOpen(true)
 
   return (
     <>
@@ -176,7 +178,7 @@ function SettledRail({ table, pair, aiA, aiB, flagA, flagB, FieldGlobe }) {
         <span className="settled-pill">FINAL</span>
         <div className="settled-hero-row">
           {flagA ? <img className="flag" alt="" src={flagA} /> : <FieldGlobe />}
-          <span className="settled-hero-side">{winningSide?.label || pair.a}</span>
+          <span className="settled-hero-side">{winning?.label || pair.a}</span>
           <span className="settled-hero-verb">won</span>
         </div>
         {table.finalSummary && (
@@ -185,33 +187,141 @@ function SettledRail({ table, pair, aiA, aiB, flagA, flagB, FieldGlobe }) {
         <RailProbCurve aiA={aiA} aiB={aiB} pairA={pair.a} pairB={pair.b} flatten />
       </div>
 
-      <div className={'settled-mypick ' + (hadPick ? (myPickWon ? 'is-won' : 'is-lost') : 'is-none')}>
-        {!hadPick ? (
-          <>
-            <span className="settled-mypick-icon">—</span>
-            <div className="settled-mypick-body">
-              <div className="settled-mypick-status">You didn't predict</div>
-              <div className="settled-mypick-sub">Lock in next time before kickoff</div>
-            </div>
-          </>
+      {/* Settled vote panel — same shape as live VotePanel, but read-only with markers */}
+      <div className={'vp vp-settled' + (isMulti ? ' vp-multi' : '')}>
+        <div className="vp-head">
+          <span className="vp-title">Final result</span>
+          <span className="vp-sub">
+            {hadPick
+              ? (myPickWon ? `You predicted correctly · +${pts} pts` : `You predicted wrong · 0 pts`)
+              : `You didn't predict`}
+          </span>
+        </div>
+
+        {isMulti ? (
+          <div className="vp-rows">
+            {outcomes.map((o) => {
+              const won  = o.id === winningId
+              const mine = hadPick && o.id === myPickId
+              return (
+                <div
+                  key={o.id}
+                  className={'vp-row vp-row-settled'
+                    + (won ? ' is-winner' : '')
+                    + (mine ? ' is-mine' : '')
+                    + (mine && !won ? ' is-mine-lost' : '')}
+                >
+                  <span className="vp-row-dot" />
+                  {o.flag
+                    ? <img className="flag vp-row-flag" alt="" src={`https://flagcdn.com/${o.flag}.svg`} />
+                    : <span className="flag vp-row-flag vp-row-flag-blank" aria-hidden />}
+                  <span className="vp-row-name">{o.label}</span>
+                  <span className="vp-row-bar">
+                    <span className="vp-row-bar-fill" style={{ width: `${o.prob}%` }} />
+                  </span>
+                  <span className="vp-row-prob">{o.prob}%</span>
+                  <SettledMarker won={won} mine={mine} />
+                </div>
+              )
+            })}
+          </div>
         ) : (
-          <>
-            <span className="settled-mypick-icon">{myPickWon ? '✓' : '✕'}</span>
-            <div className="settled-mypick-body">
-              <div className="settled-mypick-status">
-                {myPickWon ? 'Predicted correctly' : 'Predicted wrong'}
-              </div>
-              <div className="settled-mypick-sub">
-                Your pick: <strong>{myLabel}</strong>
-              </div>
-            </div>
-            <div className={'settled-mypick-pts ' + (myPickWon ? 'is-won' : 'is-lost')}>
-              {myPickWon ? `+${pts} pts` : '0 pts'}
-            </div>
-          </>
+          <div className="vp-options">
+            {outcomes.map((o) => {
+              const won  = o.id === winningId
+              const mine = hadPick && o.id === myPickId
+              return (
+                <div
+                  key={o.id}
+                  className={'vp-option vp-' + (o.tone || 'a') + ' vp-option-settled'
+                    + (won ? ' is-winner' : '')
+                    + (mine ? ' is-mine' : '')
+                    + (mine && !won ? ' is-mine-lost' : '')}
+                >
+                  <div className="vp-option-top">
+                    {o.flagSrc ? <img className="flag" alt="" src={o.flagSrc} /> : <FieldGlobe />}
+                    <span className="vp-option-name">{o.label}</span>
+                    <span className="vp-option-prob">{o.prob}%</span>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
         )}
+
+        {/* Settlement summary line above the share button */}
+        <div className={'vp-settle-line'
+          + (hadPick ? (myPickWon ? ' is-won' : ' is-lost') : ' is-none')}>
+          {hadPick ? (
+            myPickWon ? (
+              <>
+                <span className="vp-settle-tick">✓</span>
+                <span className="vp-settle-text">
+                  You won — picked <strong>{outcomes.find((o) => o.id === myPickId)?.label}</strong>
+                </span>
+                <span className="vp-settle-pts">+{pts} pts</span>
+              </>
+            ) : (
+              <>
+                <span className="vp-settle-tick">✕</span>
+                <span className="vp-settle-text">
+                  You picked <strong>{outcomes.find((o) => o.id === myPickId)?.label}</strong> · <strong>{winning?.label}</strong> won
+                </span>
+                <span className="vp-settle-pts">0 pts</span>
+              </>
+            )
+          ) : (
+            <>
+              <span className="vp-settle-tick">—</span>
+              <span className="vp-settle-text">
+                You didn't predict · <strong>{winning?.label}</strong> won
+              </span>
+            </>
+          )}
+        </div>
+
+        <button
+          type="button"
+          className={'vp-share-btn' + (myPickWon ? ' is-win' : '')}
+          onClick={share}
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+            <circle cx="18" cy="5" r="3"/>
+            <circle cx="6" cy="12" r="3"/>
+            <circle cx="18" cy="19" r="3"/>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+          </svg>
+          {myPickWon ? 'Share my win' : 'Share result'}
+        </button>
       </div>
+
+      {shareOpen && (
+        <WinShareModal
+          table={table}
+          winningLabel={winning?.label}
+          flag={flagA}
+          myPickLabel={outcomes.find((o) => o.id === myPickId)?.label}
+          pts={pts}
+          status={myPickWon ? 'won' : 'lost'}
+          onClose={() => setShareOpen(false)}
+        />
+      )}
     </>
+  )
+}
+
+// Inline WinShareModal removed — moved to src/components/WinShareModal.jsx and
+// shared with the Profile page's prediction cards.
+
+function SettledMarker({ won, mine, large }) {
+  if (!won && !mine) return null
+  return (
+    <span className={'vp-mark ' + (large ? 'vp-mark-large ' : '') + (won && mine ? 'is-win' : won ? 'is-correct' : 'is-mine-lost')}>
+      {won && mine && <><span className="vp-mark-tick">✓</span>You won</>}
+      {won && !mine && <><span className="vp-mark-tick">✓</span>Correct</>}
+      {!won && mine && <><span className="vp-mark-tick">✕</span>Your pick</>}
+    </span>
   )
 }
 
@@ -683,7 +793,7 @@ export default function TableRoomPage() {
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                 <circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/>
               </svg>
-              Kickoff in {t.kickoffIn}
+              in {t.kickoffIn}
             </span>
           )}
           {t.status === 'finished' && (
@@ -691,7 +801,7 @@ export default function TableRoomPage() {
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                 <polyline points="20 6 9 17 4 12"/>
               </svg>
-              Final · settled {t.settledAgo} ago
+              Ended · {t.settledAgo} ago
             </span>
           )}
         </h1>

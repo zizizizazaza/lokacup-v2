@@ -4,6 +4,8 @@ import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { useAuth, logout, setUser, isImageAvatar, avatarGlyph } from '../../lib/auth.js'
 import { TABLES } from '../../data/tables.js'
 import { TableCard } from './TablesListPage.jsx'
+import WinShareModal from '../../components/WinShareModal.jsx'
+import { flagSrc } from '../../components/Flag.jsx'
 
 // Mock predictions — covers pending/won/lost across multi-outcome and binary markets
 const MOCK_PREDICTIONS = [
@@ -215,10 +217,7 @@ export default function ProfilePage() {
           {myTables.length ? (
             <div className="tables-grid">
               {myTables.map((t, i) => (
-                <div key={t.id} className="pv-table-wrap">
-                  <TableCard t={t} idx={i} />
-                  <div className="pv-table-share"><ShareButton label="Share table" /></div>
-                </div>
+                <TableCard key={t.id} t={t} idx={i} />
               ))}
             </div>
           ) : (
@@ -408,55 +407,106 @@ function PredictionCard({ p, onOpen }) {
     : outcomes
   const hidden = outcomes.length - visible.length
 
+  // Build the data WinShareModal needs.
+  // For finished tables we know the real winning side; otherwise we feature the user's pick.
+  const myPickLabel = outcomes.find((o) => o.id === p.outcomeId)?.label || p.outcomeLabel
+  const winningId   = t.winningOutcomeId || p.outcomeId
+  const winningLabel = outcomes.find((o) => o.id === winningId)?.label || myPickLabel
+  const winningFlag = (t.market.outcomes?.find((o) => o.id === winningId)?.flag) || null
+  const flagUrl = winningFlag ? `https://flagcdn.com/${winningFlag}.svg` : flagSrc(winningLabel)
+
+  const [shareOpen, setShareOpen] = useState(false)
+  const openShare = (e) => {
+    e.stopPropagation()
+    setShareOpen(true)
+  }
+  const shareLabel = p.status === 'won'
+    ? 'Share my win'
+    : p.status === 'lost'
+      ? 'Share result'
+      : 'Share my pick'
+
   return (
-    <button className={'pv-pred pv-pred-' + p.status} onClick={onOpen}>
-      <div className="pv-pred-head">
-        <span className="pv-pred-title">{t.market.title}</span>
-        <div className="pv-pred-head-actions">
+    <>
+      <div
+        className={'pv-pred pv-pred-' + p.status}
+        role="button"
+        tabIndex={0}
+        onClick={onOpen}
+        onKeyDown={(e) => { if (e.key === 'Enter') onOpen() }}
+      >
+        <div className="pv-pred-head">
+          <span className="pv-pred-title">{t.market.title}</span>
           <span className={'pv-pred-badge pv-pred-badge-' + p.status}>
             {p.status === 'won'  && <span className="pv-pred-badge-icon">✓</span>}
             {p.status === 'lost' && <span className="pv-pred-badge-icon">✕</span>}
             {p.status === 'pending' && <span className="pv-pred-pulse" />}
             {statusLabel}
           </span>
-          <ShareButton label="Share prediction" />
         </div>
+
+        <div className="pv-pred-meta">
+          <span>{t.league}</span>
+          <span className="pv-pred-meta-dot">·</span>
+          <span>{p.stakedAt} ago</span>
+        </div>
+
+        <div className="pv-pred-outcomes">
+          {visible.map((o) => {
+            const picked = o.id === p.outcomeId
+            return (
+              <div
+                key={o.id}
+                className={'pv-pred-out' + (picked ? ' is-picked is-picked-' + p.status : '')}
+              >
+                <span className="pv-pred-out-mark">{picked ? '✓' : ''}</span>
+                <span className="pv-pred-out-label">{o.label}</span>
+                <span className="pv-pred-out-bar">
+                  <span className="pv-pred-out-fill" style={{ width: `${o.prob}%` }} />
+                </span>
+                <span className="pv-pred-out-prob">{o.prob}%</span>
+              </div>
+            )
+          })}
+          {hidden > 0 && (
+            <div className="pv-pred-more">+ {hidden} more outcome{hidden > 1 ? 's' : ''}</div>
+          )}
+        </div>
+
+        <div className="pv-pred-foot">
+          {p.status === 'won'     && <span className="pv-pred-reward pv-pred-reward-win">+{p.pointsAtStake} pts</span>}
+          {p.status === 'lost'    && <span className="pv-pred-reward pv-pred-reward-lose">0 pts</span>}
+          {p.status === 'pending' && <span className="pv-pred-reward">+{p.pointsAtStake} pts if correct</span>}
+          <span className="pv-pred-cta">Open table →</span>
+        </div>
+
+        <button
+          type="button"
+          className="pv-pred-share-btn"
+          onClick={openShare}
+        >
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+            <circle cx="18" cy="5" r="3"/>
+            <circle cx="6" cy="12" r="3"/>
+            <circle cx="18" cy="19" r="3"/>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+          </svg>
+          {shareLabel}
+        </button>
       </div>
 
-      <div className="pv-pred-meta">
-        <span>{t.league}</span>
-        <span className="pv-pred-meta-dot">·</span>
-        <span>{p.stakedAt} ago</span>
-      </div>
-
-      <div className="pv-pred-outcomes">
-        {visible.map((o) => {
-          const picked = o.id === p.outcomeId
-          return (
-            <div
-              key={o.id}
-              className={'pv-pred-out' + (picked ? ' is-picked is-picked-' + p.status : '')}
-            >
-              <span className="pv-pred-out-mark">{picked ? '✓' : ''}</span>
-              <span className="pv-pred-out-label">{o.label}</span>
-              <span className="pv-pred-out-bar">
-                <span className="pv-pred-out-fill" style={{ width: `${o.prob}%` }} />
-              </span>
-              <span className="pv-pred-out-prob">{o.prob}%</span>
-            </div>
-          )
-        })}
-        {hidden > 0 && (
-          <div className="pv-pred-more">+ {hidden} more outcome{hidden > 1 ? 's' : ''}</div>
-        )}
-      </div>
-
-      <div className="pv-pred-foot">
-        {p.status === 'won'     && <span className="pv-pred-reward pv-pred-reward-win">+{p.pointsAtStake} pts</span>}
-        {p.status === 'lost'    && <span className="pv-pred-reward pv-pred-reward-lose">0 pts</span>}
-        {p.status === 'pending' && <span className="pv-pred-reward">+{p.pointsAtStake} pts if correct</span>}
-        <span className="pv-pred-cta">Open table →</span>
-      </div>
-    </button>
+      {shareOpen && (
+        <WinShareModal
+          table={t}
+          winningLabel={winningLabel}
+          flag={flagUrl}
+          myPickLabel={myPickLabel}
+          pts={p.pointsAtStake}
+          status={p.status}
+          onClose={() => setShareOpen(false)}
+        />
+      )}
+    </>
   )
 }

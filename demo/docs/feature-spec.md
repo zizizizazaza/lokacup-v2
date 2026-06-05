@@ -96,7 +96,26 @@ AI 只有两种触发器：
 
 ---
 
-## 四、首页右栏（Coach Mike LiveAI 卡片）三态切换 ⬜ 待定
+## 四、首页右栏（Coach Mike LiveAI 卡片）
+
+右栏永远展示 Coach Mike + 一个被精选的 Table，并播放该 Table 的 AI 辩论流。卡片形态保持不变 —— 状态切换只影响选哪个 Table 来播。
+
+### 4.1 精选 Table 的优先级规则
+
+依次按以下优先级选取一个 Table 来 feature：
+
+1. **Live**：所有 Live 中的 Table 优先
+2. **Upcoming**：没有 Live 时降级到 Upcoming
+3. **Finished**：Live 和 Upcoming 都没有时显示已结束的 Table
+
+在同一优先级内部按**热度排序**（spectatorCount 高的优先）。
+
+### 4.2 Coach Mike 语音
+
+不区分状态，统一逻辑：
+- 默认开启播放
+- 用户可手动 mute（持久化保存到 localStorage）
+- 没有 Live 时，第三方数据源喂入频率天然较低，AI 自然就静默，不会有持续打扰
 
 ---
 
