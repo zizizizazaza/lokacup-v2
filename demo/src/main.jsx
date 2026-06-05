@@ -9,6 +9,7 @@ import ForkPage from './pages/v2/ForkPage.jsx'
 import OpenTablePage from './pages/v2/OpenTablePage.jsx'
 import MyForksPage from './pages/v2/MyForksPage.jsx'
 import CampaignPage from './pages/v2/CampaignPage.jsx'
+import ProfilePage from './pages/v2/ProfilePage.jsx'
 
 // NOTE: StrictMode is intentionally NOT used here. It double-mounts components in dev,
 // which causes two simultaneous speechSynthesis intervals to run for Coach Mike /
@@ -26,6 +27,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/open" element={<OpenTablePage />} />
         <Route path="/forks" element={<MyForksPage />} />
         <Route path="/campaign" element={<CampaignPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
     </Shell>
   </BrowserRouter>,

@@ -2,6 +2,7 @@ import { NavLink, Link, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import LiveAI from './LiveAI.jsx'
 import LangPicker from './LangPicker.jsx'
+import UserMenu from './UserMenu.jsx'
 
 export default function Shell({ children, hideChat }) {
   const loc = useLocation()
@@ -24,7 +25,7 @@ export default function Shell({ children, hideChat }) {
     window.addEventListener('pagehide', () => window.speechSynthesis.cancel())
     return () => document.removeEventListener('visibilitychange', onHide)
   }, [])
-  const ownsRail = loc.pathname.startsWith('/table/') || loc.pathname.startsWith('/fork/') || loc.pathname.startsWith('/campaign')
+  const ownsRail = loc.pathname.startsWith('/table/') || loc.pathname.startsWith('/fork/') || loc.pathname.startsWith('/campaign') || loc.pathname.startsWith('/profile')
   const immersive = loc.pathname.startsWith('/table/')
   const showChat = !hideChat && !ownsRail
 
@@ -46,10 +47,7 @@ export default function Shell({ children, hideChat }) {
             <div className="nav-right">
               <Link to="/open" className="nav-cta nav-cta-primary">+ Open table</Link>
               <LangPicker />
-              <div className="nav-user">
-                <span className="nav-user-avatar" />
-                <span>You</span>
-              </div>
+              <UserMenu />
             </div>
           </div>
         </nav>

@@ -134,55 +134,91 @@ function RailProbCurve({ aiA, aiB, pairA, pairB }) {
   )
 }
 
-// Polymarket-style two-side vote / bet panel. Users pick a side and lock a prediction;
-// the points reward is calculated per docs/points-system.md §2.1 (25 × difficulty × time).
-function VotePanel({ pair, aiA, aiB, flagA, flagB, FieldGlobe }) {
+// Vote / bet panel. Adapts layout to outcome count:
+//  • 2 outcomes → big side-by-side cards (Polymarket binary look)
+//  • 3-4 outcomes → row list with probability bar
+//  • 5+        → row list w/ internal scroll
+// Points: 25 × difficulty × time per docs/points-system.md §2.1
+function VotePanel({ market, pair, aiA, aiB, flagA, flagB, FieldGlobe }) {
   const [pick, setPick] = useState(null)
   const [locked, setLocked] = useState(false)
   const pointsFor = (prob) => {
-    // Difficulty multiplier per probability band
     const mult = prob > 65 ? 1.0 : prob > 40 ? 2.0 : prob > 20 ? 2.5 : 3.0
-    // Time multiplier: assume mid-match for the live demo (1.0)
     return Math.round(25 * mult * 1.0)
   }
-  const submit = () => {
-    if (!pick) return
-    setLocked(true)
-  }
+  // Derive outcomes: explicit market.outcomes wins, else binary fallback from pair
+  const outcomes = market?.outcomes && market.outcomes.length >= 2
+    ? market.outcomes.map((o) => ({
+        ...o,
+        prob: market.probs?.[o.id] ?? 0,
+      }))
+    : [
+        { id: 'a', label: pair.a, tone: 'a', prob: aiA, flagSrc: flagA },
+        { id: 'b', label: pair.b, tone: 'b', prob: aiB, flagSrc: flagB },
+      ]
+  const submit = () => { if (pick) setLocked(true) }
+  const picked = outcomes.find((o) => o.id === pick)
+  const isMulti = outcomes.length >= 3
+
   return (
-    <div className="vp">
+    <div className={'vp' + (isMulti ? ' vp-multi' : '')}>
       <div className="vp-head">
         <span className="vp-title">Place your prediction</span>
-        <span className="vp-sub">Pick a side · lock in before resolution</span>
+        <span className="vp-sub">
+          {isMulti ? `Pick one of ${outcomes.length} outcomes` : 'Pick a side'} · lock in before resolution
+        </span>
       </div>
-      <div className="vp-options">
-        <button
-          type="button"
-          className={'vp-option vp-a' + (pick === 'a' ? ' is-selected' : '') + (locked ? ' is-locked' : '')}
-          disabled={locked}
-          onClick={() => !locked && setPick('a')}
-        >
-          <div className="vp-option-top">
-            {flagA ? <img className="flag" alt="" src={flagA} /> : <FieldGlobe />}
-            <span className="vp-option-name">{pair.a}</span>
-            <span className="vp-option-prob">{aiA}%</span>
-          </div>
-          <div className="vp-option-reward">+{pointsFor(aiA)} pts if correct</div>
-        </button>
-        <button
-          type="button"
-          className={'vp-option vp-b' + (pick === 'b' ? ' is-selected' : '') + (locked ? ' is-locked' : '')}
-          disabled={locked}
-          onClick={() => !locked && setPick('b')}
-        >
-          <div className="vp-option-top">
-            {flagB ? <img className="flag" alt="" src={flagB} /> : <FieldGlobe />}
-            <span className="vp-option-name">{pair.b}</span>
-            <span className="vp-option-prob">{aiB}%</span>
-          </div>
-          <div className="vp-option-reward">+{pointsFor(aiB)} pts if correct</div>
-        </button>
-      </div>
+
+      {isMulti ? (
+        <div className="vp-rows" style={outcomes.length > 5 ? { maxHeight: '240px', overflowY: 'auto' } : undefined}>
+          {outcomes.map((o) => {
+            const on = pick === o.id
+            return (
+              <button
+                key={o.id}
+                type="button"
+                className={'vp-row vp-tone-' + (o.tone || 'gray')
+                  + (on ? ' is-selected' : '')
+                  + (locked && !on ? ' is-dim' : '')}
+                disabled={locked}
+                onClick={() => !locked && setPick(o.id)}
+              >
+                <span className="vp-row-dot" />
+                {o.flag
+                  ? <img className="flag vp-row-flag" alt="" src={`https://flagcdn.com/${o.flag}.svg`} />
+                  : <span className="flag vp-row-flag vp-row-flag-blank" aria-hidden />}
+                <span className="vp-row-name">{o.label}</span>
+                <span className="vp-row-bar">
+                  <span className="vp-row-bar-fill" style={{ width: `${o.prob}%` }} />
+                </span>
+                <span className="vp-row-prob">{o.prob}%</span>
+                <span className="vp-row-pts">+{pointsFor(o.prob)}</span>
+              </button>
+            )
+          })}
+        </div>
+      ) : (
+        <div className="vp-options">
+          {outcomes.map((o) => (
+            <button
+              key={o.id}
+              type="button"
+              className={'vp-option vp-' + o.tone
+                + (pick === o.id ? ' is-selected' : '')
+                + (locked ? ' is-locked' : '')}
+              disabled={locked}
+              onClick={() => !locked && setPick(o.id)}
+            >
+              <div className="vp-option-top">
+                {o.flagSrc ? <img className="flag" alt="" src={o.flagSrc} /> : <FieldGlobe />}
+                <span className="vp-option-name">{o.label}</span>
+                <span className="vp-option-prob">{o.prob}%</span>
+              </div>
+              <div className="vp-option-reward">+{pointsFor(o.prob)} pts if correct</div>
+            </button>
+          ))}
+        </div>
+      )}
 
       {!locked ? (
         <button
@@ -191,14 +227,14 @@ function VotePanel({ pair, aiA, aiB, flagA, flagB, FieldGlobe }) {
           disabled={!pick}
           onClick={submit}
         >
-          {pick ? `Lock in: ${pick === 'a' ? pair.a : pair.b}` : 'Select a side'}
+          {picked ? `Lock in: ${picked.label}` : (isMulti ? 'Select an outcome' : 'Select a side')}
         </button>
       ) : (
         <div className="vp-locked">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
             <path d="M20 6 L9 17 L4 12" />
           </svg>
-          Locked in <b>{pick === 'a' ? pair.a : pair.b}</b> · pending resolution
+          Locked in <b>{picked?.label}</b> · pending resolution
         </div>
       )}
     </div>
@@ -515,6 +551,7 @@ export default function TableRoomPage() {
             </div>
 
             <VotePanel
+              market={t.market}
               pair={pair}
               aiA={aiA}
               aiB={aiB}

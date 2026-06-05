@@ -19,6 +19,13 @@ export const TABLES = [
       aiConsensus: 71,
       edge: 3,
       volume24h: '$1.2M',
+      // 3-outcome winner market (Brazil / Morocco / Draw)
+      outcomes: [
+        { id: 'bra',  label: 'Brazil',   tone: 'a',    flag: 'br' },
+        { id: 'mar',  label: 'Morocco',  tone: 'b',    flag: 'ma' },
+        { id: 'draw', label: 'Draw',     tone: 'gray' },
+      ],
+      probs: { bra: 67, mar: 24, draw: 9 },
     },
     league: 'Group D · MetLife Stadium',
     status: 'live',
@@ -165,6 +172,14 @@ export const TABLES = [
       aiConsensus: 42,
       edge: 4,
       volume24h: '$210k',
+      // 4-outcome HT result with score-bands
+      outcomes: [
+        { id: 'eng',  label: 'England leads',  tone: 'a',    flag: 'gb' },
+        { id: 'bel',  label: 'Belgium leads',  tone: 'b',    flag: 'be' },
+        { id: 'draw', label: 'Draw at HT',     tone: 'gray' },
+        { id: 'zero', label: '0–0 at HT',      tone: 'amber' },
+      ],
+      probs: { eng: 42, bel: 27, draw: 19, zero: 12 },
     },
     league: 'Group E · Tomorrow',
     status: 'live',
@@ -249,13 +264,23 @@ export const TABLES = [
     isOfficial: true,
     host: { handle: 'LokaCup AI', emoji: '🤖' },
     market: {
-      title: 'Golden Boot — Mbappé',
+      title: 'Golden Boot — top scorer',
       platform: 'Polymarket',
       url: 'https://polymarket.com/event/golden-boot',
       currentPrice: 22,
       aiConsensus: 19,
       edge: -3,
       volume24h: '$480k',
+      // 6-outcome top-scorer race
+      outcomes: [
+        { id: 'mbappe',   label: 'Mbappé',   tone: 'a',     flag: 'fr' },
+        { id: 'haaland',  label: 'Haaland',  tone: 'b',     flag: 'no' },
+        { id: 'vinicius', label: 'Vinícius', tone: 'amber', flag: 'br' },
+        { id: 'kane',     label: 'Kane',     tone: 'cyan',  flag: 'gb' },
+        { id: 'messi',    label: 'Messi',    tone: 'violet',flag: 'ar' },
+        { id: 'other',    label: 'Other',    tone: 'gray' },
+      ],
+      probs: { mbappe: 22, haaland: 24, vinicius: 18, kane: 11, messi: 9, other: 16 },
     },
     league: 'Tournament prop',
     status: 'discussion',

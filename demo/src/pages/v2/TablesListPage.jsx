@@ -185,7 +185,7 @@ function LiveCard({ t, idx, cls, pair, aiA, aiB, flagA, flagB, leading }) {
   )
 }
 
-function TableCard({ t, idx }) {
+export function TableCard({ t, idx }) {
   const cls = 't-card'
   const pair = pickPair(t.market.title)
   const aiA = t.market.aiConsensus
