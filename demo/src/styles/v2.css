@@ -9272,3 +9272,175 @@
   align-items: center;
   justify-content: center;
 }
+
+/* ─── Table card · status pills (upcoming · finished) ─── */
+.t-head-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.22rem 0.55rem;
+  border-radius: 999px;
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.t-head-upcoming {
+  background: rgba(245,180,0,0.12);
+  border: 1px solid rgba(245,180,0,0.35);
+  color: #f5b400;
+}
+.t-head-finished {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: var(--fg-secondary);
+}
+
+/* Static one-liner on non-live cards (replaces the live Ticker) */
+.t-static-line {
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  color: var(--fg-secondary);
+  padding: 0.4rem 0;
+  line-height: 1.4;
+  border-top: 1px dashed rgba(255,255,255,0.08);
+  border-bottom: 1px dashed rgba(255,255,255,0.08);
+  margin: 0;
+}
+.t-static-finished { color: var(--fg-tertiary); font-style: italic; }
+
+/* Finished cards: slightly desaturated so they read as archived */
+.t-card.t-card-finished { opacity: 0.78; }
+.t-card.t-card-finished:hover { opacity: 1; }
+
+/* ─── Room title state pills (upcoming · finished) ─── */
+.room-title-upcoming,
+.room-title-finished {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-left: 0.55rem;
+  padding: 0.18rem 0.55rem;
+  border-radius: 999px;
+  font-family: var(--font-ui);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.room-title-upcoming {
+  background: rgba(245,180,0,0.14);
+  border: 1px solid rgba(245,180,0,0.4);
+  color: #f5b400;
+}
+.room-title-finished {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.16);
+  color: var(--fg-secondary);
+}
+
+/* ─── Settled rail (Finished tables only) ─── */
+.insight-card-finished { background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.01)); }
+
+.settled-hero {
+  padding: 1rem 1.1rem 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+.settled-pill {
+  display: inline-flex;
+  align-self: flex-start;
+  padding: 0.18rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: var(--fg-secondary);
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+.settled-hero-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.settled-hero-row .flag { width: 28px; height: 20px; flex-shrink: 0; border-radius: 3px; }
+.settled-hero-side {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--fg-primary);
+  letter-spacing: 0.005em;
+}
+.settled-hero-verb {
+  font-family: var(--font-ui);
+  font-size: 0.86rem;
+  color: var(--fg-secondary);
+  font-weight: 600;
+}
+.settled-hero-sub {
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  color: var(--fg-tertiary);
+  line-height: 1.45;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+/* My prediction settlement card */
+.settled-mypick {
+  display: grid;
+  grid-template-columns: 36px 1fr auto;
+  align-items: center;
+  gap: 0.7rem;
+  margin: 0.55rem 0.85rem 0.85rem;
+  padding: 0.7rem 0.85rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-light);
+}
+.settled-mypick.is-won {
+  background: rgba(168,255,0,0.08);
+  border-color: rgba(168,255,0,0.35);
+}
+.settled-mypick.is-lost {
+  background: rgba(217,28,28,0.08);
+  border-color: rgba(217,28,28,0.35);
+}
+.settled-mypick.is-none {
+  background: rgba(255,255,255,0.02);
+  grid-template-columns: 36px 1fr;
+}
+.settled-mypick-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 800;
+}
+.is-won .settled-mypick-icon  { background: var(--accent-green); color: #0a0a10; }
+.is-lost .settled-mypick-icon { background: var(--accent-red); color: #fff; }
+.is-none .settled-mypick-icon { background: rgba(255,255,255,0.08); color: var(--fg-tertiary); }
+.settled-mypick-status {
+  font-family: var(--font-ui);
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--fg-primary);
+}
+.settled-mypick-sub {
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  color: var(--fg-secondary);
+  margin-top: 0.15rem;
+}
+.settled-mypick-pts {
+  font-family: var(--font-data);
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+.settled-mypick-pts.is-won  { color: var(--accent-green); }
+.settled-mypick-pts.is-lost { color: #ff6e6e; }

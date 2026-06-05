@@ -62,9 +62,13 @@ function Sparkline({ data, color = 'var(--accent-mint)' }) {
 
 // Compact probability curve for the right-rail "who wins" view.
 // Same data shape as the bigger MainProbCurve but smaller and tuned for the narrow rail.
-function RailProbCurve({ aiA, aiB, pairA, pairB }) {
+function RailProbCurve({ aiA, aiB, pairA, pairB, flatten = false }) {
   const SERIES = 56
   const [hist, setHist] = useState(() => {
+    // Upcoming tables show a flat baseline rather than fake history
+    if (flatten) {
+      return Array.from({ length: SERIES }, () => ({ a: aiA, b: aiB, d: Math.max(0, 100 - aiA - aiB) }))
+    }
     const out = []
     let a = aiA - 6, b = aiB - 4, d = Math.max(2, 100 - a - b)
     for (let i = 0; i < SERIES; i++) {
@@ -80,6 +84,7 @@ function RailProbCurve({ aiA, aiB, pairA, pairB }) {
     return out
   })
   useEffect(() => {
+    if (flatten) return  // Upcoming tables: no live ticking, curve stays flat
     const id = setInterval(() => {
       setHist((prev) => {
         const last = prev[prev.length - 1]
@@ -92,7 +97,7 @@ function RailProbCurve({ aiA, aiB, pairA, pairB }) {
       })
     }, 2200)
     return () => clearInterval(id)
-  }, [])
+  }, [flatten])
 
   const w = 320, h = 90, padL = 26, padR = 44, padT = 8, padB = 16
   const innerW = w - padL - padR
@@ -140,6 +145,76 @@ function RailProbCurve({ aiA, aiB, pairA, pairB }) {
 //  • 3-4 outcomes → row list with probability bar
 //  • 5+        → row list w/ internal scroll
 // Points: 25 × difficulty × time per docs/points-system.md §2.1
+// Settled rail — replaces AI Conclusion + Vote panel when a Table has finished.
+// 3 segments per spec §3.4: Final hero, frozen curve, my prediction settlement.
+function SettledRail({ table, pair, aiA, aiB, flagA, flagB, FieldGlobe }) {
+  // Derive winning side from the binary outcome (a/b) or explicit outcomes list
+  const outcomes = table.market.outcomes
+  const winningId = table.winningOutcomeId
+  const winningSide = outcomes
+    ? outcomes.find((o) => o.id === winningId)
+    : { id: winningId, label: winningId === 'a' ? pair.a : pair.b }
+
+  // Mock "my pick" for the demo — alternate per table id so we get both win and lose states
+  const myPickId = (table.id.charCodeAt(0) % 2 === 0) ? 'a' : winningId
+  const myPickWon = myPickId === winningId
+  const hadPick = !!myPickId
+  const myLabel = outcomes
+    ? outcomes.find((o) => o.id === myPickId)?.label
+    : (myPickId === 'a' ? pair.a : pair.b)
+
+  // Reuse points formula from VotePanel
+  const probForMyPick = outcomes
+    ? (table.market.probs?.[myPickId] ?? aiA)
+    : (myPickId === 'a' ? aiA : aiB)
+  const mult = probForMyPick > 65 ? 1.0 : probForMyPick > 40 ? 2.0 : probForMyPick > 20 ? 2.5 : 3.0
+  const pts = Math.round(25 * mult * 1.0)
+
+  return (
+    <>
+      <div className="settled-hero">
+        <span className="settled-pill">FINAL</span>
+        <div className="settled-hero-row">
+          {flagA ? <img className="flag" alt="" src={flagA} /> : <FieldGlobe />}
+          <span className="settled-hero-side">{winningSide?.label || pair.a}</span>
+          <span className="settled-hero-verb">won</span>
+        </div>
+        {table.finalSummary && (
+          <div className="settled-hero-sub">{table.finalSummary}</div>
+        )}
+        <RailProbCurve aiA={aiA} aiB={aiB} pairA={pair.a} pairB={pair.b} flatten />
+      </div>
+
+      <div className={'settled-mypick ' + (hadPick ? (myPickWon ? 'is-won' : 'is-lost') : 'is-none')}>
+        {!hadPick ? (
+          <>
+            <span className="settled-mypick-icon">—</span>
+            <div className="settled-mypick-body">
+              <div className="settled-mypick-status">You didn't predict</div>
+              <div className="settled-mypick-sub">Lock in next time before kickoff</div>
+            </div>
+          </>
+        ) : (
+          <>
+            <span className="settled-mypick-icon">{myPickWon ? '✓' : '✕'}</span>
+            <div className="settled-mypick-body">
+              <div className="settled-mypick-status">
+                {myPickWon ? 'Predicted correctly' : 'Predicted wrong'}
+              </div>
+              <div className="settled-mypick-sub">
+                Your pick: <strong>{myLabel}</strong>
+              </div>
+            </div>
+            <div className={'settled-mypick-pts ' + (myPickWon ? 'is-won' : 'is-lost')}>
+              {myPickWon ? `+${pts} pts` : '0 pts'}
+            </div>
+          </>
+        )}
+      </div>
+    </>
+  )
+}
+
 function VotePanel({ market, pair, aiA, aiB, flagA, flagB, FieldGlobe }) {
   const [pick, setPick] = useState(null)
   const [locked, setLocked] = useState(false)
@@ -603,6 +678,22 @@ export default function TableRoomPage() {
           <span className="room-title-host">{t.host.handle}:</span>
           <span className="room-title-q">{t.market.title}?</span>
           {t.status === 'live' && <span className="room-title-live">Live · 67′</span>}
+          {t.status === 'upcoming' && (
+            <span className="room-title-upcoming">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                <circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/>
+              </svg>
+              Kickoff in {t.kickoffIn}
+            </span>
+          )}
+          {t.status === 'finished' && (
+            <span className="room-title-finished">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              Final · settled {t.settledAgo} ago
+            </span>
+          )}
         </h1>
         <div className="room-meta">
           <InviteButton tableId={t.id} />
@@ -636,28 +727,44 @@ export default function TableRoomPage() {
 
         {/* ── Right rail: match summary + chart on top, chat full below ─ */}
         <aside className="room-rail rail-chat">
-          {/* Right rail — single card: AI Conclusion + win-prob curve + vote panel. */}
-          <div className="room-card insight-card">
-            <div className="ai-conclusion-hero">
-              <span className="ai-conclusion-pill-label">AI conclusion</span>
-              <div className="ai-conclusion-hero-row">
-                {flagA ? <img className="flag" alt="" src={flagA} /> : <FieldGlobe />}
-                <span className="ai-conclusion-hero-side">{pair.a}</span>
-                <span className="ai-conclusion-hero-verb">to win</span>
-                <span className="ai-conclusion-hero-prob">{aiA}%</span>
-              </div>
-              <RailProbCurve aiA={aiA} aiB={aiB} pairA={pair.a} pairB={pair.b} />
-            </div>
+          {/* Right rail — content switches by table status */}
+          <div className={'room-card insight-card insight-card-' + t.status}>
+            {t.status !== 'finished' ? (
+              <>
+                <div className={'ai-conclusion-hero' + (t.status === 'upcoming' ? ' is-upcoming' : '')}>
+                  <span className="ai-conclusion-pill-label">
+                    {t.status === 'upcoming' ? 'Pre-match baseline' : 'AI conclusion'}
+                  </span>
+                  <div className="ai-conclusion-hero-row">
+                    {flagA ? <img className="flag" alt="" src={flagA} /> : <FieldGlobe />}
+                    <span className="ai-conclusion-hero-side">{pair.a}</span>
+                    <span className="ai-conclusion-hero-verb">to win</span>
+                    <span className="ai-conclusion-hero-prob">{aiA}%</span>
+                  </div>
+                  <RailProbCurve aiA={aiA} aiB={aiB} pairA={pair.a} pairB={pair.b} flatten={t.status === 'upcoming'} />
+                </div>
 
-            <VotePanel
-              market={t.market}
-              pair={pair}
-              aiA={aiA}
-              aiB={aiB}
-              flagA={flagA}
-              flagB={flagB}
-              FieldGlobe={FieldGlobe}
-            />
+                <VotePanel
+                  market={t.market}
+                  pair={pair}
+                  aiA={aiA}
+                  aiB={aiB}
+                  flagA={flagA}
+                  flagB={flagB}
+                  FieldGlobe={FieldGlobe}
+                />
+              </>
+            ) : (
+              <SettledRail
+                table={t}
+                pair={pair}
+                aiA={aiA}
+                aiB={aiB}
+                flagA={flagA}
+                flagB={flagB}
+                FieldGlobe={FieldGlobe}
+              />
+            )}
           </div>
 
           {/* Bare-bones stream chat — no card wrapper, no header. */}

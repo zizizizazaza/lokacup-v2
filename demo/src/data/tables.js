@@ -78,7 +78,8 @@ export const TABLES = [
       volume24h: '$310k',
     },
     league: 'Group D · Toronto',
-    status: 'discussion',
+    status: 'upcoming',
+    kickoffIn: '3h 14m',
     spectatorCount: 31,
     summary: 'Pace suggests 1.6 expected — value buy at 38%…',
     messages: [
@@ -112,7 +113,10 @@ export const TABLES = [
       volume24h: '$2.3M',
     },
     league: 'Tournament outright',
-    status: 'live',
+    status: 'finished',
+    finalSummary: 'France won the World Cup · Brazil eliminated in semi-final',
+    settledAgo: '5d',
+    winningOutcomeId: 'b',  // binary: 'a' = YES (Brazil wins), 'b' = NO (anyone else)
     spectatorCount: 89,
     summary: 'Bracket draw and Vinicius form make 18% look cheap…',
     messages: [
@@ -141,7 +145,8 @@ export const TABLES = [
       volume24h: '$540k',
     },
     league: 'Group F · Tomorrow 15:00',
-    status: 'discussion',
+    status: 'upcoming',
+    kickoffIn: '14h 23m',
     spectatorCount: 18,
     summary: 'Historic low-scoring matchups; market may be overconfident…',
     messages: [
@@ -205,10 +210,13 @@ export const TABLES = [
       edge: 3,
       volume24h: '$320k',
     },
-    league: 'Group A · Tomorrow',
-    status: 'discussion',
+    league: 'Group A',
+    status: 'finished',
     spectatorCount: 22,
     summary: 'Both have leaky defenses; +3pt on BTTS Yes…',
+    finalSummary: 'Argentina 2-1 Uruguay · BTTS YES hit (both teams scored)',
+    settledAgo: '3d',
+    winningOutcomeId: 'a',  // YES = both teams to score
     messages: [
       hostMsg("How likely is BTTS in ARG vs URU?"),
       aiMsg(
@@ -276,7 +284,8 @@ export const TABLES = [
       probs: { mbappe: 22, haaland: 24, vinicius: 18, kane: 11, messi: 9, other: 16 },
     },
     league: 'Tournament prop',
-    status: 'discussion',
+    status: 'upcoming',
+    kickoffIn: '7d 2h',
     spectatorCount: 34,
     summary: 'Mbappé 22% looks slightly rich; Haaland gaining…',
     messages: [

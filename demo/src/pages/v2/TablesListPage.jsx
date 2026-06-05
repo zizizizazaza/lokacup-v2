@@ -132,11 +132,11 @@ function Ticker({ seed }) {
 }
 
 function LiveCard({ t, idx, cls, pair, aiA, aiB, flagA, flagB, leading }) {
-  const isLive = t.status === 'live'
+  const isLive     = t.status === 'live'
+  const isUpcoming = t.status === 'upcoming'
+  const isFinished = t.status === 'finished'
   return (
-    <Link to={`/table/${t.id}`} className={cls + (isLive ? ' live' : ' ended') + ' no-cover'}>
-      {/* Cover image hidden — see also .t-card.no-cover in v2.css. Reduce noise on the list. */}
-
+    <Link to={`/table/${t.id}`} className={cls + ' t-card-' + t.status + ' no-cover'}>
       <div className="t-head">
         <div className="t-host">
           <span className="t-host-avatar">{t.host.handle.replace(/[^A-Za-z]/g, '').slice(0,2).toUpperCase()}</span>
@@ -146,6 +146,22 @@ function LiveCard({ t, idx, cls, pair, aiA, aiB, flagA, flagB, leading }) {
           <span className="t-head-live">
             <span className="t-head-live-dot" />
             Live
+          </span>
+        )}
+        {isUpcoming && (
+          <span className="t-head-pill t-head-upcoming">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+              <circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/>
+            </svg>
+            {t.kickoffIn ? `in ${t.kickoffIn}` : 'Upcoming'}
+          </span>
+        )}
+        {isFinished && (
+          <span className="t-head-pill t-head-finished">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            Final
           </span>
         )}
       </div>
@@ -172,7 +188,13 @@ function LiveCard({ t, idx, cls, pair, aiA, aiB, flagA, flagB, leading }) {
         </div>
       </div>
 
-      <Ticker seed={idx} />
+      {isLive && <Ticker seed={idx} />}
+      {isUpcoming && (
+        <div className="t-static-line">AI team is warming up · pre-match round drops soon</div>
+      )}
+      {isFinished && t.finalSummary && (
+        <div className="t-static-line t-static-finished">{t.finalSummary}</div>
+      )}
 
       <div className="t-foot">
         <div>
