@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { useParams, useNavigate } from 'react-router-dom'
 import { getTable, ME_HANDLE } from '../../data/tables'
 import { withFlags, flagSrc } from '../../components/Flag.jsx'
@@ -247,30 +248,101 @@ function EventBadge({ type }) {
 }
 
 // Generic placeholder for "Field" / "Yes" / "No" — anything not a country
-// Invite button — copies a sharable room link to clipboard with toast feedback.
+// Invite button — opens a small modal that surfaces the shareable invite link.
 function InviteButton({ tableId }) {
+  const [open, setOpen] = useState(false)
+  return (
+    <>
+      <button className="room-invite" type="button" onClick={() => setOpen(true)} title="Invite friends to this room">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+          <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="8.5" cy="7" r="4"/>
+          <line x1="20" y1="8" x2="20" y2="14"/>
+          <line x1="23" y1="11" x2="17" y2="11"/>
+        </svg>
+        Invite
+      </button>
+      {open && <InviteModal tableId={tableId} onClose={() => setOpen(false)} />}
+    </>
+  )
+}
+
+// Modal surfaces the same invite link the Manage panel exposes, with one-click copy.
+function InviteModal({ tableId, onClose }) {
   const [copied, setCopied] = useState(false)
   const link = typeof window !== 'undefined'
-    ? `${window.location.origin}/table/${tableId}?ref=invite`
-    : ''
-  const onClick = async () => {
+    ? `${window.location.origin}/r/${tableId}`
+    : `https://lokacup.app/r/${tableId}`
+
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === 'Escape') onClose() }
+    document.addEventListener('keydown', onKey)
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.body.style.overflow = prev
+    }
+  }, [onClose])
+
+  const copy = async () => {
     try {
       await navigator.clipboard.writeText(link)
       setCopied(true)
       setTimeout(() => setCopied(false), 1800)
     } catch (e) {}
   }
-  return (
-    <button className="room-invite" type="button" onClick={onClick} title="Invite friends to this room">
-      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-        <circle cx="8.5" cy="7" r="4"/>
-        <line x1="20" y1="8" x2="20" y2="14"/>
-        <line x1="23" y1="11" x2="17" y2="11"/>
-      </svg>
-      {copied ? 'Link copied!' : 'Invite'}
-    </button>
-  )
+
+  return createPortal((
+    <div className="invite-backdrop" onClick={onClose}>
+      <div className="invite-modal" onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true">
+        <button className="invite-close" type="button" aria-label="Close" onClick={onClose}>×</button>
+
+        <div className="invite-head">
+          <div className="invite-icon" aria-hidden>
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="8.5" cy="7" r="4"/>
+              <line x1="20" y1="8" x2="20" y2="14"/>
+              <line x1="23" y1="11" x2="17" y2="11"/>
+            </svg>
+          </div>
+          <h2 className="invite-title">Invite friends to this Table</h2>
+          <p className="invite-sub">Anyone with this link can join the room as a guest.</p>
+        </div>
+
+        <div className="invite-link-row">
+          <code className="invite-link" onFocus={(e) => e.target.select?.()}>{link}</code>
+          <button
+            type="button"
+            className={'invite-copy' + (copied ? ' is-copied' : '')}
+            onClick={copy}
+          >
+            {copied ? '✓ Copied' : 'Copy'}
+          </button>
+        </div>
+
+        <div className="invite-divider"><span>or share via</span></div>
+
+        <div className="invite-share-row">
+          <a className="invite-share-btn" target="_blank" rel="noreferrer"
+             href={`https://twitter.com/intent/tweet?text=${encodeURIComponent('Join my LokaCup table')}&url=${encodeURIComponent(link)}`}>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.244 2H21.5l-7.49 8.564L23 22h-6.844l-5.36-7.013L4.66 22H1.4l8.02-9.17L1 2h7.02l4.84 6.4L18.244 2z"/></svg>
+            X / Twitter
+          </a>
+          <a className="invite-share-btn" target="_blank" rel="noreferrer"
+             href={`https://t.me/share/url?url=${encodeURIComponent(link)}&text=${encodeURIComponent('Join my LokaCup table')}`}>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+            Telegram
+          </a>
+          <button type="button" className="invite-share-btn" onClick={copy} title="Copy link">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy link
+          </button>
+        </div>
+      </div>
+    </div>
+  ), document.body)
 }
 
 function FieldGlobe() {

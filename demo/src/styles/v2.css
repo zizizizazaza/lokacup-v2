@@ -9065,3 +9065,210 @@
   overflow-y: auto;
   padding-bottom: 0.5rem;
 }
+
+/* ─── Invite modal · room-level share link ─── */
+.invite-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  background: rgba(6,6,10,0.74);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  animation: ow-fade-in 0.18s ease-out;
+}
+.invite-modal {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  background: #18181c;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 1.8rem 1.6rem 1.4rem;
+  text-align: center;
+  box-shadow: 0 30px 90px rgba(0,0,0,0.55);
+  animation: ow-modal-in 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.invite-close {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.95rem;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid var(--border-light);
+  background: transparent;
+  color: var(--fg-secondary);
+  cursor: pointer;
+  font-size: 1.05rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.invite-close:hover { background: rgba(255,255,255,0.08); color: #fff; }
+
+.invite-head { margin-bottom: 1.2rem; }
+.invite-icon {
+  width: 52px;
+  height: 52px;
+  margin: 0.1rem auto 0.8rem;
+  border-radius: 50%;
+  background: rgba(168,255,0,0.12);
+  border: 1px solid rgba(168,255,0,0.32);
+  color: var(--accent-green);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.invite-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  margin: 0 0 0.3rem;
+  color: var(--fg-primary);
+}
+.invite-sub {
+  font-family: var(--font-ui);
+  font-size: 0.88rem;
+  color: var(--fg-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.invite-link-row {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  margin-bottom: 1.1rem;
+}
+.invite-link {
+  flex: 1;
+  padding: 0.65rem 0.85rem;
+  border-radius: 10px;
+  background: rgba(0,0,0,0.35);
+  border: 1px solid var(--border-light);
+  font-family: var(--font-data);
+  font-size: 0.82rem;
+  color: var(--fg-primary);
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+.invite-copy {
+  padding: 0.65rem 1rem;
+  border-radius: 10px;
+  background: var(--accent-green);
+  border: 1px solid var(--accent-green);
+  color: #0a0a10;
+  font-family: var(--font-ui);
+  font-size: 0.86rem;
+  font-weight: 700;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s, transform 0.1s;
+}
+.invite-copy:hover { background: #b9ff33; }
+.invite-copy:active { transform: scale(0.97); }
+.invite-copy.is-copied { background: rgba(168,255,0,0.18); color: var(--accent-green); }
+
+.invite-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0.3rem 0 0.85rem;
+  color: var(--fg-tertiary);
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+}
+.invite-divider::before, .invite-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-light);
+}
+
+.invite-share-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+.invite-share-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.6rem 0.5rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-light);
+  background: rgba(255,255,255,0.03);
+  color: var(--fg-primary);
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s, border-color 0.15s;
+}
+.invite-share-btn:hover { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.25); }
+
+/* ─── Chat bubble · hover copy button beside the bubble ─── */
+.pr-msg-bubble-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  max-width: 100%;
+}
+/* Host messages are right-aligned: copy icon sits on the LEFT of the bubble */
+.pr-msg.host .pr-msg-bubble-row { flex-direction: row-reverse; }
+
+.pr-msg-copy {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid var(--border-light);
+  border-radius: 7px;
+  background: transparent;
+  color: var(--fg-tertiary);
+  cursor: pointer;
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.15s, transform 0.15s, background 0.15s, color 0.15s, border-color 0.15s;
+}
+.pr-msg-bubble-row:hover .pr-msg-copy,
+.pr-msg-copy:focus-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+.pr-msg-copy:hover {
+  background: rgba(168,255,0,0.14);
+  color: var(--accent-green);
+  border-color: rgba(168,255,0,0.45);
+}
+.pr-msg-copy.is-copied {
+  opacity: 1;
+  transform: scale(1);
+  background: var(--accent-green);
+  color: #0a0a10;
+  border-color: var(--accent-green);
+}
+
+/* Manage button · icon-only variant (just a pencil) */
+.pr-manage-btn-icon {
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  gap: 0;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -38,19 +38,10 @@ function MembersBar({ onOpenManage, onOpenAnalyst }) {
             <span className="pr-friend-online" />
           </span>
         ))}
-        <button type="button" className="pr-manage-btn" onClick={() => onOpenManage?.()}>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-            <circle cx="12" cy="12" r="3" />
-            <line x1="12" y1="3" x2="12" y2="6" />
-            <line x1="12" y1="18" x2="12" y2="21" />
-            <line x1="3" y1="12" x2="6" y2="12" />
-            <line x1="18" y1="12" x2="21" y2="12" />
-            <line x1="5.6" y1="5.6" x2="7.7" y2="7.7" />
-            <line x1="16.3" y1="16.3" x2="18.4" y2="18.4" />
-            <line x1="5.6" y1="18.4" x2="7.7" y2="16.3" />
-            <line x1="16.3" y1="7.7" x2="18.4" y2="5.6" />
+        <button type="button" className="pr-manage-btn pr-manage-btn-icon" onClick={() => onOpenManage?.()} aria-label="Manage participants" title="Manage participants">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+            <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/>
           </svg>
-          Manage
         </button>
       </div>
     </div>
@@ -245,19 +236,10 @@ function PresenterBar({ onOpenManage, onOpenAnalyst, activeAnalysts }) {
             +{overflow}
           </button>
         )}
-        <button type="button" className="pr-manage-btn" onClick={() => onOpenManage?.()}>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-            <circle cx="12" cy="12" r="3" />
-            <line x1="12" y1="3" x2="12" y2="6" />
-            <line x1="12" y1="18" x2="12" y2="21" />
-            <line x1="3" y1="12" x2="6" y2="12" />
-            <line x1="18" y1="12" x2="21" y2="12" />
-            <line x1="5.6" y1="5.6" x2="7.7" y2="7.7" />
-            <line x1="16.3" y1="16.3" x2="18.4" y2="18.4" />
-            <line x1="5.6" y1="18.4" x2="7.7" y2="16.3" />
-            <line x1="16.3" y1="7.7" x2="18.4" y2="5.6" />
+        <button type="button" className="pr-manage-btn pr-manage-btn-icon" onClick={() => onOpenManage?.()} aria-label="Manage participants" title="Manage participants">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+            <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/>
           </svg>
-          Manage
         </button>
       </div>
     </div>
@@ -268,6 +250,39 @@ function PresenterBar({ onOpenManage, onOpenAnalyst, activeAnalysts }) {
 const KICKOFF_HOURS = 20
 
 // Convert match minute → "HH:MM" wall clock. We ignore halftime break for simplicity.
+// Small copy button that appears on hover at the tail of a chat bubble.
+function CopyMsgBtn({ text }) {
+  const [copied, setCopied] = useState(false)
+  const onClick = async (e) => {
+    e.stopPropagation()
+    try {
+      await navigator.clipboard.writeText(text)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 1400)
+    } catch (err) {}
+  }
+  return (
+    <button
+      type="button"
+      className={'pr-msg-copy' + (copied ? ' is-copied' : '')}
+      onClick={onClick}
+      aria-label={copied ? 'Copied' : 'Copy message'}
+      title={copied ? 'Copied' : 'Copy'}
+    >
+      {copied ? (
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      ) : (
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+          <rect x="9" y="9" width="13" height="13" rx="2"/>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+        </svg>
+      )}
+    </button>
+  )
+}
+
 function wallClock(min) {
   const h = KICKOFF_HOURS + Math.floor(min / 60)
   const m = min % 60
@@ -739,7 +754,10 @@ export default function PredictionRoom({ onOpenManage, onOpenAnalyst, activeAnal
                   <span className="pr-msg-agent">{isHost ? 'Host' : m.agent}</span>
                   <span className="pr-msg-ts">{displayTs}</span>
                 </div>
-                <div className={'pr-msg-bubble ' + (isHost ? 'host' : 'ai')}>{m.text}</div>
+                <div className="pr-msg-bubble-row">
+                  <div className={'pr-msg-bubble ' + (isHost ? 'host' : 'ai')}>{m.text}</div>
+                  <CopyMsgBtn text={m.text} />
+                </div>
               </div>
             </div>
           )
