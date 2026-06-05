@@ -3,9 +3,6 @@ const base = { width: 18, height: 18, viewBox: '0 0 24 24', fill: 'none', stroke
 export const IconTable = (p) => (
   <svg {...base} {...p}><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 10h18" /><path d="M9 5v14" /></svg>
 )
-export const IconFork = (p) => (
-  <svg {...base} {...p}><circle cx="6" cy="6" r="2.2" /><circle cx="18" cy="6" r="2.2" /><circle cx="12" cy="18" r="2.2" /><path d="M6 8.2v3.6a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V8.2" /><path d="M12 13.8v2" /></svg>
-)
 export const IconPlus = (p) => (
   <svg {...base} {...p}><path d="M12 5v14M5 12h14" /></svg>
 )

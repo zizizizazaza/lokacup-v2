@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { TABLES } from '../../data/tables'
-import { IconEye, IconFork } from '../../components/Icons.jsx'
+import { IconEye } from '../../components/Icons.jsx'
 import { withFlags, flagSrc } from '../../components/Flag.jsx'
 import HeroCarousel from '../../components/HeroCarousel.jsx'
 
@@ -177,7 +177,6 @@ function LiveCard({ t, idx, cls, pair, aiA, aiB, flagA, flagB, leading }) {
       <div className="t-foot">
         <div>
           <span className="stat"><IconEye width={14} height={14} /> {t.spectatorCount}</span>
-          <span className="stat"><IconFork width={14} height={14} /> {t.forkCount}</span>
         </div>
         <span className="t-watch">Watch</span>
       </div>

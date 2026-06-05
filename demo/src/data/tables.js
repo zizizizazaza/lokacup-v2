@@ -30,7 +30,6 @@ export const TABLES = [
     league: 'Group D · MetLife Stadium',
     status: 'live',
     spectatorCount: 47,
-    forkCount: 8,
     summary: 'Casemiro doubt may move the line, but xG strongly favors Brazil…',
     messages: [
       sysEvt("⚽ 23' Neymar scored — Brazil 1, Morocco 0"),
@@ -81,7 +80,6 @@ export const TABLES = [
     league: 'Group D · Toronto',
     status: 'discussion',
     spectatorCount: 31,
-    forkCount: 5,
     summary: 'Pace suggests 1.6 expected — value buy at 38%…',
     messages: [
       hostMsg('Mbappé already scored at 18\'. Polymarket has him at 38% for a brace. AI?'),
@@ -116,7 +114,6 @@ export const TABLES = [
     league: 'Tournament outright',
     status: 'live',
     spectatorCount: 89,
-    forkCount: 14,
     summary: 'Bracket draw and Vinicius form make 18% look cheap…',
     messages: [
       hostMsg('Polymarket prices Brazil at 18% to win it all. Reasonable?'),
@@ -146,7 +143,6 @@ export const TABLES = [
     league: 'Group F · Tomorrow 15:00',
     status: 'discussion',
     spectatorCount: 18,
-    forkCount: 2,
     summary: 'Historic low-scoring matchups; market may be overconfident…',
     messages: [
       hostMsg('Polymarket has Over 2.5 at 64% for SPA vs MAR. Justified?'),
@@ -184,7 +180,6 @@ export const TABLES = [
     league: 'Group E · Tomorrow',
     status: 'live',
     spectatorCount: 12,
-    forkCount: 1,
     summary: 'England fast starters historically; +4pt value…',
     messages: [
       hostMsg('England 38% to lead at HT. Their first-half record this year?'),
@@ -213,7 +208,6 @@ export const TABLES = [
     league: 'Group A · Tomorrow',
     status: 'discussion',
     spectatorCount: 22,
-    forkCount: 3,
     summary: 'Both have leaky defenses; +3pt on BTTS Yes…',
     messages: [
       hostMsg("How likely is BTTS in ARG vs URU?"),
@@ -245,7 +239,6 @@ export const TABLES = [
     league: 'Group F · Group stage',
     status: 'live',
     spectatorCount: 56,
-    forkCount: 11,
     summary: 'Polymarket YES 42% vs Kalshi NO 53.8% → 4.2% spread…',
     messages: [
       hostMsg('Polymarket YES 42% but Kalshi NO 53.8%. Is there arb?'),
@@ -285,7 +278,6 @@ export const TABLES = [
     league: 'Tournament prop',
     status: 'discussion',
     spectatorCount: 34,
-    forkCount: 7,
     summary: 'Mbappé 22% looks slightly rich; Haaland gaining…',
     messages: [
       hostMsg('Polymarket has Mbappé at 22% for top scorer. Fair?'),
@@ -305,15 +297,3 @@ export function getTable(id) {
   return TABLES.find((t) => t.id === id)
 }
 
-export const MY_FORKS = [
-  {
-    id: 'fork-cas-out',
-    sourceTableId: 'bra-mar-winner',
-    sourceHost: 'LokaCup AI',
-    sourceMarket: 'Brazil vs Morocco — match winner',
-    forkedAt: 'msg #6',
-    isPublished: false,
-    createdAgo: '12m',
-    lastMessage: 'What if Casemiro gets subbed off at 70?',
-  },
-]

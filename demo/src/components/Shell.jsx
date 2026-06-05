@@ -25,7 +25,7 @@ export default function Shell({ children, hideChat }) {
     window.addEventListener('pagehide', () => window.speechSynthesis.cancel())
     return () => document.removeEventListener('visibilitychange', onHide)
   }, [])
-  const ownsRail = loc.pathname.startsWith('/table/') || loc.pathname.startsWith('/fork/') || loc.pathname.startsWith('/campaign') || loc.pathname.startsWith('/profile')
+  const ownsRail = loc.pathname.startsWith('/table/') || loc.pathname.startsWith('/campaign') || loc.pathname.startsWith('/profile')
   const immersive = loc.pathname.startsWith('/table/')
   const showChat = !hideChat && !ownsRail
 

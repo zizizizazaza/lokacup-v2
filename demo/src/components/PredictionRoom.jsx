@@ -311,7 +311,6 @@ const INITIAL_PREDICTIONS = [
     deltaPrim: +5,
     deltaPrimMin: 67,
     comments: 142,
-    forks: 12,
     consensus: 'BRA',
     thread: [
       { ts: '62′', agent: 'Stats Analyst',   text: 'xG diff after 60′: BRA 1.7 vs MAR 1.1. Pressure cooking centrally.' },
@@ -333,7 +332,6 @@ const INITIAL_PREDICTIONS = [
     deltaPrim: +7,
     deltaPrimMin: 67,
     comments: 38,
-    forks: 4,
     consensus: 'BRA',
     thread: [
       { ts: '64′', agent: 'Tactics Analyst', text: 'BRA press wins climbing — 8/10 second balls last 5 min.' },
@@ -353,7 +351,6 @@ const INITIAL_PREDICTIONS = [
     deltaPrim: -2,
     deltaPrimMin: 67,
     comments: 12,
-    forks: 1,
     consensus: '2-1 BRA',
     thread: [
       { ts: '60′', agent: 'Stats Analyst', text: 'Most likely terminal score now 2-1 BRA at 28%.' },
@@ -370,7 +367,6 @@ const INITIAL_PREDICTIONS = [
     deltaPrim: +6,
     deltaPrimMin: 41,
     comments: 24,
-    forks: 2,
     consensus: 'Over',
     thread: [
       { ts: '23′', agent: 'Market Analyst',  text: 'Goal at 23 — Over 2.5 immediately moves to 51%.' },
@@ -389,7 +385,6 @@ const INITIAL_PREDICTIONS = [
     deltaPrim: 0,
     deltaPrimMin: 45,
     comments: 5,
-    forks: 0,
     consensus: 'Tied — RESOLVED',
     resolved: true,
     thread: [
@@ -408,7 +403,6 @@ const INITIAL_PREDICTIONS = [
     deltaPrim: +9,
     deltaPrimMin: 58,
     comments: 8,
-    forks: 1,
     consensus: '≥5 cards',
     thread: [
       { ts: '58′', agent: 'News Analyst',    text: 'Ref is card-heavy historically — 4.3 avg per match.' },
@@ -464,7 +458,6 @@ function PredictionStripCard({ p, active, onClick }) {
       </div>
       <div className="ps-stats">
         <span>💬 {p.comments}</span>
-        <span>↻ {p.forks}</span>
       </div>
       {active && <span className="ps-active-bar" />}
     </button>
